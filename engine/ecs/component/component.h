@@ -1,5 +1,6 @@
 //
 // Created by dmitry on 04.05.2023.
+//smth
 //
 
 #ifndef INC_2023_1_MAD_POINTER_COMPONENT_H
