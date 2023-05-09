@@ -1,0 +1,8 @@
+//
+// Created by dmitry on 09.05.23.
+//
+
+#ifndef MY_PROJECT_ALLOCATOR_BASE_H
+#define MY_PROJECT_ALLOCATOR_BASE_H
+
+#endif //MY_PROJECT_ALLOCATOR_BASE_H
