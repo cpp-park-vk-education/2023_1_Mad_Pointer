@@ -6,7 +6,6 @@
 namespace ecs::event {
 
     class  EventHandler {
-        friend class ECSEngine;
         using EventDispatcherMap = std::unordered_map<EventTypeId, internal::EventBaseDispatcher*>;
         using EventStorage = std::vector<EventBase*>;
     public:
