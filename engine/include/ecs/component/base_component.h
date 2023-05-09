@@ -1,15 +1,31 @@
-struct Direction {
-    bool m_right = false;
-    bool m_left = false;
-    bool m_up = false;
-    bool m_down = false;
-};
 
 
 
 namespace ecs {
     class ComponentBase {
+    public:
+        ComponentBase();
+        virtual ~ComponentBase();
 
+        ComponentId getComponentId() const {
+            return m_componentId;
+        }
+
+        EntiryId getOwner() const {
+            return m_owner;
+        }
+
+        void setActive(bool state) {
+            m_enabled = state;
+        }
+
+        bool isActive() const {
+            return m_enabled;
+        }
+    protected:
+    ComponentId m_componentId;
+    EntityId m_owner;
+    bool m_enabled;
     };
 
     class VelocityComponent : ComponentBase {
@@ -31,12 +47,15 @@ namespace ecs {
     };
 
     class BodyComponent : ComponentBase {
-
     };
 
-    class ComponentStorage {
-    public:
-        ComponentStorage(size_t size = 100);
 
+    struct Direction {
+        bool m_right = false;
+        bool m_left = false;
+        bool m_up = false;
+        bool m_down = false;
     };
+
+
 }
