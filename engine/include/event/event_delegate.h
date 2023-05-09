@@ -2,7 +2,7 @@
 namespace ecs::event {
     class EventBase;
 
-    namespace Internal {
+    namespace internal {
         using EventDelegateId = size_t;
 
         class EventBaseDelegate {
