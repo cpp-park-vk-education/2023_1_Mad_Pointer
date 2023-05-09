@@ -2,13 +2,13 @@
 #include <string>
 
 using SystemPriority = std::size_t;
+using SystemTypeId = std::size_t;
 
 static const SystemPriority LOW_SYSTEM_PRIORITY	= 100;
 static const SystemPriority NORMAL_SYSTEM_PRIORITY = 200;
 static const SystemPriority HIGH_SYSTEM_PRIORITY = 300;
 
 class SystemBase {
-    using SystemTypeId = std::size_t;
 public:
     virtual ~SystemBase();
 
