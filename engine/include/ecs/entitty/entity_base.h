@@ -1,8 +1,9 @@
 #include "../component_manager/component_manager.h"
 
 namespace ecs {
+    using EntityTypeId = size_t;
+
     class EntityBase {
-        using EntityTypeId = size_t;
     public:
         EntityBase();
         virtual ~EntityBase();
