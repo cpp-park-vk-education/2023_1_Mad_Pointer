@@ -42,7 +42,7 @@ int main(int argc, char** argv) {
 
     int count = 0;
     std::cout << "Counting entities with SomeComponent..." << std::endl;
-    // range based for loop
+    // range based for engine
     for (auto ent : world->each<SomeComponent>())
     {
         ++count;
