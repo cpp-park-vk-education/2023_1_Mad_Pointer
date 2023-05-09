@@ -5,6 +5,8 @@ struct Direction {
     bool m_down = false;
 };
 
+
+
 namespace ecs {
     class ComponentBase {
 
@@ -36,10 +38,5 @@ namespace ecs {
     public:
         ComponentStorage(size_t size = 100);
 
-        inline size_t size() const {
-
-        }
-
-        inline
     };
 }

@@ -1,16 +1,6 @@
 
 namespace ecs {
-    class Loop {
-    private:
-        double m_previous;
-        double m_fpsTimer;
-        double m_lag;
-        int m_frames;
-        int m_updates;
-        int m_msPerUpdate;
-
-        GameBase& m_game;
-
+    class GameLoop {
     public:
         Loop(GameBase& game, int msPerUpdate = 1000 / 120) :
                 m_previous(ez::getCurrentTime()),
@@ -22,9 +12,8 @@ namespace ecs {
                 m_game(game) {}
 
         // Commences the game loop.
-        void begin()
-        {
-            while (m_game.isOpen()) {
+        void run() {
+            while (isRunning) {
 
                 double current = ez::getCurrentTime();
                 double elapsed = current - m_previous;
@@ -59,29 +48,16 @@ namespace ecs {
 
             }
         }
-    };
-    class GameLoop {
-    public:
-        void run() {
-            while (is_running) {
-
-            }
-        }
-
-        void processInput() {
-
-        }
-
-        void update(double deltaTime) {
-
-        }
-
-        void render(double deltaTime) {
-
-        }
-
     private:
-        double m_timeStarted;
-        bool is_running = false;
+        double m_previous;
+        double m_fpsTimer;
+        double m_lag;
+        int m_frames;
+        int m_updates;
+        int m_msPerUpdate;
+        bool isRunning = false;
+        SceneBase& m_scene;
+        SystemRegistry m_systems;
     };
+
 }
