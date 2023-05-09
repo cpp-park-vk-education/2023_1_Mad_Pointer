@@ -12,7 +12,5 @@ namespace ecs {
         virtual ~Component();
     protected:
         static ComponentTypeId STATIC_COMPONENT_TYPE_ID; //здесь получаем идентификатор типа компонента
-    private:
-
     };
 }
