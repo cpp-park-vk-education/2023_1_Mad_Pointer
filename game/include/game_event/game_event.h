@@ -125,15 +125,13 @@ struct GameObjectSpawned : public ecs::event::Event<GameObjectSpawned> {
 struct GameObjectKilled : public ecs::event::Event<GameObjectKilled> {
     GameObjectId	m_EntityID;
 
-    GameObjectKilled(GameObjectId id) : m_EntityID(id)
-    {}
+    GameObjectKilled(GameObjectId id) : m_EntityID(id) {}
 };
 
 struct CameraCreated : public ecs::event::Event<CameraCreated> {
     GameObjectId cameraID;
 
-    CameraCreated(GameObjectId id) : cameraID(id)
-    {}
+    CameraCreated(GameObjectId id) : cameraID(id) {}
 };
 
 struct CameraDestroyed : public ecs::event::Event<CameraDestroyed> {
