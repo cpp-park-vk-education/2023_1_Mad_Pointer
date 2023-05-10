@@ -5,9 +5,9 @@ namespace ecs::memory::allocator {
     class PoolAllocator : public AllocatorBase {
     private:
 
-        const size_t	OBJECT_SIZE;
-        const uint8_t 		OBJECT_ALIGNMENT;
-        void**			freeList;
+        const size_t OBJECT_SIZE;
+        const uint8_t OBJECT_ALIGNMENT;
+        void** freeList;
 
     public:
         PoolAllocator(size_t memSize, const void* mem, size_t objectSize, uint8_t objectAlignment);
