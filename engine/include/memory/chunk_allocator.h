@@ -24,7 +24,7 @@ namespace ecs::memory {
             uintptr_t chunkStart;
             uintptr_t chunkEnd;
 
-            MemoryChunk(Allocator* allocaor) : allocator(allocaor) {}
+            MemoryChunk(Allocator* allocator) : allocator(allocator) {}
 
         };
 
