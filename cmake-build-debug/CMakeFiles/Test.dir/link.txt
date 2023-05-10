@@ -1,0 +1,1 @@
+/bin/g++  -std=c++20 -pthread -lpthread -lm -g CMakeFiles/Test.dir/game/client/main.cpp.o -o Test  -L/usr/lib/x86_64-linux-gnu  -lSDL2 

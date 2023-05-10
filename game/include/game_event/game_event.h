@@ -150,10 +150,7 @@ struct WindowResizedEvent : public ecs::event::Event<WindowResizedEvent> {
     int width;
     int height;
 
-    WindowResizedEvent(int w, int h) :
-            width(w),
-            height(h)
-    {}
+    WindowResizedEvent(int w, int h) : width(w), height(h) {}
 };
 
 

@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 namespace ecs {
-    class  ComponentManager  {
+    class ComponentManager  {
         class ComponentContainerBase {
         public:
             virtual ~ComponentContainerBase() {}

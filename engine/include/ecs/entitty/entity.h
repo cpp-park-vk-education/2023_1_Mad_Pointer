@@ -7,11 +7,8 @@ namespace ecs {
         void operator delete[](void*) = delete;
 
     public:
-
         static const EntityTypeId STATIC_ENTITY_TYPE_ID;
-
     public:
-
         virtual EntityTypeId getStaticEntityTypeId() const override { return STATIC_ENTITY_TYPE_ID; }
 
         Entity() {}

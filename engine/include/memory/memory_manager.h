@@ -1,0 +1,8 @@
+//
+// Created by dmitry on 10.05.23.
+//
+
+#ifndef MY_PROJECT_MEMORY_MANAGER_H
+#define MY_PROJECT_MEMORY_MANAGER_H
+
+#endif //MY_PROJECT_MEMORY_MANAGER_H
