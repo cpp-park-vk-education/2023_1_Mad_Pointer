@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 namespace ecs::memory::allocator {
-    static inline void *AlignForward(void *address, uint8_t alignment);
+    static inline void* AlignForward(void *address, uint8_t alignment);
 
     static inline uint8_t GetAdjustment(const void *address, uint8_t alignment);
 

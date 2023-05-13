@@ -1,5 +1,6 @@
-
+#include <iostream>
 namespace ecs {
+    using ComponentId = size_t;
     class ComponentBase {
     public:
         ComponentBase();
@@ -9,7 +10,7 @@ namespace ecs {
             return m_componentId;
         }
 
-        EntiryId getOwner() const {
+        EntityId getOwner() const {
             return m_owner;
         }
 
