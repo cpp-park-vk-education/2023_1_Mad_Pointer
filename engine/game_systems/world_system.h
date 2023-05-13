@@ -1,6 +1,6 @@
 #ifndef MY_PROJECT_WORLD_SYSTEM_H
 #define MY_PROJECT_WORLD_SYSTEM_H
-
+#include <vector>
 class WorldSystem {
     struct SpawnInfo {
         GameObjectId m_GameObjectID;
@@ -27,11 +27,9 @@ class WorldSystem {
     using WorldObjects = std::vector<WorldObjectInfo>;
 
 private:
-
     b2World	m_Box2DWorld;
 
     WorldObjects m_WorldObjects;
-
     SpawnQueue m_SpawnQueue;
     size_t m_PendingSpawns;
 
