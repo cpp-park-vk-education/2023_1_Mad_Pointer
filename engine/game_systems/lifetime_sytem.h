@@ -1,0 +1,8 @@
+//
+// Created by dmitry on 13.05.23.
+//
+
+#ifndef MY_PROJECT_LIFETIME_SYTEM_H
+#define MY_PROJECT_LIFETIME_SYTEM_H
+
+#endif //MY_PROJECT_LIFETIME_SYTEM_H
