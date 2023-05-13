@@ -19,6 +19,5 @@ public:
 
     inline void SetPosition(const vec2& position) { this->m_Position = position; }
     inline void SetViewport(const vec2& viewport) { this->m_Viewport = viewport; }
-
 };
 #endif //MY_PROJECT_CAMERA_H
