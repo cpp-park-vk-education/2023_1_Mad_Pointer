@@ -1,8 +1,3 @@
-//
-// Created by dmitry on 11.05.23.
-//
+int constexpr GAME_WINDOW_WIDTH = 1920;
+int constexpr GAME_WINDOW_HEIGHT = 1080;
 
-#ifndef MY_PROJECT_GAME_H
-#define MY_PROJECT_GAME_H
-
-#endif //MY_PROJECT_GAME_H

@@ -64,12 +64,6 @@ enum CollisionMask
 
 }; // enum CollisionMask
 
-///-------------------------------------------------------------------------------------------------
-/// Enum:	GameState
-///
-/// Summary:	Values that represent game states.
-///-------------------------------------------------------------------------------------------------
-
 enum GameState
 {
     NOT_INITIALIZED = 0,

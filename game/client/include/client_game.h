@@ -1,5 +1,5 @@
 #include <SDL.h>
-
+#include <string>
 class Game {
 
 public:
@@ -16,7 +16,7 @@ private:
 
     bool m_Fullscreen;
 
-    const char* m_GameTitle;
+    std::string m_GameTitle;
 
     FPS	m_FPS;
     float	m_DeltaTime;

@@ -1,8 +1,10 @@
-//
-// Created by dmitry on 10.05.23.
-//
+class InputSystem : public ecs::System<InputSystem> {
+private:
+    int	m_NumKeys;
+    unsigned char* m_OldKeyStates;
 
-#ifndef MY_PROJECT_INPUT_SYSTEM_H
-#define MY_PROJECT_INPUT_SYSTEM_H
-
-#endif //MY_PROJECT_INPUT_SYSTEM_H
+public:
+    InputSystem();
+    ~InputSystem();
+    virtual void preUpdate(float deltaTime) override;
+};
