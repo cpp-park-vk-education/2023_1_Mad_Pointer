@@ -1,8 +1,10 @@
 #include "entity_base.h"
 #include "../../utils/family_type_id.h"
+
 namespace ecs {
     template<class EntityClass>
     class Entity : public EntityBase {
+
         void operator delete(void*) = delete;
         void operator delete[](void*) = delete;
 

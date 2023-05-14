@@ -1,5 +1,5 @@
 #include <string>
-#include "../entitty/entity_base.h"
+#include "../entity/entity_base.h"
 #include <typeinfo>
 #include <unordered_map>
 #include <vector>

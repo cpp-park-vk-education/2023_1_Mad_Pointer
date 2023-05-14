@@ -1,4 +1,5 @@
 #include <iostream>
+#include "../entity/entity.h"
 namespace ecs {
     using ComponentId = size_t;
     class ComponentBase {
