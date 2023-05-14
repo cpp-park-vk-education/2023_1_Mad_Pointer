@@ -25,5 +25,8 @@ target_link_libraries(server_websocket PRIVATE OpenSSL::SSL OpenSSL::Crypto Boos
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
+
+add_subdirectory(lib/math)
+
 add_executable(Test game/client/main.cpp)
-target_link_libraries(Test ${SDL2_LIBRARIES})
+target_link_libraries(Test ${SDL2_LIBRARIES} math)
