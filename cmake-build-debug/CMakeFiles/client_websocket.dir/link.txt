@@ -1,0 +1,1 @@
+/bin/g++  -std=c++20 -pthread -lpthread -lm -g CMakeFiles/client_websocket.dir/game/client/main.cpp.o -o client_websocket  /usr/lib/x86_64-linux-gnu/libssl.a /usr/lib/x86_64-linux-gnu/libcrypto.a /usr/lib/x86_64-linux-gnu/libboost_system.so.1.74.0 -ldl 

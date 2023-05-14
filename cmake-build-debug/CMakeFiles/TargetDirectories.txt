@@ -1,0 +1,8 @@
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/client_websocket.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/server_websocket.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/Test.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/lib/math/CMakeFiles/math.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/lib/math/CMakeFiles/edit_cache.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/lib/math/CMakeFiles/rebuild_cache.dir
