@@ -1,7 +1,8 @@
 #include "entity_base.h"
 #include "../../utils/family_type_id.h"
-
+#include <numeric>
 namespace ecs {
+    size_t INVALID_ENTITY_ID = std::numeric_limits<size_t>;
     template<class EntityClass>
     class Entity : public EntityBase {
 

@@ -3,6 +3,7 @@
 namespace ecs {
     using EntityTypeId = size_t;
     using EntityId = size_t;
+
     class EntityBase {
     public:
         EntityBase();
