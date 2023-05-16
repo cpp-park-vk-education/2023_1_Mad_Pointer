@@ -1,10 +1,17 @@
 #include "../component/base_component.h"
+#include "../../utils/family_type_id.h"
+
 #include <string>
 #include <typeinfo>
 #include <unordered_map>
+#include "set"
+#include <unordered_set>
+
 #include <vector>
+
 namespace ecs {
     class ComponentManager  {
+
         class ComponentContainerBase {
         public:
             virtual ~ComponentContainerBase() {}
@@ -25,12 +32,24 @@ namespace ecs {
                 static std::string COMPONENT_TYPE_NAME{ typeid(ComponentClassType).name() };
                 return COMPONENT_TYPE_NAME;
             }
-
+            ComponentBase* createComponent() {
+                for (auto memoryPlace : m_components) {
+                    if (memoryPlace) {
+                        return memoryPlace;
+                    }
+                }
+            }
             virtual void destroyComponent(ComponentBase* object) override {
-                object->~ComponentBase();
-                this->destroyObject(object);
+                for (auto memoryPlace : m_components) {
+                    if (memoryPlace == object) {
+                        destroyComponent(memoryPlace);
+                    }
+                }
             }
 
+        private:
+
+            std::vector<ComponentBase*> m_components;
         };
 
     public:
@@ -45,7 +64,21 @@ namespace ecs {
 
 
         template<typename ComponentClassType>
-        inline ComponentContainer<ComponentClassType>* getComponentContainer() {}
+        inline ComponentContainer<ComponentClassType>* getComponentContainer() {
+            auto COMPONENT_ID = ComponentClassType::STATIC_COMPONENT_TYPE_ID;
+
+            ComponentContainer<ComponentClassType>* componentContainer = nullptr;
+
+            auto iter = m_ComponentContainerRegistry.find(COMPONENT_ID);
+            if (iter = m_ComponentContainerRegistry.end()) {
+                componentContainer = new ComponentContainer<ComponentClassType>();
+                m_ComponentContainerRegistry[COMPONENT_ID] = componentContainer;
+                return componentContainer;
+            }
+
+            componentContainer = static_cast<ComponentContainer<ComponentClassType>>(iter->second);
+            return componentContainer;
+        }
 
         ComponentId	acquireComponentId(ComponentBase* component);
         void releaseComponentId(ComponentId id);
@@ -60,7 +93,9 @@ namespace ecs {
         ~ComponentManager();
 
         template<class ComponentClassType, class ...Args>
-        ComponentClassType* addComponent(const EntityId entityId, Args&&... args) {}
+        ComponentClassType* addComponent(const EntityId entityId, Args&&... args) {
+            auto componentContainer = getComponentContainer<ComponentClassType>();
+        }
 
         template<class ComponentClassType>
         void removeComponent(const EntityId entityId) {}
@@ -85,6 +120,5 @@ namespace ecs {
         EntityComponentMap m_EntityComponentMap;
         ComponentContainerRegistry m_ComponentContainerRegistry;
         ComponentLookupTable m_ComponentLUT;
-
     };
 } // namespace ECS

@@ -2,6 +2,9 @@
 
 namespace ecs::event {
     using EventTypeId = size_t;
+    struct EventTimestamp {
+
+    };
 
     class EventBase {
     public:

@@ -1,3 +1,4 @@
+#pragma once
 #include "../event/event_delegate.h"
 #include "../event/event_handler.h"
 
@@ -19,8 +20,8 @@ namespace ecs  {
         friend class EntityManager;
 
     public:
-        Engine();
-        ~Engine();
+        Engine() {}
+        ~Engine() {}
 
             inline EntityManager* GetEntityManager() { return m_entityManager; }
 
@@ -33,7 +34,7 @@ namespace ecs  {
                 m_eventHandler->Send<E>(std::forward<Args>(eventArgs)...);
             }
 
-            void update(float tickMs);
+            void update(float tickMs) {}
 
     private:
         utils::Timer* m_engineTime;
@@ -50,6 +51,6 @@ namespace ecs  {
             m_eventHandler->AddEventCallback<EventType>(eventDelegate);
         }
 
-        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
+        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate) {}
     };
 }

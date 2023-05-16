@@ -11,13 +11,7 @@ protected:
     size_t	m_ColorDataIndex;
 public:
 
-    ShapeBufferIndex() :
-            m_PositionDataIndex(-1),
-            m_IndexDataIndex(-1),
-            m_NormalDataIndex(-1),
-            m_TexCoordDataIndex(-1),
-            m_ColorDataIndex(-1)
-    {}
+    ShapeBufferIndex() : m_PositionDataIndex(-1), m_IndexDataIndex(-1), m_NormalDataIndex(-1), m_TexCoordDataIndex(-1), m_ColorDataIndex(-1) {}
 
     inline size_t GetPositionDataIndex() const { return this->m_PositionDataIndex; }
 
