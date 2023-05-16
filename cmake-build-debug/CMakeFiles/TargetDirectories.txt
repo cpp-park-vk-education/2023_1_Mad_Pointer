@@ -1,3 +1,0 @@
-/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/TheFloors.dir
-/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/CMakeFiles/rebuild_cache.dir

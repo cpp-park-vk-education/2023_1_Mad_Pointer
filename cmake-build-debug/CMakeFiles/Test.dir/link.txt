@@ -1,1 +1,0 @@
-/bin/g++ -g CMakeFiles/Test.dir/game/client/main.cpp.o -o Test  -Wl,-rpath,/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/lib/math -L/usr/lib/x86_64-linux-gnu  -lSDL2 lib/math/libmath.so 
