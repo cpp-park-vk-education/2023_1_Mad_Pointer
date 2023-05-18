@@ -17,5 +17,5 @@ namespace ecs::memory::allocator {
         virtual void free(void* p) override;
         virtual void clear() override;
 
-    }; // class StackAllocator
+    };
 }
