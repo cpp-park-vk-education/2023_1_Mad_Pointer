@@ -1,3 +1,6 @@
-//
-// Created by dmitry on 18.05.23.
-//
+#include "../engine/include/game_loop/game_loop.h"
+
+int main() {
+
+    return 0;
+}

@@ -2,6 +2,10 @@ set(CMAKE_CXX_STANDARD 20)
 cmake_minimum_required(VERSION 3.8)
 project(TheFloors)
 
+add_subdirectory(engine)
+add_subdirectory(game)
+
+#[[
 set(HEADER_FILES engine/include/ecs/component/component.h
         engine/include/ecs/component/base_component.h
         engine/include/ecs/component_manager/component_manager.h
@@ -54,8 +58,8 @@ set(HEADER_FILES engine/include/ecs/component/component.h
         engine/include/shape_common/shape_buffer_index.h
         engine/src/game_loop/game_loop.cpp
 )
-
-add_executable(TheFloors ${HEADER_FILES})
+]]
+#add_executable(TheFloors ${HEADER_FILES})
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++20 -pthread -lpthread -lm")
 
