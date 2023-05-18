@@ -50,8 +50,8 @@ set(HEADER_FILES engine/include/ecs/component/component.h
         engine/include/game_components/spawn_component.h
         engine/include/game_components/transform.h
         engine/include/game_components/transform_component.h
-        engine/shape_common/shape.h
-        engine/shape_common/shape_buffer_index.h
+        engine/include/shape_common/shape.h
+        engine/include/shape_common/shape_buffer_index.h
         engine/src/game_loop/game_loop.cpp
 )
 
