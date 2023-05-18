@@ -1,12 +1,12 @@
+#pragma once
 #include "../component/base_component.h"
 #include "../../utils/family_type_id.h"
 
 #include <string>
 #include <typeinfo>
 #include <unordered_map>
-#include "set"
 #include <unordered_set>
-
+#include <memory>
 #include <vector>
 
 namespace ecs {
@@ -32,24 +32,25 @@ namespace ecs {
                 static std::string COMPONENT_TYPE_NAME{ typeid(ComponentClassType).name() };
                 return COMPONENT_TYPE_NAME;
             }
-            ComponentBase* createComponent() {
-                for (auto memoryPlace : m_components) {
-                    if (memoryPlace) {
-                        return memoryPlace;
-                    }
-                }
+            ComponentBase* createComponent(ComponentId compId, std::shared_ptr<ComponentClassType> component) {
+                m_components[compId] = component;
+                return m_components.at(compId);
             }
+
             virtual void destroyComponent(ComponentBase* object) override {
-                for (auto memoryPlace : m_components) {
-                    if (memoryPlace == object) {
-                        destroyComponent(memoryPlace);
-                    }
-                }
+            }
+
+            ComponentBase* getComponent(ComponentId componentId) const {
+                return m_components.at(componentId);
+            }
+
+            void del(ComponentId componentId) {
+                m_components.erase(componentId);
             }
 
         private:
 
-            std::vector<ComponentBase*> m_components;
+            std::unordered_map<ComponentId, std::shared_ptr<ComponentClassType>> m_components;
         };
 
     public:
@@ -61,7 +62,6 @@ namespace ecs {
         using ComponentContainerRegistry = std::unordered_map<ComponentTypeId, ComponentContainerBase*>;
         using ComponentLookupTable = std::vector<ComponentBase*>;
         using EntityComponentMap = std::vector<std::vector<ComponentId>>;
-
 
         template<typename ComponentClassType>
         inline ComponentContainer<ComponentClassType>* getComponentContainer() {
@@ -95,16 +95,39 @@ namespace ecs {
         template<class ComponentClassType, class ...Args>
         ComponentClassType* addComponent(const EntityId entityId, Args&&... args) {
             auto componentContainer = getComponentContainer<ComponentClassType>();
+            auto componentTypeID = ComponentClassType::STATIC_COMPONENT_TYPE_ID;
+            std::shared_ptr<ComponentBase> component = std::make_shared<ComponentBase>(std::forward<Args>(args)...);
+
+            auto componentID = component->getComponentId();
+            component->setOwner(entityId);
+
+            componentContainer->add(componentID, component);
+            mapEntityComponent(entityId, componentID, componentTypeID);
+
+            return static_cast<ComponentClassType*>(component);
         }
 
         template<class ComponentClassType>
-        void removeComponent(const EntityId entityId) {}
+        void removeComponent(const EntityId entityId) {
+            auto componentContainer = getComponentContainer<ComponentClassType>();
+            auto componentTypeID = ComponentClassType::STATIC_COMPONENT_TYPE_ID;
+
+            auto componentID = m_EntityComponentMap[entityId][componentTypeID];
+            componentContainer->del(componentID);
+            unmapEntityComponent(entityId, componentID, componentTypeID);
+        }
 
 
-        void removeAllComponents(const EntityId entityId) {}
+        void removeAllComponents(const EntityId entityId);
 
         template<class ComponentClassType>
-        ComponentClassType* getComponent(const EntityId entityId) {}
+        ComponentClassType* getComponent(const EntityId entityId) {
+            auto componentTypeID = ComponentClassType::STATIC_COMPONENT_TYPE_ID;
+            const ComponentId componentId = m_EntityComponentMap[entityId][componentTypeID];
+
+            auto component = m_ComponentLUT[componentId];
+            return static_cast<ComponentClassType*>(component);
+        }
 
         template<class ComponentClassType>
         inline TemplateComponentIterator<ComponentClassType> begin() {
