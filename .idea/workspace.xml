@@ -25,17 +25,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de24b94a-c42a-485d-bad0-0aece93180cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/engine/include/utils/timer.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/src/ecs/entity_manager/entity_manager.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/src/ecs/system/system_base.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/src/ecs/system_registry/system_registry.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/src/utils/family_type_id.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/src/utils/timer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/include/memory/allocator/stack_allocator.h" beforeDir="false" afterPath="$PROJECT_DIR$/engine/include/memory/allocator/stack_allocator.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/ecs/ecs.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/engine/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/network/network_wrapper.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/utils/utils.cpp" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/tests/engine/utils/test_timer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/tests/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -148,7 +139,7 @@
       <workItem from="1683991602021" duration="21033000" />
       <workItem from="1684244153448" duration="1848000" />
       <workItem from="1684264460092" duration="1231000" />
-      <workItem from="1684429193447" duration="2569000" />
+      <workItem from="1684429193447" duration="2905000" />
     </task>
     <servers />
   </component>
