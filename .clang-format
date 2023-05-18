@@ -1,0 +1,6 @@
+BasedOnStyle: Microsoft
+DerivePointerAlignment: false
+IncludeBlocks: Preserve
+ColumnLimit: '150'
+IndentWidth: 4
+SortIncludes: true
