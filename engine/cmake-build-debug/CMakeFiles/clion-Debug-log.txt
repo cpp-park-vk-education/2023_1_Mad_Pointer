@@ -1,0 +1,7 @@
+/snap/clion/235/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/snap/clion/235/bin/ninja/linux/x64/ninja -DCMAKE_CXX_COMPILER=/bin/g++ -G Ninja -S /home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine -B /home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/cmake-build-debug
+-- Configuring done
+CMake Error at CMakeLists.txt:5 (add_executable):
+  No SOURCES given to target: engine
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

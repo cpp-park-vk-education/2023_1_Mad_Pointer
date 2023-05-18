@@ -11,11 +11,11 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="TheFloors" targetName="TheFloors" />
-      <config projectName="TheFloors" targetName="client_websocket" />
-      <config projectName="TheFloors" targetName="server_websocket" />
-      <config projectName="TheFloors" targetName="Test" />
-      <config projectName="TheFloors" targetName="math" />
+      <config projectName="engine" targetName="TheFloors" />
+      <config projectName="engine" targetName="client_websocket" />
+      <config projectName="engine" targetName="math" />
+      <config projectName="engine" targetName="server_websocket" />
+      <config projectName="engine" targetName="Test" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -25,9 +25,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="de24b94a-c42a-485d-bad0-0aece93180cd" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/shape_common/shape.h" beforeDir="false" afterPath="$PROJECT_DIR$/engine/include/shape_common/shape.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/shape_common/shape_buffer_index.h" beforeDir="false" afterPath="$PROJECT_DIR$/engine/include/shape_common/shape_buffer_index.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/engine/src/ecs/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/game/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/engine/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/client/include/client_game.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/client/include/game.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/client/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/game/server/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/network/serialization/deserialize.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/network/serialization/serializator.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/network/tcp_socket/network_component.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/network/tcp_socket/reflection.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +59,11 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="1.2" />
   </component>
   <component name="ProjectId" id="2PbNbLVe4suYMbQFE6oh0YoP0ym" />
   <component name="ProjectViewState">
@@ -82,12 +96,17 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake Application.client_websocket">
-    <configuration name="Test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TheFloors" RUN_TARGET_NAME="Test" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="engine" RUN_TARGET_NAME="Test" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TheFloors" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TheFloors" RUN_TARGET_NAME="TheFloors" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="TheFloors" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="engine" RUN_TARGET_NAME="TheFloors" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -97,7 +116,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="client_websocket" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TheFloors" RUN_TARGET_NAME="TheFloors" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="client_websocket" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="engine" RUN_TARGET_NAME="TheFloors" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -107,7 +126,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="server_websocket" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="TheFloors" RUN_TARGET_NAME="server_websocket" EXPLICIT_BUILD_TARGET_NAME="all">
+    <configuration name="server_websocket" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" WORKING_DIR="file://$USER_HOME$/sprint14temp" PASS_PARENT_ENVS_2="true" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="engine" RUN_TARGET_NAME="server_websocket" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -140,7 +159,7 @@
       <workItem from="1683991602021" duration="21033000" />
       <workItem from="1684244153448" duration="1848000" />
       <workItem from="1684264460092" duration="1231000" />
-      <workItem from="1684429193447" duration="3045000" />
+      <workItem from="1684429193447" duration="4968000" />
     </task>
     <servers />
   </component>
