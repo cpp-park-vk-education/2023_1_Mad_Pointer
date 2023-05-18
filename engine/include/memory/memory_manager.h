@@ -1,3 +1,4 @@
+#pragma once
 #include "allocator/stack_allocator.h"
 #include <vector>
 #include <list>

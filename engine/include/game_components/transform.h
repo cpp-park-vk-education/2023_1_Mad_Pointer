@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_TRANSFORM_H
-#define MY_PROJECT_TRANSFORM_H
+#pragma once
 class Transform {
 private:
     glm::mat4	m_Transform;
@@ -44,4 +43,3 @@ public:
     inline static Transform IDENTITY() { return Transform(); }
 
 };
-#endif //MY_PROJECT_TRANSFORM_H

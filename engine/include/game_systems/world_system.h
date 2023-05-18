@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_WORLD_SYSTEM_H
-#define MY_PROJECT_WORLD_SYSTEM_H
+#pragma once
 #include <vector>
 class WorldSystem {
     struct SpawnInfo {
@@ -68,5 +67,3 @@ public:
 
     void DumpPhysics() {}
 };
-
-#endif //MY_PROJECT_WORLD_SYSTEM_H

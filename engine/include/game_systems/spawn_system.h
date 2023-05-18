@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_SPAWN_SYSTEM_H
-#define MY_PROJECT_SPAWN_SYSTEM_H
+#pragma once
 class RespawnSystem : protected ecs::event::EventBaseListener {
     struct PendingRespawn {
         const GameObjectId	m_spawnableID;
@@ -65,4 +64,3 @@ public:
     void Reset();
 
 };
-#endif //MY_PROJECT_SPAWN_SYSTEM_H

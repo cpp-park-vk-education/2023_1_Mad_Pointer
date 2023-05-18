@@ -1,6 +1,8 @@
+#pragma once
 #include "base_component.h"
 
 namespace ecs {
+    using ComponentTypeId = size_t;
     template<typename ComponentType>
     class Component : public ComponentBase {
     public:
@@ -11,6 +13,6 @@ namespace ecs {
         Component() {}
         virtual ~Component();
     protected:
-        static ComponentTypeId STATIC_COMPONENT_TYPE_ID; //здесь получаем идентификатор типа компонента
+        static ComponentTypeId STATIC_COMPONENT_TYPE_ID;
     };
 }

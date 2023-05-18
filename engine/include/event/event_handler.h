@@ -1,3 +1,4 @@
+#pragma once
 #include "event_base.h"
 #include "event_dispatcher.h"
 #include <vector>

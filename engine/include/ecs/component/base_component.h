@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "../entity/entity.h"
 namespace ecs {
@@ -22,9 +23,13 @@ namespace ecs {
         bool isActive() const {
             return m_enabled;
         }
+
+        void setOwner(EntityId owner) {
+            m_owner = owner;
+        }
     protected:
-    ComponentId m_componentId;
-    EntityId m_owner;
-    bool m_enabled;
+        ComponentId m_componentId;
+        EntityId m_owner;
+        bool m_enabled;
     };
 }

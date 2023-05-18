@@ -1,6 +1,4 @@
-#ifndef MY_PROJECT_TRANSFORM_COMPONENT_H
-#define MY_PROJECT_TRANSFORM_COMPONENT_H
-
+#pragma once
 class TransformComponent : public ECS::Component<TransformComponent> {
 private:
     Transform	m_Transform;
@@ -14,4 +12,3 @@ public:
     inline const float*		AsFloat() const { return this->m_Transform; }
     inline const mat3& AsMat3() const { return this->m_Transform; }
 };
-#endif //MY_PROJECT_TRANSFORM_COMPONENT_H

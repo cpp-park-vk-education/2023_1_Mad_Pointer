@@ -1,3 +1,4 @@
+#pragma once
 #include "allocator/allocator_base.h"
 #include "allocator/pool_allocator.h"
 #include <list>

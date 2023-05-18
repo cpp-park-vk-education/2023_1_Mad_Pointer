@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 namespace ecs::utils::internal {
     using TypeId = size_t;

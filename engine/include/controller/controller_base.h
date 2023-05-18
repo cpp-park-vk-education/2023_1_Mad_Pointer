@@ -1,4 +1,4 @@
-// GameObjectFile
+#pragma once
 
 class ControllerBase {
 public:

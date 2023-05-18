@@ -1,3 +1,4 @@
+#pragma once
 #include "event_delegate.h"
 #include <list>
 namespace ecs::event {

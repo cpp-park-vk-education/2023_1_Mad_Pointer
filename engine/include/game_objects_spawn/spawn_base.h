@@ -1,9 +1,8 @@
-#ifndef MY_PROJECT_SPAWN_BASE_H
-#define MY_PROJECT_SPAWN_BASE_H
+#pragma once
 
 struct SpawnInfo {
-    Position	m_SpawnPosition;
-    glm::vec3	m_SpawnOrientation;
+    Position m_SpawnPosition;
+    glm::vec3 m_SpawnOrientation;
 
     SpawnInfo() : m_SpawnPosition(Position(0.0f)), m_SpawnOrientation(glm::vec3(0.0f)) {}
 
@@ -28,5 +27,3 @@ public:
 
     virtual SpawnInfo SampleRandomSpawnInfo(RandomSpawnSampler sample = RandomSpawnSampler::Unitform) = 0;
 };
-
-#endif //MY_PROJECT_SPAWN_BASE_H

@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_LIFETIME_SYTEM_H
-#define MY_PROJECT_LIFETIME_SYTEM_H
+#pragma once
 #include "../event/event_listener.h"
 
 class LifetimeSystem : public ecs::event::EventListenerBase {
@@ -28,5 +27,3 @@ public:
     void Reset();
 
 };
-
-#endif //MY_PROJECT_LIFETIME_SYTEM_H

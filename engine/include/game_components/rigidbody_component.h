@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_RIGIDBODY_COMPONENT_H
-#define MY_PROJECT_RIGIDBODY_COMPONENT_H
+#pragma once
 class RigidbodyComponent : public ecs::Component<RigidbodyComponent> {
 public:
     BodyType m_Box2DBodyType;
@@ -19,4 +18,3 @@ public:
     void SetTransform(const Transform& transform);
     void SetScale(const vec2& scale);
 };
-#endif //MY_PROJECT_RIGIDBODY_COMPONENT_H

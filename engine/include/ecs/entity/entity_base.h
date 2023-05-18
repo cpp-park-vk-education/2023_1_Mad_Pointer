@@ -1,3 +1,4 @@
+#pragma once
 #include "../component_manager/component_manager.h"
 
 namespace ecs {

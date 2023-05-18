@@ -1,3 +1,4 @@
+#pragma once
 #include "player_controller.h"
 
 class Controller {

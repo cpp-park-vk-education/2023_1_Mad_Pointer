@@ -1,3 +1,4 @@
+#pragma once
 #include "allocator_base.h"
 namespace ecs::memory::allocator {
     class LinearAllocator : public AllocatorBase {

@@ -1,3 +1,4 @@
+#pragma once
 #include "system_base.h"
 #include "../system_manager/system_manager.h"
 #include "../../utils/family_type_id.h"

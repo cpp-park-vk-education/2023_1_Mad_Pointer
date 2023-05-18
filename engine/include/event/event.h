@@ -1,3 +1,4 @@
+#pragma once
 #include "event_base.h"
 
 namespace ecs::event {

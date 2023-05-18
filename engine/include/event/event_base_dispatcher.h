@@ -1,3 +1,4 @@
+#pragma once
 #include "event_delegate.h"
 namespace ecs::event::internal {
     class EventBaseDispatcher {

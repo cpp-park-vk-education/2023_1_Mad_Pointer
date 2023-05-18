@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_GAME_CAMERA_H
-#define MY_PROJECT_GAME_CAMERA_H
+#pragma once
 class GameCameraBase {
 public:
     virtual ~GameCameraBase() {}
@@ -37,4 +36,3 @@ public:
     inline void SetViewport(uint32_t x, uint32_t y, uint32_t w, uint32_t h) {}
 
 };
-#endif //MY_PROJECT_GAME_CAMERA_H

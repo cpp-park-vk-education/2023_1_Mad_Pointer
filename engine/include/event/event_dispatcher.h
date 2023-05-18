@@ -1,4 +1,4 @@
-
+#pragma once
 #include "event_base_dispatcher.h"
 #include <list>
 namespace ecs::event::internal {

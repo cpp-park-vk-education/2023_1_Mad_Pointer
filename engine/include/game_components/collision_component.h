@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_COLLISION_COMPONENT_H
-#define MY_PROJECT_COLLISION_COMPONENT_H
+#pragma once
 class CollisionComponent2D : public Component<CollisionComponent2D> {
 private:
     ShapeID	shapeID;
@@ -15,4 +14,3 @@ public:
     virtual ~CollisionComponent2D();
     void Rescale(const vec2& scale);
 };
-#endif //MY_PROJECT_COLLISION_COMPONENT_H

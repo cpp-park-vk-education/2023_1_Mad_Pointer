@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include "../entity/entity_base.h"
 #include <typeinfo>

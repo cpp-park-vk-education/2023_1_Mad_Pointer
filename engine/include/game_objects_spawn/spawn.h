@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_SPAWN_H
-#define MY_PROJECT_SPAWN_H
+#pragma once
 #include "spawn_base.h"
 class Spawn {
 private:
@@ -23,4 +22,3 @@ public:
     inline SpawnInfo SampleRandomSpawnInfo(RandomSpawnSampler sample = RandomSpawnSampler::Unitform) { return this->m_SpawnImpl->SampleRandomSpawnInfo(sample); }
 
 };
-#endif //MY_PROJECT_SPAWN_H

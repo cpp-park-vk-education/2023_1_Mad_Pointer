@@ -1,11 +1,10 @@
-#ifndef MY_PROJECT_POINT_SPAWN_H
-#define MY_PROJECT_POINT_SPAWN_H
+#pragma once
 #include "spawn_base.h"
 class PointSpawn : public SpawnBase {
 private:
 
-    Position	m_SpawnPosition;
-    glm::vec3	m_SpawnOrientation;
+    Position m_SpawnPosition;
+    glm::vec3 m_SpawnOrientation;
 
 public:
 
@@ -17,4 +16,3 @@ public:
     virtual SpawnInfo SampleRandomSpawnInfo(RandomSpawnSampler sample = RandomSpawnSampler::Unitform) override;
 
 };
-#endif //MY_PROJECT_POINT_SPAWN_H

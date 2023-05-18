@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_ORTHOGONAL_CAMERA_H
-#define MY_PROJECT_ORTHOGONAL_CAMERA_H
+#pragma once
 #include "camera.h"
 class OrthogonalCamera : public Camera {
 private:
@@ -20,4 +19,3 @@ public:
     inline void SetZoom(const float zoom) {}
 
 };
-#endif //MY_PROJECT_ORTHOGONAL_CAMERA_H

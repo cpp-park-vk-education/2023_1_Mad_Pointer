@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_RESPAWN_COMPONENT_H
-#define MY_PROJECT_RESPAWN_COMPONENT_H
+#pragma once
 class RespawnComponent : public ecs::Component<RespawnComponent> {
 public:
 
@@ -23,4 +22,3 @@ public:
             m_RespawnOrientation(respawnOrientation),
             m_SpawnId(INVALID_GAMEOBJECT_ID) {}
 };
-#endif //MY_PROJECT_RESPAWN_COMPONENT_H

@@ -1,3 +1,4 @@
+#pragma once
 #include "controller_base.h"
 #include "../event/event_listener.h"
 template<class T>

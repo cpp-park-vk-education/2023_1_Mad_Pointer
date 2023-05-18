@@ -1,5 +1,4 @@
-#ifndef MY_PROJECT_CONTROLLER_SYSTEM_H
-#define MY_PROJECT_CONTROLLER_SYSTEM_H
+#pragma once
 
 class ControllerSystem :  public ECS::Event::IEventListener {
     using RegisteredController = std::list<Controller*>;
@@ -17,6 +16,3 @@ private:
     void UnregisterEventCallbacks();
     RegisteredController m_Controller;
 };
-
-
-#endif //MY_PROJECT_CONTROLLER_SYSTEM_H
