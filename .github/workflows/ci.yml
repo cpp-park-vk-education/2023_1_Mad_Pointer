@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "project_structure_init"]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install gtest manually
+        run: sudo apt-get install libgtest-dev && cd /usr/src/gtest && sudo cmake CMakeLists.txt && sudo make && sudo cp lib/*.a /usr/lib && sudo ln -s /usr/lib/libgtest.a /usr/local/lib/libgtest.a && sudo ln -s /usr/lib/libgtest_main.a /usr/local/lib/libgtest_main.a
+      - uses: actions/checkout@v3
+      - name: configure
+        run: cd tests && mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="-Werror" ..
+      - name: make
+        run: cd tests/build && make
+      - name: Run Test
+        run: cd tests/build && ./my_tests
+
+  cpplint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - uses: reviewdog/action-cpplint@master
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: github-pr-review
+          flags: --linelength=150
+          filter: "-readability/braces, -whitespace/braces, -whitespace/comments, -whitespace/indent, -whitespace/newline, -whitespace/operators, -whitespace/parens"
+
+  clang_tidy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          style: file
+
+  cppcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: cppcheck
+        uses: deep5050/cppcheck-action@main
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN}}
