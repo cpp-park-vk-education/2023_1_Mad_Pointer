@@ -6,8 +6,8 @@ namespace ecs::event {
 
     public:
 
-        EventListenerBase();
-        virtual ~EventListenerBase();
+        EventListenerBase() {}
+        virtual ~EventListenerBase() {}
 
         template<class Event, class Callback>
         inline void registerEventCallback(void(Callback::*callback)(const Event* const)) {}
@@ -15,7 +15,7 @@ namespace ecs::event {
         template<class Event, class Callback>
         inline void unregisterEventCallback(void(Callback::*callback)(const Event* const)) {}
 
-        void unregisterAllEventCallbacks();
+        void unregisterAllEventCallbacks() {}
     private:
         RegisteredCallbacks m_RegisteredCallbacks;
     };
