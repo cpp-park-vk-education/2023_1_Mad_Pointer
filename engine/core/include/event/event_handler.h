@@ -11,7 +11,7 @@ namespace ecs::event {
         using EventDispatcherMap = std::unordered_map<EventTypeId, internal::EventBaseDispatcher*>;
         using EventStorage = std::vector<EventBase*>;
     public:
-        EventHandler() = default;
+        EventHandler() {}
         ~EventHandler() {}
 
         inline void ClearEventBuffer() {
@@ -42,12 +42,7 @@ namespace ecs::event {
             ClearEventBuffer();
         }
 
-    private:
-        EventHandler(const EventHandler&);
-        EventHandler& operator=(EventHandler&);
 
-        EventDispatcherMap m_EventDispatcherMap;
-        EventStorage m_EventStorage;
 
         template<class E>
         inline void AddEventCallback(internal::EventBaseDelegate* const eventDelegate) {
@@ -72,5 +67,11 @@ namespace ecs::event {
                 m_EventDispatcherMap[typeId]->removeEventCallback(eventDelegate);
             }
         }
+    private:
+        EventHandler(const EventHandler&);
+        EventHandler& operator=(EventHandler&);
+
+        EventDispatcherMap m_EventDispatcherMap;
+        EventStorage m_EventStorage;
     };
 }

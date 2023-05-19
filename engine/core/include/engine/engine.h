@@ -1,7 +1,7 @@
 #pragma once
 #include "event_delegate.h"
 #include "event_handler.h"
-
+#include <memory>
 #include <utility>
 namespace ecs  {
     namespace utils  {
@@ -20,28 +20,28 @@ namespace ecs  {
         friend class EntityManager;
 
     public:
-        Engine() {}
-        ~Engine() {}
+        Engine();
+        ~Engine();
 
-            inline EntityManager* GetEntityManager() { return m_entityManager; }
+            inline EntityManager* getEntityManager() { return m_entityManager.get(); }
 
-            inline ComponentManager* GetComponentManager() { return m_componentManager; }
+            inline ComponentManager* getComponentManager() { return m_componentManager.get(); }
 
-            inline SystemManager* GetSystemManager() { return m_systemManager; }
+            inline SystemManager* getSystemManager() { return m_systemManager.get(); }
 
             template<class E, class... Args>
             void sendEvent(Args&&... eventArgs)  {
                 m_eventHandler->Send<E>(std::forward<Args>(eventArgs)...);
             }
 
-            void update(float tickMs) {}
+            void update(float tickMs);
 
     private:
-        utils::Timer* m_engineTime;
-        EntityManager* m_entityManager;
-        ComponentManager* m_componentManager;
-        SystemManager* m_systemManager;
-        event::EventHandler* m_eventHandler;
+        std::unique_ptr<utils::Timer> m_engineTime;
+        std::unique_ptr<EntityManager> m_entityManager;
+        std::unique_ptr<ComponentManager> m_componentManager;
+        std::unique_ptr<SystemManager> m_systemManager;
+        std::unique_ptr<event::EventHandler> m_eventHandler;
 
         Engine(const Engine&) = delete;
         Engine& operator=(Engine&) = delete;
@@ -51,6 +51,6 @@ namespace ecs  {
             m_eventHandler->AddEventCallback<EventType>(eventDelegate);
         }
 
-        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate) {}
+        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
     };
 }

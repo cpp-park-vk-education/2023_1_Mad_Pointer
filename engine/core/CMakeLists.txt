@@ -17,6 +17,9 @@ include_directories(include/event)
 #include utils
 include_directories(include/utils)
 
+#include engine
+include_directories(include/engine)
+
 set(SOURCE_FILES_ENGINE_ECS_CORE
         src/ecs/component/component_base.cpp
         src/ecs/component_manager/component_manager.cpp
