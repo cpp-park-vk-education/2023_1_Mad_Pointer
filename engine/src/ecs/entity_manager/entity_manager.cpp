@@ -1,4 +1,4 @@
-#include "../../include/ecs/entity_manager/entity_manager.h"
+#include "entity_manager.h"
 
 namespace ecs {
     EntityManager::EntityManager(ecs::ComponentManager* componentManagerInstance) : m_componentManagerInstance(componentManagerInstance),

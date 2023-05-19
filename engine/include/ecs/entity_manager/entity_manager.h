@@ -1,10 +1,12 @@
 #pragma once
-#include "../entity/entity_base.h"
-
+#include "api.h"
+#include "entity_base.h"
+#include "component_manager.h"
 #include <string>
 #include <typeinfo>
 #include <unordered_map>
 #include <vector>
+#include <memory>
 #include <set>
 
 namespace ecs {

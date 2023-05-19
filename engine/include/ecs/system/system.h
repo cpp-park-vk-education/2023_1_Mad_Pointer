@@ -1,11 +1,14 @@
 #pragma once
+#include "api.h"
 #include "system_base.h"
-#include "../system_manager/system_manager.h"
 #include "../../utils/family_type_id.h"
-#include <typeinfo>
+
 namespace ecs {
     template<typename SystemType>
     class System : public SystemBase {
+        friend class SystemManager;
+        SystemManager* m_SystemManagerInstance;
+
     public:
         virtual ~System() { /* log system init here */ }
         virtual const SystemTypeId getStaticSystemTypeID() const {
@@ -31,7 +34,6 @@ namespace ecs {
     protected:
 
         System() {}
-        SystemManager* m_SystemManagerInstance;
     private:
 
         static const SystemTypeId STATIC_SYSTEM_TYPE_ID;

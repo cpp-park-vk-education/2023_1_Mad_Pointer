@@ -1,4 +1,5 @@
 #pragma once
+#include "api.h"
 #include "base_component.h"
 
 namespace ecs {

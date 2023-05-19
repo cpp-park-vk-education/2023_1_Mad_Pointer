@@ -1,8 +1,9 @@
 #pragma once
 #include <iostream>
-#include "../entity/entity.h"
+//#include "entity_base.h"
 namespace ecs {
     using ComponentId = size_t;
+    using EntityId = size_t;
     class ComponentBase {
     public:
         ComponentBase();

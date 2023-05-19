@@ -1,4 +1,4 @@
-#include "../../include/ecs/system/system_base.h"
+#include "system_base.h"
 
 namespace ecs {
     SystemBase::SystemBase(SystemPriority priority, float updateInterval_ms) :

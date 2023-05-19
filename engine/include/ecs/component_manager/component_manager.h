@@ -1,5 +1,6 @@
 #pragma once
-#include "../component/base_component.h"
+#include "api.h"
+#include "base_component.h"
 #include "../../utils/family_type_id.h"
 
 #include <string>
@@ -11,7 +12,7 @@
 
 namespace ecs {
     class ComponentManager  {
-
+        friend class ComponentBase;
         class ComponentContainerBase {
         public:
             virtual ~ComponentContainerBase() {}
@@ -118,7 +119,7 @@ namespace ecs {
         }
 
 
-        void removeAllComponents(const EntityId entityId);
+        void removeAllComponents(EntityId entityId);
 
         template<class ComponentClassType>
         ComponentClassType* getComponent(const EntityId entityId) {
@@ -131,12 +132,12 @@ namespace ecs {
 
         template<class ComponentClassType>
         inline TemplateComponentIterator<ComponentClassType> begin() {
-            return GetComponentContainer<ComponentClassType>()->begin();
+            return getComponentContainer<ComponentClassType>()->begin();
         }
 
         template<class ComponentClassType>
         inline TemplateComponentIterator<ComponentClassType> end() {
-            return GetComponentContainer<ComponentClassType>()->end();
+            return getComponentContainer<ComponentClassType>()->end();
         }
 
     private:

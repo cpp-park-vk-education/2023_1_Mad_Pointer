@@ -1,7 +1,11 @@
 #pragma once
+#include "api.h"
 #include <numeric>
 #include <string>
 namespace ecs {
+    template<class T>
+    class System;
+
     using SystemPriority = std::size_t;
     using SystemTypeId = std::size_t;
 
@@ -10,6 +14,7 @@ namespace ecs {
     static const SystemPriority HIGH_SYSTEM_PRIORITY = 300;
 
     class SystemBase {
+    friend class SystemManager;
     public:
         virtual ~SystemBase();
 

@@ -1,4 +1,4 @@
-#include "../../include/ecs/system_manager/system_manager.h"
+#include "system_manager.h"
 
 namespace ecs {
     SystemManager::SystemManager() {

@@ -1,4 +1,4 @@
-#include "../../../include/ecs/component_manager/component_manager.h"
+#include "component_manager.h"
 namespace ecs {
     const int ENTITY_LUT_GROW = 1024;
     const int INVALID_COMPONENT_ID = -1;
@@ -57,4 +57,8 @@ void ecs::ComponentManager::unmapEntityComponent(ecs::EntityId entityId, ecs::Co
                                                  ecs::ComponentManager::ComponentTypeId componentTypeId) {
     m_EntityComponentMap[entityId][componentTypeId] = INVALID_COMPONENT_ID;
     releaseComponentId(componentId);
+}
+
+void ecs::ComponentManager::removeAllComponents(const ecs::EntityId entityId) {
+
 }

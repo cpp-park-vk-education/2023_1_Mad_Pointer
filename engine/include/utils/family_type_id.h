@@ -7,12 +7,12 @@ namespace ecs::utils::internal {
     public:
 
         template<class NewClass>
-        static TypeId get() {
-            static const TypeId staticTypeId{m_typeCount++};
-            return staticTypeId;
+        static const TypeId get() {
+            static const TypeId STATIC_TYPE_ID{m_typeCount++};
+            return STATIC_TYPE_ID;
         }
 
-        static TypeId get() {
+        static const TypeId get() {
             return m_typeCount;
         }
     private:
