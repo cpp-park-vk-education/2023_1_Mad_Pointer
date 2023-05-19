@@ -25,6 +25,9 @@ set(SOURCE_FILES_ENGINE_ECS_CORE
         src/ecs/system/system_base.cpp
         src/ecs/system_registry/system_registry.cpp
         src/utils/family_type_id.cpp
+        src/utils/timer.cpp
+        src/utils/logger.cpp
+        src/engine/engine.cpp
         )
 
 #add_executable(EngineECSCoreStaticLib ${SOURCE_FILES_ENGINE_ECS_CORE})
