@@ -1,1 +1,0 @@
-/bin/g++ -g CMakeFiles/TheFloorsGame.dir/main.cpp.o -o TheFloorsGame  ../engine/libEngineStaticLib.a 
