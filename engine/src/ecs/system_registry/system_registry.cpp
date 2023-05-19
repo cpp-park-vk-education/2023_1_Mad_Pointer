@@ -13,7 +13,6 @@ namespace ecs {
         for (const auto system : m_SystemWorkOrder) {
             system->increaseUpdateTime(deltaTime);
 
-
             if (system->isEnabled() && system->isNeedUpdate()) {
                 system->preUpdate(deltaTime);
             }
