@@ -16,4 +16,4 @@ namespace ecs {
         template class FamilyTypeId<SystemBase>;
     }
 
-} // namespace ECS::util::Internal
+} // namespace ecs::utils::internal

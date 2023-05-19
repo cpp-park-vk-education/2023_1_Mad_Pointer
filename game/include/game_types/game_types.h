@@ -1,7 +1,7 @@
 #include "../../../engine/ecs.h"
 
-using GameObjectId = ECS::EntityId;
-using GameObjectTypeId = ECS::EntityTypeId;
+using GameObjectId = ecs::EntityId;
+using GameObjectTypeId = ecs::EntityTypeId;
 
 using PlayerId = size_t;
 

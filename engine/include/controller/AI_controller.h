@@ -22,4 +22,4 @@ public:
 
     virtual void Update(float dt) = 0;
 
-}; // class AIController
+};

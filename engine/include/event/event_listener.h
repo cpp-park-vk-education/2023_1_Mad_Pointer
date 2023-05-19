@@ -44,4 +44,3 @@ namespace ecs::event {
         RegisteredCallbacks m_RegisteredCallbacks;
     };
 }
-

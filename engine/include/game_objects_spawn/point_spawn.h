@@ -4,7 +4,7 @@ class PointSpawn : public SpawnBase {
 private:
 
     Position m_SpawnPosition;
-    glm::vec3 m_SpawnOrientation;
+    glm::vec2 m_SpawnOrientation;
 
 public:
 

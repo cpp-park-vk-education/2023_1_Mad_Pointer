@@ -85,4 +85,3 @@ namespace ecs::event::internal {
         bool m_Locked;
     };
 }
-

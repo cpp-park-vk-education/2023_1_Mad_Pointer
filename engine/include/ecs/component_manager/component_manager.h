@@ -145,4 +145,4 @@ namespace ecs {
         ComponentContainerRegistry m_ComponentContainerRegistry;
         ComponentLookupTable m_ComponentLUT;
     };
-} // namespace ECS
+} // namespace ecs

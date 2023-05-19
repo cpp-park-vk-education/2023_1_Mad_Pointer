@@ -14,4 +14,3 @@ namespace ecs::event::internal {
         virtual inline size_t getEventCallbackCount() const = 0;
     };
 }
-

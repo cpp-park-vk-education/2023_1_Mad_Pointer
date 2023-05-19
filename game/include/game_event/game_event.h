@@ -1,4 +1,4 @@
-#include "../game_types/game_types.h"
+include "../game_types/game_types.h"
 
 struct GameInitializedEvent : public ecs::event::Event<GameInitializedEvent> {};
 

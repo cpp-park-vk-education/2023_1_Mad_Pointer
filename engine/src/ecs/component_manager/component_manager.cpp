@@ -60,5 +60,5 @@ void ecs::ComponentManager::unmapEntityComponent(ecs::EntityId entityId, ecs::Co
 }
 
 void ecs::ComponentManager::removeAllComponents(const ecs::EntityId entityId) {
-
+        // implement me
 }

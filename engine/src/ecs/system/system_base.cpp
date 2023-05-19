@@ -8,4 +8,4 @@ namespace ecs {
 
     SystemBase::~SystemBase() {}
 
-} // namespace ECS
+} // namespace ecs

@@ -1,8 +1,6 @@
 #pragma once
 #include <chrono>
 
-
-
 namespace ecs::utils {
     union TimeStamp {
         float m_asFloat;

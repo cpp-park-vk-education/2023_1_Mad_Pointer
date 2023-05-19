@@ -128,4 +128,4 @@ namespace ecs {
         SystemWorkOrder m_SystemWorkOrder;
 };
 
-} // namespace ECS
+} // namespace ecs

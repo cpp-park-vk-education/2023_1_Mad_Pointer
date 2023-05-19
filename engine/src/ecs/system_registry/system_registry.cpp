@@ -34,6 +34,4 @@ namespace ecs {
         /// use dependency matrix and system regustry(private members) to create work order
         /// first test maybe
     }
-
-
 }
