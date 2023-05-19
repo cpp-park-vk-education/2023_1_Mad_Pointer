@@ -49,7 +49,7 @@ namespace ecs::event {
             }
 
             virtual bool operator==(const EventBaseDelegate* other) const override {
-                if (other == nullptr) {
+                if (!other) {
                     return false;
                 }
 

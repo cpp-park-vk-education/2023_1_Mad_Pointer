@@ -16,11 +16,33 @@ namespace ecs::event::internal {
             this->m_EventCallbacks.clear();
         }
 
-        inline void dispatch(EventBase* event) override {}
+        inline void dispatch(EventBase* event) override {
+            m_Locked = true;
+            for (const auto delegate : m_PendingRemoveDelegates) {
+                auto result = std::find_if(m_EventCallbacks.begin(), m_EventCallbacks.end(), [delegate](const EventBaseDelegate* other){return *delegate == other;});
+                if (result != m_EventCallbacks.end()) {
+                    EventBaseDelegate* ptrMem = (EventBaseDelegate*)(*result);
+                    m_EventCallbacks.erase(result);
 
-        virtual void addEventCallback(EventBaseDelegate* const eventDelegate) override { }
+                    delete ptrMem;
+                    ptrMem = nullptr;
+                }
+                m_PendingRemoveDelegates.clear();
+            }
 
-        virtual void removeEventCallback(EventBaseDelegate* eventDelegate) override {}
+            for (const auto eventCallback : m_EventCallbacks) {
+                eventCallback->invoke(event);
+            }
+            m_Locked = false;
+        }
+
+        virtual void addEventCallback(EventBaseDelegate* const eventDelegate) override {
+
+        }
+
+        virtual void removeEventCallback(EventBaseDelegate* eventDelegate) override {
+
+        }
 
         virtual inline size_t getEventCallbackCount() const override { return this->m_EventCallbacks.size(); }
 
