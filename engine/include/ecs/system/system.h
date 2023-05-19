@@ -7,7 +7,7 @@ namespace ecs {
     template<typename SystemType>
     class System : public SystemBase {
     public:
-        virtual ~System() {}
+        virtual ~System() { /* log system init here */ }
         virtual const SystemTypeId getStaticSystemTypeID() const {
             return STATIC_SYSTEM_TYPE_ID;
         }
@@ -19,7 +19,7 @@ namespace ecs {
 
         template<class... Dependencies>
         void addDependencies(Dependencies&&... dependencies) {
-            this->m_SystemManagerInstance->addSystemDependency(this, std::forward<Dependencies>(dependencies)...);
+            m_SystemManagerInstance->AddSystemDependency(this, std::forward<Dependencies>(dependencies)...);
         }
 
         virtual void preUpdate(float deltaTime) override {}

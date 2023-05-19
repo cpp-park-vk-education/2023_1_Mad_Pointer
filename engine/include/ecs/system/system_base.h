@@ -19,6 +19,18 @@ namespace ecs {
 
         virtual std::string getSystemTypeName() const = 0;
         virtual SystemTypeId getStaticSystemTypeId() const = 0;
+
+        void increaseUpdateTime(float deltaTime) {
+            m_timeSinceLastUpdate += deltaTime;
+        }
+
+        bool isNeedUpdate() const {
+            return m_needUpdate;
+        }
+
+        bool isEnabled() const {
+            return m_enabled;
+        }
     protected:
         SystemBase(SystemPriority priority = NORMAL_SYSTEM_PRIORITY, float updateInterval_ms = -1.0f);
     private:
