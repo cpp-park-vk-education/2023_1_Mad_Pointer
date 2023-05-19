@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 project(EngineStaticLib)
-add_subdirectory(src/ecs)
+add_subdirectory(core/src/ecs)
 
 include_directories(include/game_loop)
 

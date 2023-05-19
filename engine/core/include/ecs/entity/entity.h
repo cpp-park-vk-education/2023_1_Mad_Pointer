@@ -1,6 +1,6 @@
 #pragma once
 #include "entity_base.h"
-#include "../../utils/family_type_id.h"
+#include "family_type_id.h"
 #include <numeric>
 namespace ecs {
     size_t INVALID_ENTITY_ID = -1;

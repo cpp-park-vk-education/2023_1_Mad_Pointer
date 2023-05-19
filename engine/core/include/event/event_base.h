@@ -1,5 +1,5 @@
 #pragma once
-#include "../../utils/timer.h"
+#include "timer.h"
 #include <iostream>
 
 namespace ecs::event {

@@ -1,7 +1,7 @@
 #pragma once
 #include "api.h"
 #include "base_component.h"
-#include "../../utils/family_type_id.h"
+#include "family_type_id.h"
 
 #include <string>
 #include <typeinfo>

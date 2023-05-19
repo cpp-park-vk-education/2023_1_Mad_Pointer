@@ -1,7 +1,7 @@
 #pragma once
 #include "api.h"
 #include "system_base.h"
-#include "../../utils/family_type_id.h"
+#include "family_type_id.h"
 
 namespace ecs {
     template<typename SystemType>
