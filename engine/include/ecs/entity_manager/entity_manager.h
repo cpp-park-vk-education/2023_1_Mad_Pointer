@@ -15,6 +15,8 @@ namespace ecs {
             virtual std::string getEntityContainerTypeName() const = 0;
             virtual void DestroyEntity(EntityBase* object) = 0;
             virtual EntityBase* getEntity(EntityId) const = 0;
+            virtual void delEntity(EntityId) = 0;
+
         };
 
         template<typename EntityClassType>
@@ -46,7 +48,7 @@ namespace ecs {
                 return m_entities.at(id);
             }
 
-            void delEntity(EntityId id) {
+            void delEntity(EntityId id) override{
                 m_entities.erase(id);
             }
         private:
@@ -90,7 +92,6 @@ namespace ecs {
 
         inline EntityBase* getEntity(EntityId entityId) {
             return m_entityIdToContainerBase.at(entityId)->getEntity(entityId);
-
         }
 
         void RemoveDestroyedEntities();
