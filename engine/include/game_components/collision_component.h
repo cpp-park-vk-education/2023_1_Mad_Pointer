@@ -1,4 +1,5 @@
 #pragma once
+
 class CollisionComponent2D : public Component<CollisionComponent2D> {
 private:
     ShapeID	shapeID;

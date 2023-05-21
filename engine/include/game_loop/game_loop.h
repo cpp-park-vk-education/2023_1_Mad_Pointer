@@ -1,6 +1,6 @@
 #pragma once
-#include "../event/event_listener.h"
-#include "../engine/engine.h"
+#include "event_listener.h"
+#include "engine.h"
 
 class GameLoop : protected ecs::event::EventListenerBase {
 public:

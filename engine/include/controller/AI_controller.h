@@ -1,6 +1,6 @@
 #pragma once
 #include "controller_base.h"
-#include "../event/event_listener.h"
+#include "event_listener.h"
 
 template<class T>
 class AIController : public ControllerBase, public ecs::event::EventListenerBase {

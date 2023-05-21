@@ -3,6 +3,7 @@
 
 #dirs
 .idea*
+.vscode
 
 # Compiled Object files
 *.slo
@@ -33,3 +34,5 @@
 *.exe
 *.out
 *.app
+
+build

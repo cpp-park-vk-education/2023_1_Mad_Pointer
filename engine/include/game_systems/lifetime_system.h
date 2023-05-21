@@ -1,5 +1,5 @@
 #pragma once
-#include "../event/event_listener.h"
+#include "event_listener.h"
 
 class LifetimeSystem : public ecs::event::EventListenerBase {
     using ActiveLifetimeComponents = std::list<LifetimeComponent*>;

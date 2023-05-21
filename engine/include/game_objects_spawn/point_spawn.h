@@ -1,5 +1,6 @@
 #pragma once
 #include "spawn_base.h"
+
 class PointSpawn : public SpawnBase {
 private:
 

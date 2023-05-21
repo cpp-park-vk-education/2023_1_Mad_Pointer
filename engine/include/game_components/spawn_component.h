@@ -1,5 +1,6 @@
 #pragma once
-#include "../game_objects_spawn/spawn.h"
+#include "spawn.h"
+
 class SpawnComponent : public ecs::Component<SpawnComponent> {
 private:
     Spawn m_Spawn;
