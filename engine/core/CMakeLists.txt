@@ -2,23 +2,23 @@ set(CMAKE_CXX_STANDARD 20)
 cmake_minimum_required(VERSION 3.8)
 project(EngineECSCoreStaticLib)
 
-#include ecs
-include_directories(include/ecs)
-include_directories(include/ecs/component_manager)
-include_directories(include/ecs/component)
-include_directories(include/ecs/entity)
-include_directories(include/ecs/entity_manager)
-include_directories(include/ecs/system)
-include_directories(include/ecs/system_manager)
+# #include ecs
+# include_directories(include/ecs)
+# include_directories(include/ecs/component_manager)
+# include_directories(include/ecs/component)
+# include_directories(include/ecs/entity)
+# include_directories(include/ecs/entity_manager)
+# include_directories(include/ecs/system)
+# include_directories(include/ecs/system_manager)
 
-#include events
-include_directories(include/event/)
+# #include events
+# include_directories(include/event)
 
-#include utils
-include_directories(include/utils)
+# #include utils
+# include_directories(include/utils)
 
-#include engine
-include_directories(include/engine)
+# #include engine
+# include_directories(include/engine)
 
 set(SOURCE_FILES_ENGINE_ECS_CORE
         src/ecs/component/component_base.cpp
@@ -36,6 +36,15 @@ set(SOURCE_FILES_ENGINE_ECS_CORE
         src/engine/engine.cpp
         )
 
-#add_executable(EngineECSCoreStaticLib ${SOURCE_FILES_ENGINE_ECS_CORE})
 add_library(EngineECSCoreStaticLib STATIC ${SOURCE_FILES_ENGINE_ECS_CORE})
-#add_executable(EngineECSCore ${HEADER_FILES} ${SOURCE_FILES} )
+
+target_include_directories(EngineECSCoreStaticLib PUBLIC include/ecs
+                                include/ecs/component_manager
+                                include/ecs/component
+                                include/ecs/entity
+                                include/ecs/entity_manager
+                                include/ecs/system
+                                include/ecs/system_manager
+                                include/event
+                                include/utils
+                                include/engine)

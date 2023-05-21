@@ -1,4 +1,4 @@
-#include "../../include/engine/engine.h"
+#include "engine.h"
 
 int main() {
     ecs::Engine engine{};
