@@ -1,4 +1,5 @@
 #pragma once
+#include "engine.h"
 #include "api.h"
 #include "event_delegate.h"
 
@@ -6,7 +7,7 @@
 namespace ecs::event {
     class EventListenerBase {
         using RegisteredCallbacks = std::list<internal::EventBaseDelegate*>;
-
+        friend class Engine;
     public:
 
         EventListenerBase() {}
@@ -17,7 +18,7 @@ namespace ecs::event {
             internal::EventBaseDelegate* eventDelegate = new internal::EventDelegate<Callback, Event>(static_cast<Callback*>(this), callback);
 
             m_RegisteredCallbacks.push_back(eventDelegate);
-            ECS_Engine->SubscribeEvent<Event>(eventDelegate);
+            ECS_Engine->subscribeEvent<Event>(eventDelegate);
         }
 
         template<class Event, class Callback>
@@ -33,7 +34,7 @@ namespace ecs::event {
                             }
                     );
 
-                    ECS_Engine->UnsubscribeEvent(&delegate);
+                    ECS_Engine->unsubscribeEvent(&delegate);
                     break;
                 }
             }

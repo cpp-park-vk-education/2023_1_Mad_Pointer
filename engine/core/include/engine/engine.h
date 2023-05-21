@@ -1,8 +1,10 @@
 #pragma once
+#include "entity_manager.h"
 #include "event_delegate.h"
 #include "event_handler.h"
 #include <memory>
 #include <utility>
+
 namespace ecs  {
     namespace utils  {
         class Timer;
@@ -16,6 +18,7 @@ namespace ecs  {
         friend class EntityBase;
         friend class ComponentBase;
         friend class SystemBase;
+        friend class EventListenerBase;
         friend class event::EventBase;
         friend class EntityManager;
 
@@ -36,6 +39,8 @@ namespace ecs  {
 
             void update(float tickMs);
 
+        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
+
     private:
         std::unique_ptr<utils::Timer> m_engineTime;
         std::unique_ptr<EntityManager> m_entityManager;
@@ -51,6 +56,5 @@ namespace ecs  {
             m_eventHandler->AddEventCallback<EventType>(eventDelegate);
         }
 
-        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
     };
 }

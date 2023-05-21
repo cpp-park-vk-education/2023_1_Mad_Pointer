@@ -12,7 +12,7 @@ include_directories(include/ecs/system)
 include_directories(include/ecs/system_manager)
 
 #include events
-include_directories(include/event)
+include_directories(include/event/)
 
 #include utils
 include_directories(include/utils)
@@ -30,6 +30,9 @@ set(SOURCE_FILES_ENGINE_ECS_CORE
         src/utils/family_type_id.cpp
         src/utils/timer.cpp
         src/utils/logger.cpp
+        src/event/event_base.cpp
+        src/event/event_handler.cpp
+        src/event/event_listener_base.cpp
         src/engine/engine.cpp
         )
 

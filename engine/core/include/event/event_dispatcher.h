@@ -11,10 +11,7 @@ namespace ecs::event::internal {
     public:
         EventDispatcher() : m_Locked(false) {}
 
-        virtual ~EventDispatcher() {
-            this->m_PendingRemoveDelegates.clear();
-            this->m_EventCallbacks.clear();
-        }
+        virtual ~EventDispatcher() {}
 
         inline void dispatch(EventBase* event) override {
             m_Locked = true;
@@ -72,12 +69,11 @@ namespace ecs::event::internal {
                                                return other == eventDelegate;
                                            });
 
-                assert(result != m_EventCallbacks.end() && "");
                 m_PendingRemoveDelegates.push_back((*result));
             }
         }
 
-        virtual inline size_t getEventCallbackCount() const override { return this->m_EventCallbacks.size(); }
+        virtual inline size_t getEventCallbackCount() const override { return m_EventCallbacks.size(); }
 
     private:
         PendingRemoveDelegates m_PendingRemoveDelegates;

@@ -24,8 +24,6 @@ namespace ecs::event {
 
         template<class E, class... ARGS>
         void Send(ARGS&&... eventArgs) {
-            static_assert(std::is_trivially_copyable<E>::value, "Event is not trivially copyable.");
-
             std::shared_ptr<EventBase> event = std::make_shared<EventBase>(std::forward<ARGS>(eventArgs)...);
             m_EventStorage.push_back(event.get());
         }
@@ -41,8 +39,6 @@ namespace ecs::event {
             }
             ClearEventBuffer();
         }
-
-
 
         template<class E>
         inline void AddEventCallback(internal::EventBaseDelegate* const eventDelegate) {
