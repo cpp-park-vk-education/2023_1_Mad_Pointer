@@ -38,13 +38,17 @@ set(SOURCE_FILES_ENGINE_ECS_CORE
 
 add_library(EngineECSCoreStaticLib STATIC ${SOURCE_FILES_ENGINE_ECS_CORE})
 
-target_include_directories(EngineECSCoreStaticLib PUBLIC include/ecs
-                                include/ecs/component_manager
-                                include/ecs/component
-                                include/ecs/entity
-                                include/ecs/entity_manager
-                                include/ecs/system
-                                include/ecs/system_manager
-                                include/event
-                                include/utils
-                                include/engine)
+set(INCLUDE_DIRS
+        include/ecs
+        include/ecs/component_manager
+        include/ecs/component
+        include/ecs/entity
+        include/ecs/entity_manager
+        include/ecs/system
+        include/ecs/system_manager
+        include/event
+        include/utils
+        include/engine
+        )
+
+target_include_directories(EngineECSCoreStaticLib PUBLIC ${INCLUDE_DIRS})
