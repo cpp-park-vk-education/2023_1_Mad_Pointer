@@ -1,4 +1,4 @@
-#include "../../include/utils/family_type_id.h"
+#include "family_type_id.h"
 
 namespace ecs {
     class EntityBase;

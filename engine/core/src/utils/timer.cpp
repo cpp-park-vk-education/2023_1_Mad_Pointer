@@ -1,4 +1,4 @@
-#include "../../include/utils/timer.h"
+#include "timer.h"
 
 namespace ecs::utils {
     Timer::Timer() : m_Elapsed(0) {}

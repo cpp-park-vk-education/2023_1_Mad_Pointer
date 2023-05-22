@@ -2,8 +2,14 @@ set(CMAKE_CXX_STANDARD 20)
 cmake_minimum_required(VERSION 3.8)
 project(TheFloors)
 
+enable_testing()
+find_package(GTest REQUIRED)
+include(GoogleTest)
+
 add_subdirectory(engine)
 add_subdirectory(game)
+add_subdirectory(lib/math)
+add_subdirectory(tests)
 
 #[[
 set(HEADER_FILES engine/include/ecs/component/component.h

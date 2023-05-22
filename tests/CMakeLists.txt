@@ -1,15 +1,17 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.8)
 
-project(TheFloors)
+project(Tests)
 set(CMAKE_CXX_STANDARD 20)
 
-set(WORK_DIR ..)
+set(ENGINE_TEST_SOURCES
+        engine/utils/test_timer.cpp)
+add_executable(EngineTests ${ENGINE_TEST_SOURCES})
+target_link_libraries(EngineTests GTest::gtest_main EngineStaticLib)
+add_test(NAME EngineTests COMMAND EngineTests)
 
-set(SOURCE_FILES engine/utils/test_timer.cpp)
-add_executable(my_tests ${SOURCE_FILES})
 
-target_include_directories(my_tests PRIVATE ${GTEST_INCLUDE_DIRS})
-target_link_directories(my_tests PRIVATE ${GTEST_LIBS_DIR})
-target_link_libraries(my_tests PRIVATE ${GTEST_LIBS} -lgtest)
-
-add_test(NAME my_tests COMMAND my_tests)
+set(LIB_TEST_SOURCES
+        lib/test_math.cpp)
+add_executable(HelperLibTests ${LIB_TEST_SOURCES})
+target_link_libraries(HelperLibTests GTest::gtest_main math)
+add_test(NAME HelperLibTests COMMAND HelperLibTests)
