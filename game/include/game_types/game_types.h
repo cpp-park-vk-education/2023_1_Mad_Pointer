@@ -1,11 +1,11 @@
-#include "../../../engine/ecs.h"
+#include "entity_manager.h"
 
 using GameObjectId = ecs::EntityId;
 using GameObjectTypeId = ecs::EntityTypeId;
 
 using PlayerId = size_t;
 
-static const GameObjectId INVALID_GAMEOBJECT_ID	{ ECS::INVALID_ENTITY_ID };
+static const GameObjectId INVALID_GAMEOBJECT_ID	{ ecs::INVALID_ENTITY_ID };
 static const PlayerId INVALID_PLAYER_ID	{ std::numeric_limits<PlayerId>::max() };
 
 enum CollisionCategory {

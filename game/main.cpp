@@ -1,4 +1,4 @@
-#include "../engine/include/game_loop/game_loop.h"
+#include "game_loop.h"
 
 int main() {
     GameLoop gameLoop("The Floors");
