@@ -1,9 +1,10 @@
 #pragma once
+
 class Transform {
 private:
     glm::mat4	m_Transform;
-public:
 
+public:
     Transform();
     Transform(const glm::mat4& transform);
     Transform(const glm::vec2& position_xy);

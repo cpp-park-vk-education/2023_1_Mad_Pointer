@@ -1,6 +1,8 @@
 #pragma once
+#include "component.h"
+#include "vector2.h"
 
-class CollisionComponent2D : public Component<CollisionComponent2D> {
+class CollisionComponent2D : public ecs::Component<CollisionComponent2D> {
 private:
     ShapeID	shapeID;
 public:

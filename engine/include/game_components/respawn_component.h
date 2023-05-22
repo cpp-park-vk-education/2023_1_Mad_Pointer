@@ -1,4 +1,6 @@
 #pragma once
+#include "component.h"
+
 class RespawnComponent : public ecs::Component<RespawnComponent> {
 public:
 

@@ -1,4 +1,6 @@
 #pragma once
+#include "component.h"
+
 class RigidbodyComponent : public ecs::Component<RigidbodyComponent> {
 public:
     BodyType m_Box2DBodyType;

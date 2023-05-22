@@ -7,7 +7,7 @@ set(SOURCE_FILES_ENGINE
         src/game_loop/game_loop.cpp)
 
 add_library(EngineStaticLib STATIC ${SOURCE_FILES_ENGINE})
-target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib)
+target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib math)
 
 set(INCLUDE_DIRS
         include/game_loop)
