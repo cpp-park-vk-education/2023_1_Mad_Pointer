@@ -3,7 +3,6 @@
 #include "file_sink.h"
 
 #include <filesystem>
-#include <iostream>
 
 namespace Logs {
     class Logger {
@@ -26,7 +25,7 @@ namespace Logs {
 }  // namespace Logs
 
 inline Logs::Logger& getGlobalLogger() {
-    static Logs::Logger logger(std::filesystem::current_path().generic_string() + "data.log");
+    static Logs::Logger logger(std::filesystem::current_path().generic_string() + "/data.log");
     return logger;
 }
 
