@@ -10,7 +10,7 @@ public:
     void Terminate() {}
 
 public:
-    GameLoop(const char* name = "Game Name") {}
+    GameLoop(const std::string& name = "Game Name") {}
     ~GameLoop() {}
     void Initialize(int width, int height) {}
     void Run() {}
