@@ -1,0 +1,1 @@
+/bin/g++ -g CMakeFiles/HelperLibTests.dir/lib/test_math.cpp.o -o HelperLibTests  -Wl,-rpath,/home/dmitry/CLionProjects/2023_1_Mad_Pointer/cmake-build-debug/lib/math /usr/lib/x86_64-linux-gnu/libgtest_main.a ../lib/math/libmath.so /usr/lib/x86_64-linux-gnu/libgtest.a 

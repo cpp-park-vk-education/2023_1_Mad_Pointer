@@ -1,0 +1,1 @@
+/bin/g++ -g CMakeFiles/TheFloors.dir/game/main.cpp.o -o TheFloors  engine/libEngineStaticLib.a engine/core/libEngineECSCoreStaticLib.a -L/usr/lib/x86_64-linux-gnu  -lSDL2 

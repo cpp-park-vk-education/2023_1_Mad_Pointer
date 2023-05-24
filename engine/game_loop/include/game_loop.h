@@ -1,17 +1,26 @@
 #pragma once
+#include <SDL2/SDL.h>
 #include "event_listener.h"
 #include "engine.h"
-
+#include "logger.h"
 class GameLoop : protected ecs::event::EventListenerBase {
 public:
-    void InitializeECS() {}
-    void InitializeSDL() {}
-    void ProcessWindowEvent() {}
-    void Terminate() {}
+    GameLoop(const std::string& name = "Game Name") : m_gameName(name) {}
 
-public:
-    GameLoop(const std::string& name = "Game Name") {}
+    void InitializeECS();
+    void InitializeSDL(int width, int height);
+
+    void ProcessWindowEvent() {}
+    //void Initialize(int width, int height) {}
+    void Run();
+
     ~GameLoop() {}
-    void Initialize(int width, int height) {}
-    void Run() {}
+
+private:
+    std::string m_gameName;
+
+    bool m_isRunning = false;
+    SDL_Window* m_window = nullptr;
+
+    ecs::Engine m_engine;
 };

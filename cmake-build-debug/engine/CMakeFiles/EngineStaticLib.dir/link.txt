@@ -1,0 +1,2 @@
+/usr/bin/ar qc libEngineStaticLib.a CMakeFiles/EngineStaticLib.dir/game_loop/src/game_loop.cpp.o
+/usr/bin/ranlib libEngineStaticLib.a

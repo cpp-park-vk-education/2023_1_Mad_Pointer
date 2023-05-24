@@ -39,7 +39,7 @@ namespace ecs  {
 
             void update(float tickMs);
 
-        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
+            inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
 
     private:
         std::unique_ptr<utils::Timer> m_engineTime;

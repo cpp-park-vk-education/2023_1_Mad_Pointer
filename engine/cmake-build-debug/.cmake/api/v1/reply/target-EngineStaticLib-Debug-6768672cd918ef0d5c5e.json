@@ -1,0 +1,156 @@
+{
+	"archive" : {},
+	"artifacts" : 
+	[
+		{
+			"path" : "libEngineStaticLib.a"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_library",
+			"target_link_libraries",
+			"include_directories",
+			"target_include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 11,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 12,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 6,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 17,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "-g -fdiagnostics-color=always"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/game_loop/include"
+				},
+				{
+					"backtrace" : 4,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/include/game_loop"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs/component_manager"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs/component"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs/entity"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs/entity_manager"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs/system"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/ecs/system_manager"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/event"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/utils"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/core/include/engine"
+				}
+			],
+			"language" : "CXX",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "EngineECSCoreStaticLib::@57760688d1f824db5d9c"
+		}
+	],
+	"id" : "EngineStaticLib::@6890427a1f51a3e7e1df",
+	"name" : "EngineStaticLib",
+	"nameOnDisk" : "libEngineStaticLib.a",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "game_loop/src/game_loop.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "STATIC_LIBRARY"
+}

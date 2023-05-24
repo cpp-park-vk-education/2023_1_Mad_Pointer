@@ -1,0 +1,4 @@
+/snap/clion/237/bin/cmake/linux/x64/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=/bin/g++ -G "Unix Makefiles" -S /home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine -B /home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/cmake-build-debug
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/dmitry/CLionProjects/2023_1_Mad_Pointer/engine/cmake-build-debug
