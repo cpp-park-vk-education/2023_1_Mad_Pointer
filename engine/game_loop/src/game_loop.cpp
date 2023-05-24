@@ -6,7 +6,6 @@ void GameLoop::Run() {
     m_isRunning = true;
     while (m_isRunning) {
         ProcessWindowEvent();
-
         m_engine.update(DELTA_TIME_STEP);
     }
 }
@@ -18,6 +17,21 @@ void GameLoop::InitializeSDL(int width, int height) {
         if (!m_window) {
             LOG_ERROR("Window has not been created! Fatal!");
         }
+}
+
+void GameLoop::ProcessWindowEvent() {
+    SDL_PumpEvents();
+
+    SDL_Event event;
+    while (SDL_PeepEvents(&event, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_SYSWMEVENT)) {
+        switch (event.window.event) {
+            case SDL_WINDOWEVENT_CLOSE:
+                m_isRunning = false;
+                return;
+            default:
+                return;
+        }
+    }
 }
 
 void GameLoop::InitializeECS() {

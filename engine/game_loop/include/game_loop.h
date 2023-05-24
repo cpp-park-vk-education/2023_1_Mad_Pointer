@@ -10,7 +10,7 @@ public:
     void InitializeECS();
     void InitializeSDL(int width, int height);
 
-    void ProcessWindowEvent() {}
+    void ProcessWindowEvent();
     //void Initialize(int width, int height) {}
     void Run();
 
