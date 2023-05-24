@@ -1,1 +1,0 @@
-/bin/g++ -g CMakeFiles/EngineTests.dir/engine/utils/test_timer.cpp.o -o EngineTests  /usr/lib/x86_64-linux-gnu/libgtest_main.a ../engine/libEngineStaticLib.a /usr/lib/x86_64-linux-gnu/libgtest.a ../engine/core/libEngineECSCoreStaticLib.a -L/usr/lib/x86_64-linux-gnu  -lSDL2 
