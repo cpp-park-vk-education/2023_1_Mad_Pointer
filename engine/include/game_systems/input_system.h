@@ -1,14 +1,16 @@
 #pragma once
-class InputSystem {
-private:
 
-    int	m_NumKeys;
-    unsigned char* m_OldKeyStates;
+#include "system.h"
+#include "event.h"
 
+class InputSystem : ecs::System<InputSystem> {
 public:
     InputSystem();
     ~InputSystem();
 
-    void PreUpdate(float deltaTime) ;
+    void preUpdate(float deltaTime) override;
 
+private:
+    int	m_NumKeys;
+    unsigned char* m_OldKeyStates;
 };
