@@ -1,6 +1,5 @@
 #pragma once
 #include "component_manager.h"
-#include "api.h"
 #include <iostream>
 namespace ecs {
 

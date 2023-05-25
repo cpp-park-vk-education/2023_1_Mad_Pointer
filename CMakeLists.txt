@@ -11,6 +11,16 @@ add_subdirectory(game)
 add_subdirectory(lib/math)
 add_subdirectory(tests)
 
+
+include_directories(engine/game_loop/include)
+add_executable(TheFloors game/main.cpp)
+
+target_link_libraries(TheFloors PUBLIC EngineStaticLib)
+
+#set(INCLUDE_DIRS  include/game_loop)
+
+#target_include_directories(EngineStaticLib PUBLIC ${INCLUDE_DIRS})
+
 #[[
 set(HEADER_FILES engine/include/ecs/component/component.h
         engine/include/ecs/component/base_component.h

@@ -8,6 +8,7 @@ namespace ecs::event {
 
         class EventBaseDelegate {
         public:
+            virtual ~EventBaseDelegate() {}
             virtual inline void invoke(const EventBase* const event) = 0;
 
             virtual inline EventDelegateId getDelegateId() const = 0;

@@ -1,5 +1,4 @@
 #pragma once
-#include "api.h"
 #include "base_component.h"
 
 namespace ecs {
@@ -13,7 +12,7 @@ namespace ecs {
 
         Component() {}
         virtual ~Component();
-    protected:
+
         static ComponentTypeId STATIC_COMPONENT_TYPE_ID;
     };
 }

@@ -3,9 +3,12 @@
 
 int main() {
     GameLoop gameLoop("The Floors");
-    gameLoop.Run();
+    LOG_INFO("game loop created.");
 
-    LOG_WARN("hello");
-    LOG_ERROR("error");
+    gameLoop.initializeSFML();
+    gameLoop.initializeECS();
+    gameLoop.run();
+   // LOG_WARN("hello");
+   // LOG_ERROR("error");
     return 0;
 }
