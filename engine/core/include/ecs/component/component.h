@@ -13,7 +13,7 @@ namespace ecs {
 
         Component() {}
         virtual ~Component();
-    protected:
+
         static ComponentTypeId STATIC_COMPONENT_TYPE_ID;
     };
 }

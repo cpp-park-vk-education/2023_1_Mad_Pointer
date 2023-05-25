@@ -1,8 +1,9 @@
 #include "game_loop.h"
+#include "render_system.h"
 
 constexpr float DELTA_TIME_STEP = 1000 / 60;
 
-void GameLoop::Run() {
+void GameLoop::run() {
     m_isRunning = true;
     while (m_isRunning) {
         ProcessWindowEvent();
@@ -10,7 +11,7 @@ void GameLoop::Run() {
     }
 }
 
-void GameLoop::InitializeSDL(int width, int height) {
+void GameLoop::initializeSFML(int width, int height) {
         SDL_Init(SDL_INIT_VIDEO);
         m_window = SDL_CreateWindow(m_gameName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_FULLSCREEN_DESKTOP);
 
@@ -19,7 +20,7 @@ void GameLoop::InitializeSDL(int width, int height) {
         }
 }
 
-void GameLoop::ProcessWindowEvent() {
+void GameLoop::processWindowEvent() {
     SDL_PumpEvents();
 
     SDL_Event event;
@@ -34,8 +35,8 @@ void GameLoop::ProcessWindowEvent() {
     }
 }
 
-void GameLoop::InitializeECS() {
-
+void GameLoop::initializeECS() {
+    m_engine.getSystemManager()->addSystem<>
 }
 
 

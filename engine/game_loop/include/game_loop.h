@@ -7,12 +7,12 @@ class GameLoop : protected ecs::event::EventListenerBase {
 public:
     GameLoop(const std::string& name = "Game Name") : m_gameName(name) {}
 
-    void InitializeECS();
-    void InitializeSDL(int width, int height);
+    void initializeECS();
+    void initializeSFML(int width, int height);
 
-    void ProcessWindowEvent();
+    void processWindowEvent();
     //void Initialize(int width, int height) {}
-    void Run();
+    void run();
 
     ~GameLoop() {}
 

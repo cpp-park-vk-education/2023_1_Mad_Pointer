@@ -41,6 +41,11 @@ namespace ecs  {
 
             inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
 
+        template<class EventType>
+        inline void subscribeEvent(event::internal::EventBaseDelegate* const eventDelegate) {
+            m_eventHandler->AddEventCallback<EventType>(eventDelegate);
+        }
+
     private:
         std::unique_ptr<utils::Timer> m_engineTime;
         std::unique_ptr<EntityManager> m_entityManager;
@@ -50,11 +55,6 @@ namespace ecs  {
 
         Engine(const Engine&) = delete;
         Engine& operator=(Engine&) = delete;
-
-        template<class EventType>
-        inline void subscribeEvent(event::internal::EventBaseDelegate* const eventDelegate) {
-            m_eventHandler->AddEventCallback<EventType>(eventDelegate);
-        }
 
     };
 }

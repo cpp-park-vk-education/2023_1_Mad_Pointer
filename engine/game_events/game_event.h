@@ -46,14 +46,19 @@ struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
     ecs::EntityId m_EntityID;
     ecs::EntityTypeId m_EntityTypeID;
 
-    GameObjectCreated(EntityId id, EntityTypeId typeId) :
+    GameObjectCreated(ecs::EntityId id, ecs::EntityTypeId typeId) :
             m_EntityID(id),
             m_EntityTypeID(typeId) {}
 };
 
-struct CollisionEvent : public ecs::event::Event<CollisionEvent> {
-    GameObjectId objectA;
-    GameObjectId objectB;
+struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {
+    ecs::EntityId m_EntityID;
+    GameObjectDestroyed(ecs::EntityId id) : m_EntityID(id) {}
+};
 
-    CollisionBeginEvent(GameObjectId a, GameObjectId b) : objectA(a), objectB(b) {}
+struct CollisionEvent : public ecs::event::Event<CollisionEvent> {
+    ecs::EntityId objectA;
+    ecs::EntityId objectB;
+
+    CollisionEvent(ecs::EntityId a, ecs::EntityId b) : objectA(a), objectB(b) {}
 };

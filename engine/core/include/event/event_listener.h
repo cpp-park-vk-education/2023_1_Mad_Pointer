@@ -1,16 +1,14 @@
 #pragma once
 #include "engine.h"
-#include "api.h"
 #include "event_delegate.h"
 
 #include <list>
 namespace ecs::event {
     class EventListenerBase {
         using RegisteredCallbacks = std::list<internal::EventBaseDelegate*>;
-        friend class Engine;
     public:
 
-        EventListenerBase() {}
+        EventListenerBase(ecs::Engine* engine) : m_engine(engine) {}
         virtual ~EventListenerBase() {}
 
         template<class Event, class Callback>
@@ -26,11 +24,11 @@ namespace ecs::event {
             internal::EventDelegate<Callback, Event> delegate(static_cast<Callback*>(this), callback);
 
             for (auto cb : this->m_RegisteredCallbacks) {
-                if (cb->getDelegateId() == delegate.GetDelegateId()) {
+                if (cb->getDelegateId() == delegate.getDelegateId()) {
                     m_RegisteredCallbacks.remove_if(
                             [&](const internal::EventBaseDelegate* other)
                             {
-                                return other->operator==(cb);
+                                return other == cb;
                             }
                     );
 
@@ -41,7 +39,12 @@ namespace ecs::event {
         }
 
         void unregisterAllEventCallbacks();
+
+        ecs::Engine* getEngine() const {
+            return m_engine;
+        }
     private:
+        ecs::Engine* m_engine;
         RegisteredCallbacks m_RegisteredCallbacks;
     };
 }
