@@ -3,11 +3,7 @@ project(EngineStaticLib)
 
 add_subdirectory(core)
 
-include_directories(game_loop/include)
-include_directories(game_systems/include)
-include_directories(game_components/include)
-include_directories(game_events)
-
+find_package(SFML COMPONENTS system window graphics)
 
 set(SOURCE_FILES_ENGINE
         game_loop/src/game_loop.cpp)
@@ -21,6 +17,7 @@ include_directories(${SDL2_INCLUDE_DIRS})
 target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib ${SDL2_LIBRARIES} sfml-graphics)
 
 set(INCLUDE_DIRS
-        include/game_loop)
+        include/game_loop
+        include/game_systems)
 
 target_include_directories(EngineStaticLib PUBLIC ${INCLUDE_DIRS})

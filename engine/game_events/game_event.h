@@ -1,6 +1,22 @@
+#pragma once
 #include "event.h"
 #include "entity.h"
-#include <SDL2/SDL_keycode.h>
+
+struct KeyPressedEvent : public ecs::event::Event<KeyPressedEvent> {
+    int keyCode;
+    KeyPressedEvent(int code) : keyCode(code) {}
+};
+
+struct KeyReleasedEvent : public ecs::event::Event<KeyReleasedEvent> {
+    int keyCode;
+    KeyPressedEvent(int code) : keyCode(code) {}
+};
+
+struct LeftMouseButtonPressed : public ecs::event::Event<MouseButtonPressed> {
+    int xpos;
+    int ypos;
+    KeyPressedEvent(int x, int y) : xpos(x), ypos(y) {}
+};
 
 struct GameOverEvent : public ecs::event::Event<GameOverEvent>{};
 
@@ -24,22 +40,6 @@ struct LeftButtonPressedEvent : public ecs::event::Event<LeftButtonPressedEvent>
     int y;
 
     LeftButtonPressedEvent(int x, int y) : x(x), y(y) {}
-};
-
-
-struct KeyDownEvent : public ecs::event::Event<KeyDownEvent> {
-    SDL_Keycode keyCode;
-    KeyDownEvent(SDL_Keycode key) : keyCode(key) {}
-};
-
-struct KeyUpEvent : public ecs::event::Event<KeyUpEvent> {
-    SDL_Keycode keyCode;
-    KeyUpEvent(SDL_Keycode code) : keyCode(code) {}
-};
-
-struct KeyPressedEvent : public ecs::event::Event<KeyPressedEvent> {
-    SDL_Keycode keyCode;
-    KeyPressedEvent(SDL_Keycode code) : keyCode(code) {}
 };
 
 struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
