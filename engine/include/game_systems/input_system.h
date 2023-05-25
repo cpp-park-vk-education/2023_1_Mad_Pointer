@@ -1,7 +1,8 @@
 #pragma once
 
 #include "system.h"
-#include "event.h"
+#include "engine.h"
+#include "game_events.h"
 
 #include <SFML/Graphics.hpp>
 
@@ -14,26 +15,25 @@ public:
 
 private:
     sf::RenderWindow window;
+    ecs::Engine* engine;
 };
 
 void InputSystem::preUpdate(float deltaTime) {
     sf::Event event;
     while (window.pollEvent(event)) {
         switch (event.type) {
-            case sf::Event::Closed:
-                // window.close();
-                break;
             case sf::Event::KeyPressed:
-                // pressed
+                KeyPressedEvent ev(event.key.code);
+                engine->sendEvent(ev);
                 break;
             case sf::Event::KeyReleased:
-                // released
+                KeyReleasedEvent ev(event.key.code);
+                engine->sendEvent(ev);
                 break;
             case sf::Event::MouseButtonPressed:
                 if (event.mouseButton.button == sf::Mouse::Left) {
-                    // mouse left
-                    // event.mouseButton.x
-                    // event.mouseButton.y
+                    LeftMouseButtonPressed ev(event.mouseButton.x, event.mouseButton.y);
+                    engine->sendEvent(ev);
                 }
                 break;
             default:
