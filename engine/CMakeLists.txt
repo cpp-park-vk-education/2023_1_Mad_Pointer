@@ -20,7 +20,6 @@ find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
 target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib ${SDL2_LIBRARIES} sfml-graphics)
 
-set(INCLUDE_DIRS
-        include/game_loop)
+set(INCLUDE_DIRS include/game_loop)
 
 target_include_directories(EngineStaticLib PUBLIC ${INCLUDE_DIRS})
