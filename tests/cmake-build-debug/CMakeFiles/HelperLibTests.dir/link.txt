@@ -1,0 +1,1 @@
+/bin/g++ -g CMakeFiles/HelperLibTests.dir/lib/test_math.cpp.o -o HelperLibTests  -lGTest::gtest_main -lmath 

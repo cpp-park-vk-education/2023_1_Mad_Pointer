@@ -1,5 +1,4 @@
 #pragma once
-#include "api.h"
 #include <numeric>
 #include <string>
 namespace ecs {
@@ -23,7 +22,7 @@ namespace ecs {
         virtual void postUpdate(float deltaTime) = 0;
 
         virtual std::string getSystemTypeName() const = 0;
-        virtual SystemTypeId getStaticSystemTypeId() const = 0;
+        virtual const SystemTypeId getStaticSystemTypeId() const = 0;
 
         void increaseUpdateTime(float deltaTime) {
             m_timeSinceLastUpdate += deltaTime;

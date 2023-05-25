@@ -16,7 +16,7 @@ namespace ecs::event {
             internal::EventBaseDelegate* eventDelegate = new internal::EventDelegate<Callback, Event>(static_cast<Callback*>(this), callback);
 
             m_RegisteredCallbacks.push_back(eventDelegate);
-            ECS_Engine->subscribeEvent<Event>(eventDelegate);
+            m_engine->subscribeEvent<Event>(eventDelegate);
         }
 
         template<class Event, class Callback>
@@ -26,13 +26,12 @@ namespace ecs::event {
             for (auto cb : this->m_RegisteredCallbacks) {
                 if (cb->getDelegateId() == delegate.getDelegateId()) {
                     m_RegisteredCallbacks.remove_if(
-                            [&](const internal::EventBaseDelegate* other)
-                            {
+                            [&](const internal::EventBaseDelegate* other) {
                                 return other == cb;
                             }
                     );
 
-                    ECS_Engine->unsubscribeEvent(&delegate);
+                    m_engine->unsubscribeEvent(&delegate);
                     break;
                 }
             }

@@ -1,0 +1,4 @@
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/tests/cmake-build-debug/CMakeFiles/EngineTests.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/tests/cmake-build-debug/CMakeFiles/HelperLibTests.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/tests/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/dmitry/CLionProjects/2023_1_Mad_Pointer/tests/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -4,39 +4,33 @@
 constexpr float DELTA_TIME_STEP = 1000 / 60;
 
 void GameLoop::run() {
-    m_isRunning = true;
-    while (m_isRunning) {
-        ProcessWindowEvent();
+    while (m_window.isOpen()) {
+        for (auto event = sf::Event{}; m_window.pollEvent(event);)
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                m_window.close();
+            }
+        }
+
         m_engine.update(DELTA_TIME_STEP);
+        m_window.clear();
+        m_window.display();
     }
 }
 
-void GameLoop::initializeSFML(int width, int height) {
-        SDL_Init(SDL_INIT_VIDEO);
-        m_window = SDL_CreateWindow(m_gameName.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_FULLSCREEN_DESKTOP);
-
-        if (!m_window) {
-            LOG_ERROR("Window has not been created! Fatal!");
-        }
+void GameLoop::initializeSFML() {
+    m_window.create(sf::VideoMode::getDesktopMode(), m_gameName);
+    if (!m_window.isOpen()) {
+        LOG_ERROR("Window has not been created! Fatal!");
+    }
 }
 
 void GameLoop::processWindowEvent() {
-    SDL_PumpEvents();
-
-    SDL_Event event;
-    while (SDL_PeepEvents(&event, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_SYSWMEVENT)) {
-        switch (event.window.event) {
-            case SDL_WINDOWEVENT_CLOSE:
-                m_isRunning = false;
-                return;
-            default:
-                return;
-        }
-    }
 }
 
 void GameLoop::initializeECS() {
-    m_engine.getSystemManager()->addSystem<>
+    m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
 }
 
 

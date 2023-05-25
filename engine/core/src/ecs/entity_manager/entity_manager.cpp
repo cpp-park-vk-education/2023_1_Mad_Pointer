@@ -2,8 +2,7 @@
 
 namespace ecs {
     EntityManager::EntityManager(ecs::ComponentManager* componentManagerInstance) : m_componentManagerInstance(componentManagerInstance),
-    m_numPendingDestroyedEntities(0),
-    m_pendingDestroyedEntities(1024) {
+    m_numPendingDestroyedEntities(0) {
         // log here initialize entity manager
     }
 

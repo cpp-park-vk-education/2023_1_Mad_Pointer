@@ -18,7 +18,7 @@ find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
 
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
-target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib ${SDL2_LIBRARIES})
+target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib ${SDL2_LIBRARIES} sfml-graphics)
 
 set(INCLUDE_DIRS
         include/game_loop)
