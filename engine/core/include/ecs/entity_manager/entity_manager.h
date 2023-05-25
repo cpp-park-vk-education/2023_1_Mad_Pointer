@@ -1,5 +1,4 @@
 #pragma once
-#include "api.h"
 #include "entity_base.h"
 #include "component_manager.h"
 

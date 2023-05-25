@@ -6,11 +6,15 @@ add_subdirectory(core)
 find_package(SFML COMPONENTS system window graphics)
 
 set(SOURCE_FILES_ENGINE
-        src/game_loop/game_loop.cpp)
+        game_loop/src/game_loop.cpp)
 
 add_library(EngineStaticLib STATIC ${SOURCE_FILES_ENGINE})
-target_link_libraries(EngineStaticLib EngineECSCoreStaticLib sfml-system sfml-graphics sfml-window)
-# target_link_libraries(EngineStaticLib PRIVATE sfml-system sfml-graphics sfml-window)
+
+find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
+
+find_package(SDL2 REQUIRED)
+include_directories(${SDL2_INCLUDE_DIRS})
+target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib ${SDL2_LIBRARIES} sfml-graphics)
 
 set(INCLUDE_DIRS
         include/game_loop

@@ -1,5 +1,4 @@
 #pragma once
-#include "api.h"
 #include "system_base.h"
 #include <vector>
 #include <memory>
@@ -12,8 +11,8 @@ namespace ecs {
     class SystemManager {
     public:
         using SystemDependencyMatrix = std::vector<std::vector<bool>>;
-        using SystemRegistry = std::unordered_map<uint64_t, SystemBase*>;
-        using SystemWorkOrder = std::vector<SystemBase*>;
+        using SystemRegistry = std::unordered_map<uint64_t, std::shared_ptr<SystemBase>>;
+        using SystemWorkOrder = std::vector<std::shared_ptr<SystemBase>>;
 
         SystemManager(const SystemManager&) = delete;
         SystemManager& operator=(SystemManager&) = delete;
@@ -24,16 +23,16 @@ namespace ecs {
         ~SystemManager();
 
         template<class T, class... ARGS>
-        T* AddSystem(ARGS&&... systemArgs) {
+        std::shared_ptr<T> AddSystem(ARGS&&... systemArgs) {
             const auto systemTypeId = T::STATIC_SYSTEM_TYPE_ID;
 
             auto it = m_Systems.find(systemTypeId);
-            if (it != m_Systems.end() && it->second != nullptr) {
-                return (T*)it->second;
+            if (it != m_Systems.end() && it->second) {
+                return std::shared_ptr<T>((T*)it->second.get());
             }
 
-            std::shared_ptr<T> system = std::make_shared(std::forward<ARGS>(systemArgs)...);
-            system->m_systemManagerInstance = this;
+            std::shared_ptr<T> system = std::make_shared<T>(std::forward<ARGS>(systemArgs)...);
+            system->m_SystemManagerInstance = this;
 
             m_Systems[systemTypeId] = system;
 

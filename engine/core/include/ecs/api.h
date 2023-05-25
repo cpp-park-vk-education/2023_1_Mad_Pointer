@@ -15,7 +15,4 @@ namespace ecs {
     class ComponentManager;
 
     class Engine;
-
-    extern Engine* ECS_Engine;
-
 } // namespace ecs

@@ -39,7 +39,12 @@ namespace ecs  {
 
             void update(float tickMs);
 
-        inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
+            inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
+
+        template<class EventType>
+        inline void subscribeEvent(event::internal::EventBaseDelegate* const eventDelegate) {
+            m_eventHandler->AddEventCallback<EventType>(eventDelegate);
+        }
 
     private:
         std::unique_ptr<utils::Timer> m_engineTime;
@@ -50,11 +55,6 @@ namespace ecs  {
 
         Engine(const Engine&) = delete;
         Engine& operator=(Engine&) = delete;
-
-        template<class EventType>
-        inline void subscribeEvent(event::internal::EventBaseDelegate* const eventDelegate) {
-            m_eventHandler->AddEventCallback<EventType>(eventDelegate);
-        }
 
     };
 }
