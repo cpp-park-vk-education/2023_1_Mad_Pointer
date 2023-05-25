@@ -3,15 +3,14 @@ project(EngineStaticLib)
 
 add_subdirectory(core)
 
-find_package(SDL2 REQUIRED)
-include_directories(EngineStaticLib ${SDL2_INCLUDE_DIRS})
+find_package(SFML COMPONENTS system window graphics)
 
 set(SOURCE_FILES_ENGINE
-        src/game_loop/game_loop.cpp
-        src/game_systems/input_system.cpp)
+        src/game_loop/game_loop.cpp)
 
 add_library(EngineStaticLib STATIC ${SOURCE_FILES_ENGINE})
-target_link_libraries(EngineStaticLib EngineECSCoreStaticLib ${SDL2_LIBRARIES})
+target_link_libraries(EngineStaticLib EngineECSCoreStaticLib sfml-system sfml-graphics sfml-window)
+# target_link_libraries(EngineStaticLib PRIVATE sfml-system sfml-graphics sfml-window)
 
 set(INCLUDE_DIRS
         include/game_loop
