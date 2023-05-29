@@ -1,3 +1,4 @@
+#pragma once
 #include "event.h"
 #include "entity.h"
 #include <SDL2/SDL_keycode.h>

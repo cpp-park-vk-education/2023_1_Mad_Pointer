@@ -7,10 +7,11 @@ include_directories(game_loop/include)
 include_directories(game_systems/include)
 include_directories(game_components/include)
 include_directories(game_events)
+include_directories(game_objects/game_object/include)
+include_directories(game_objects/player/include)
 
 
-set(SOURCE_FILES_ENGINE
-        game_loop/src/game_loop.cpp)
+set(SOURCE_FILES_ENGINE game_loop/src/game_loop.cpp game_objects/player/src/player.cpp)
 
 add_library(EngineStaticLib STATIC ${SOURCE_FILES_ENGINE})
 

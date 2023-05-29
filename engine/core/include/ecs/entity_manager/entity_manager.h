@@ -47,7 +47,7 @@ namespace ecs {
             }
 
             EntityClassType* getEntity(EntityId id) const override{
-                return m_entities.at(id);
+                return static_cast<EntityClassType*>(m_entities.at(id).get());
             }
 
             void delEntity(EntityId id) override{
@@ -69,9 +69,22 @@ namespace ecs {
 
         template<class EntityClassType>
         inline EntityContainer<EntityClassType>* getEntityContainer() {
-            auto componentTypeId = EntityClassType::STATIC_ENTITY_TYPE_ID;
-            auto entityContainer = m_entityRegistry.at(componentTypeId);
-            return static_cast<EntityClassType*>(entityContainer);
+            //auto entityContainer = m_entityRegistry.at(componentTypeId);
+            //return static_cast<EntityContainer<EntityClassType>*>(entityContainer);
+
+            auto entityTypeID = EntityClassType::STATIC_ENTITY_TYPE_ID;
+
+            EntityContainer<EntityClassType>* entityContainer = nullptr;
+
+            auto iter = m_entityRegistry.find(entityTypeID);
+            if (iter == m_entityRegistry.end()) {
+                entityContainer = new EntityContainer<EntityClassType>();
+                m_entityRegistry[entityTypeID] = entityContainer;
+                return entityContainer;
+            }
+
+            entityContainer = static_cast<EntityContainer<EntityClassType>*>(iter->second);
+            return entityContainer;
         }
 
         EntityId acquireEntityId(EntityBase* entity);
@@ -83,7 +96,7 @@ namespace ecs {
 
         template<class EntityClassType, class... Args>
         EntityId CreateEntity(Args&&... args) {
-            EntityBase* entity = std::make_shared<EntityClassType>(std::forward<Args>(args)...);
+            std::shared_ptr<EntityBase> entity = std::make_shared<EntityClassType>(std::forward<Args>(args)...);
             auto entityContainer = getEntityContainer<EntityClassType>();
             auto entityId = entityContainer->addEntity(entity->getEntityId(), entity);
             m_entityIdToContainerBase[entityId] = entityContainer;

@@ -5,7 +5,7 @@
 
 class ShapeBase {
 public:
-    virtual ~ShapeBase() {}
+    virtual ~ShapeBase() = default;
     virtual void renderShape(sf::RenderWindow& window) const = 0;
     virtual void setPosition(const sf::Vector2f& pos) = 0;
 };
@@ -34,8 +34,8 @@ private:
 
 class ShapeComponent : public ecs::Component<ShapeComponent> {
 public:
-    ShapeComponent(std::unique_ptr<ShapeBase> shape, sf::Color color) : m_shape(std::move(shape)), m_color(color) {}
-    virtual ~ShapeComponent() {}
+    ShapeComponent(const ecs::EntityId id, std::unique_ptr<ShapeBase> shape, sf::Color color) : m_shape(std::move(shape)), m_color(color) {}
+    ~ShapeComponent() override {}
 
     sf::Color getColor() const { return  m_color; }
 

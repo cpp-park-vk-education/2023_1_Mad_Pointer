@@ -24,7 +24,7 @@ namespace ecs::event {
 
         template<class E, class... ARGS>
         void Send(ARGS&&... eventArgs) {
-            std::shared_ptr<EventBase> event = std::make_shared<EventBase>(std::forward<ARGS>(eventArgs)...);
+            std::shared_ptr<EventBase> event = std::make_shared<E>(std::forward<ARGS>(eventArgs)...);
             m_EventStorage.push_back(event.get());
         }
 

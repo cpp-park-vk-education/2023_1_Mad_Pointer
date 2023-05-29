@@ -1,5 +1,6 @@
 #include "game_loop.h"
 #include "render_system.h"
+#include "player.h"
 
 constexpr float DELTA_TIME_STEP = 1000 / 60;
 
@@ -31,6 +32,7 @@ void GameLoop::processWindowEvent() {
 
 void GameLoop::initializeECS() {
     m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
+    m_engine.getEntityManager()->CreateEntity<Player>(&m_engine, m_engine.getComponentManager(), sf::Vector2f());
 }
 
 

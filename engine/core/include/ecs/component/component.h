@@ -10,9 +10,16 @@ namespace ecs {
             return STATIC_COMPONENT_TYPE_ID;
         }
 
-        Component() {}
-        virtual ~Component();
+        Component() = default;
+        ~Component() override;
 
-        static ComponentTypeId STATIC_COMPONENT_TYPE_ID;
+        const static ComponentTypeId STATIC_COMPONENT_TYPE_ID;
     };
+
+    template<typename ComponentType>
+    Component<ComponentType>::~Component() = default;
+
 }
+template<class ComponentType>
+const ecs::ComponentTypeId ecs::Component<ComponentType>::STATIC_COMPONENT_TYPE_ID = ecs::utils::internal::FamilyTypeId<ComponentBase>::get<ComponentType>();
+
