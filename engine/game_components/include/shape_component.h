@@ -13,6 +13,7 @@ public:
 class CircleShape : public ShapeBase {
 public:
     CircleShape(float radius, sf::Color color) : m_circle(radius) {
+        m_circle.setRadius(radius);
         setColor(color);
     }
 
@@ -21,7 +22,7 @@ public:
     }
 
     void renderShape(sf::RenderWindow& window) const override {
-        window.draw(m_circle);
+        window.draw(m_circle, sf::RenderStates::Default);
     }
 
     CircleShape& setColor(sf::Color color) {
@@ -35,7 +36,7 @@ private:
 class ShapeComponent : public ecs::Component<ShapeComponent> {
 public:
     ShapeComponent(const ecs::EntityId id, std::unique_ptr<ShapeBase> shape, sf::Color color) : m_shape(std::move(shape)), m_color(color) {}
-    ~ShapeComponent() override {}
+    ~ShapeComponent() override = default;
 
     sf::Color getColor() const { return  m_color; }
 

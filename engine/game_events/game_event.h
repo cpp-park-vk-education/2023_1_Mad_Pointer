@@ -35,21 +35,18 @@ struct KeyDownEvent : public ecs::event::Event<KeyDownEvent> {
 
 struct KeyUpEvent : public ecs::event::Event<KeyUpEvent> {
     SDL_Keycode keyCode;
-    KeyUpEvent(SDL_Keycode code) : keyCode(code) {}
+    explicit KeyUpEvent(SDL_Keycode code) : keyCode(code) {}
 };
 
 struct KeyPressedEvent : public ecs::event::Event<KeyPressedEvent> {
     SDL_Keycode keyCode;
-    KeyPressedEvent(SDL_Keycode code) : keyCode(code) {}
+    explicit KeyPressedEvent(SDL_Keycode code) : keyCode(code) {}
 };
 
 struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
     ecs::EntityId m_EntityID;
-    ecs::EntityTypeId m_EntityTypeID;
 
-    GameObjectCreated(ecs::EntityId id, ecs::EntityTypeId typeId) :
-            m_EntityID(id),
-            m_EntityTypeID(typeId) {}
+    GameObjectCreated(ecs::EntityId id) : m_EntityID(id) {}
 };
 
 struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {

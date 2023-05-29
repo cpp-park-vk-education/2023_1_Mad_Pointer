@@ -9,10 +9,11 @@ class Player : public GameObject<Player> {
 public:
 
     Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : GameObject(engine, instance) {
-        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(1, sf::Color::Green);
+        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(100, sf::Color::Green);
 
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Green);
         m_transformComponent = getComponent<TransformComponent>();
+        engine->sendEvent<GameObjectCreated>(m_entityId);
     }
 
     ~Player() override {}

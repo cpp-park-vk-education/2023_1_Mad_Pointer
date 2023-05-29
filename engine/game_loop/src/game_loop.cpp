@@ -25,6 +25,16 @@ void GameLoop::initializeSFML() {
     if (!m_window.isOpen()) {
         LOG_ERROR("Window has not been created! Fatal!");
     }
+
+    //sf::RenderWindow window(sf::VideoMode(600, 600), m_gameName);
+    sf::CircleShape circleShape(100, 30);
+    circleShape.setRadius(30);
+    circleShape.setFillColor(sf::Color::White);
+    circleShape.setPosition(50, 50);
+    //for (int i = 0; i < 1000; ++i) {
+    //    m_window.draw(circleShape);
+    //    m_window.display();
+    //}
 }
 
 void GameLoop::processWindowEvent() {

@@ -41,8 +41,7 @@ namespace ecs {
         SystemPriority m_priority;
         float m_timeSinceLastUpdate;
         float m_updateInterval;
-        uint8_t m_enabled : 1;
-        uint8_t m_needUpdate : 1;
-        uint8_t m_reserved : 6;
+        bool m_enabled = true;
+        bool m_needUpdate = true;
     };
 }

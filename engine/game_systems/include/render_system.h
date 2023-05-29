@@ -9,8 +9,10 @@
 
 class RenderSystem : public ecs::System<RenderSystem>, public ecs::event::EventListenerBase {
 public:
-    RenderSystem(sf::RenderWindow& window, ecs::Engine* engine) : m_window(window), ecs::event::EventListenerBase(engine) {}
-    ~RenderSystem() override = default;
+    RenderSystem(sf::RenderWindow& window, ecs::Engine* engine) : m_window(window), ecs::event::EventListenerBase(engine) {
+        registerEventCallbacks();
+    }
+    ~RenderSystem() override { unregisterEventCallbacks(); }
 
     void preUpdate(float dt) override {}
     void update(float dt) override {
@@ -19,6 +21,7 @@ public:
                 renderable_object.render(m_window);
             }
         }
+        m_window.display();
     }
     void postUpdate(float dt) override {}
 

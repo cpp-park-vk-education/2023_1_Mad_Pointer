@@ -9,7 +9,7 @@ namespace ecs::event {
 
     class EventHandler {
         using EventDispatcherMap = std::unordered_map<EventTypeId, internal::EventBaseDispatcher*>;
-        using EventStorage = std::vector<EventBase*>;
+        using EventStorage = std::vector<std::shared_ptr<EventBase>>;
     public:
         EventHandler() {}
         ~EventHandler() {}
@@ -25,7 +25,8 @@ namespace ecs::event {
         template<class E, class... ARGS>
         void Send(ARGS&&... eventArgs) {
             std::shared_ptr<EventBase> event = std::make_shared<E>(std::forward<ARGS>(eventArgs)...);
-            m_EventStorage.push_back(event.get());
+            event->setEventTypeId(E::STATIC_EVENT_TYPE_ID);
+            m_EventStorage.push_back(event);
         }
 
         void DispatchEvents() {
@@ -33,7 +34,7 @@ namespace ecs::event {
                 if (event) {
                     auto iter = m_EventDispatcherMap.find(event->getEventTypeID());
                     if (iter != m_EventDispatcherMap.end()) {
-                        iter->second->dispatch(event);
+                        iter->second->dispatch(event.get());
                     }
                 }
             }

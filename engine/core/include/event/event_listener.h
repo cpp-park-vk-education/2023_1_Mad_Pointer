@@ -9,7 +9,7 @@ namespace ecs::event {
     public:
 
         EventListenerBase(ecs::Engine* engine) : m_engine(engine) {}
-        virtual ~EventListenerBase() {}
+        virtual ~EventListenerBase() = default;
 
         template<class Event, class Callback>
         inline void registerEventCallback(void(Callback::*callback)(const Event* const)) {
@@ -37,7 +37,8 @@ namespace ecs::event {
             }
         }
 
-        void unregisterAllEventCallbacks();
+        void unregisterAllEventCallbacks() {}
+
 
         ecs::Engine* getEngine() const {
             return m_engine;
