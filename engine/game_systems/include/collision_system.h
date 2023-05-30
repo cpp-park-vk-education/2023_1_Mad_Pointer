@@ -19,6 +19,7 @@ public:
     void preUpdate(float dt) override {}
 
     void update(float dt) override {
+        if (m_rigidBodies.size() < 2) { return;}
         for (size_t i = 0; i < m_rigidBodies.size() - 1; ++i) {
             for (size_t j = i + 1; j < m_rigidBodies.size(); ++j) {
                 if (m_rigidBodies[i].checkCollision(m_rigidBodies[j])) {
