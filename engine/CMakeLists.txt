@@ -10,6 +10,7 @@ include_directories(game_events)
 include_directories(game_objects/game_object/include)
 include_directories(game_objects/player/include)
 include_directories(game_objects/enemy/include)
+include_directories(game_objects/wall/include)
 
 
 

@@ -10,8 +10,6 @@ public:
     void initializeECS();
     void initializeSFML();
 
-    void processWindowEvent();
-    //void Initialize(int width, int height) {}
     void run();
 
     ~GameLoop() {}
