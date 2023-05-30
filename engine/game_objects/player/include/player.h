@@ -1,4 +1,5 @@
-#pragma ocne
+#pragma once
+#include "controller.h"
 #include "game_object.h"
 #include "event_listener.h"
 #include "shape_component.h"
@@ -10,19 +11,18 @@
 class Player : public GameObject<Player> {
 public:
 
-    Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos),  GameObject(engine, instance) {}
+    Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos), m_controller(nullptr), GameObject(engine, instance) {}
 
     ~Player() override {}
     void onEnable() override{
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Green);
 
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Green);
-        m_transformComponent = addComponent<TransformComponent>(m_startPos);
+        m_transformComponent = addComponent<TransformComponent>(m_startPos, 0.0, 0.0);
         m_collisionComponent = addComponent<CollisionComponent>(CollisionType::PlayerCollisionType);
         m_radiusComponent = addComponent<RadiusComponent>(m_radius);
 
         m_engine->sendEvent<GameObjectCreated>(m_entityId);
-
     }
 
     virtual void OnDisable() {
@@ -46,4 +46,5 @@ private:
     RadiusComponent* m_radiusComponent;
     TransformComponent*	m_transformComponent;
     ShapeComponent*	m_shapeComponent;
+    Controller* m_controller;
 };
