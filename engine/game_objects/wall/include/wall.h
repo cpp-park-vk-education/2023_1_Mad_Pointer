@@ -8,18 +8,26 @@
 class Wall : public GameObject<Wall> {
 public:
 
-    Wall(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos),  GameObject(engine, instance, pos) {}
+    Wall(ecs::Engine *engine, ecs::ComponentManager* instance, std::vector<sf::Vector2f> vertices) : m_engine(engine),  GameObject(engine, instance) {
+        for (const auto& v : vertices) {
+            m_verticesForBounds.push_back(sf::Vertex(v));
+        }
+    }
 
     ~Wall() override {}
-    void onEnable() override{
+    void onEnable() override {
+        std::unique_ptr<RectangleShape> shape = std::make_unique<RectangleShape>(m_verticesForBounds);
 
+        m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::White);
+        m_transformComponent = addComponent<TransformComponent>(sf::Vector2f());
+        m_engine->sendEvent<GameObjectCreated>(m_entityId);
     }
 
     virtual void OnDisable() {}
 
 private:
-    sf::Vector2f m_startPos;
+    std::vector<sf::Vertex> m_verticesForBounds;
     ecs::Engine* m_engine;
-    TransformComponent*	m_transformComponent;
     ShapeComponent*	m_shapeComponent;
+    TransformComponent* m_transformComponent;
 };

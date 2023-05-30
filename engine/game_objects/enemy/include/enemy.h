@@ -8,7 +8,7 @@
 class Enemy : public GameObject<Enemy> {
 public:
 
-    Enemy(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_startPos(pos), m_engine(engine), GameObject(engine, instance, pos) {
+    Enemy(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_startPos(pos), m_engine(engine), GameObject(engine, instance) {
 
     }
 
@@ -22,7 +22,9 @@ public:
 
     }
 
-    virtual void OnDisable() {}
+    virtual void OnDisable() {
+        m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
+    }
 
     void MoveForward(float speed);
     void TurnLeft(float degrees);

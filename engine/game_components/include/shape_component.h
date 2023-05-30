@@ -33,6 +33,27 @@ private:
     sf::CircleShape m_circle;
 };
 
+class RectangleShape : public ShapeBase {
+public:
+    RectangleShape(const std::vector<sf::Vertex>& vertices): m_vertices(sf::LinesStrip, 5){
+        m_vertices.clear();
+        for (const auto& v : vertices) {
+            m_vertices.append(v);
+        }
+    }
+
+    ~RectangleShape() override {}
+    RectangleShape& setColor(sf::Color color) {}
+
+    void setPosition(const sf::Vector2f& position) override {}
+
+    void renderShape(sf::RenderWindow& window) const override {
+        window.draw(m_vertices);
+    }
+private:
+    sf::VertexArray m_vertices;
+};
+
 class ShapeComponent : public ecs::Component<ShapeComponent> {
 public:
     ShapeComponent(const ecs::EntityId id, std::unique_ptr<ShapeBase> shape, sf::Color color) : m_shape(std::move(shape)), m_color(color) {}

@@ -3,6 +3,7 @@
 #include "player.h"
 #include "enemy.h"
 #include "input_system.h"
+#include "wall.h"
 
 constexpr float DELTA_TIME_STEP = 1000 / 60;
 
@@ -34,20 +35,17 @@ void GameLoop::initializeSFML() {
     //}
 }
 
-void GameLoop::processWindowEvent() {
-}
 
 void GameLoop::initializeECS() {
     m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
     m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
+
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(50, 50));
-    m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(70, 70));
 
-    m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(120, 90));
-
-
-    m_engine.getEntityManager()->CreateEntity<Player>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{10, 10});
     m_engine.getEntityManager()->CreateEntity<Player>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{30, 30});
+
+    std::vector<sf::Vector2f> verticesForWall = {{10, 10}, {10, 990}, {1800, 990}, {1800, 10}, {10, 10}};
+    m_engine.getEntityManager()->CreateEntity<Wall>(&m_engine, m_engine.getComponentManager(), verticesForWall);
 
 }
 

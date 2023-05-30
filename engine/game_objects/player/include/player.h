@@ -8,7 +8,7 @@
 class Player : public GameObject<Player> {
 public:
 
-    Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos),  GameObject(engine, instance, pos) {}
+    Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos),  GameObject(engine, instance) {}
 
     ~Player() override {}
     void onEnable() override{
@@ -20,7 +20,9 @@ public:
 
     }
 
-    virtual void OnDisable() {}
+    virtual void OnDisable() {
+        m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
+    }
 
     void MoveForward(float speed);
     void TurnLeft(float degrees);
