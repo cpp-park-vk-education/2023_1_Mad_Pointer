@@ -94,6 +94,7 @@ private:
         registerRigidBody(entity, transform, collision, radius);
     }
 
+
     void onGameObjectDestroyed(const GameObjectDestroyed* event) {
         unregisterRigidBody(event->m_EntityID);
     }
