@@ -34,7 +34,7 @@ namespace ecs {
             }
             ComponentBase* createComponent(ComponentId compId, std::shared_ptr<ComponentClassType> component) {
                 m_components[compId] = component;
-                return m_components.at(compId);
+                return m_components.at(compId).get();
             }
 
             virtual void destroyComponent(ComponentBase* object) override {
@@ -70,13 +70,13 @@ namespace ecs {
             ComponentContainer<ComponentClassType>* componentContainer = nullptr;
 
             auto iter = m_ComponentContainerRegistry.find(COMPONENT_ID);
-            if (iter = m_ComponentContainerRegistry.end()) {
+            if (iter == m_ComponentContainerRegistry.end()) {
                 componentContainer = new ComponentContainer<ComponentClassType>();
                 m_ComponentContainerRegistry[COMPONENT_ID] = componentContainer;
                 return componentContainer;
             }
 
-            componentContainer = static_cast<ComponentContainer<ComponentClassType>>(iter->second);
+            componentContainer = static_cast<ComponentContainer<ComponentClassType>*>(iter->second);
             return componentContainer;
         }
 
@@ -96,15 +96,16 @@ namespace ecs {
         ComponentClassType* addComponent(const EntityId entityId, Args&&... args) {
             auto componentContainer = getComponentContainer<ComponentClassType>();
             auto componentTypeID = ComponentClassType::STATIC_COMPONENT_TYPE_ID;
-            std::shared_ptr<ComponentBase> component = std::make_shared<ComponentBase>(std::forward<Args>(args)...);
+            std::shared_ptr<ComponentClassType> component = std::make_shared<ComponentClassType>(entityId, std::forward<Args>(args)...);
 
-            auto componentID = component->getComponentId();
+            auto componentID = acquireComponentId(component.get());
             component->setOwner(entityId);
+            component->setComponentId(componentID);
 
-            componentContainer->add(componentID, component);
+            componentContainer->createComponent(componentID, component);
             mapEntityComponent(entityId, componentID, componentTypeID);
 
-            return static_cast<ComponentClassType*>(component);
+            return component.get();
         }
 
         template<class ComponentClassType>

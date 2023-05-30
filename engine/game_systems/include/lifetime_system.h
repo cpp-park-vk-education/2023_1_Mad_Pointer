@@ -13,8 +13,6 @@ private:
     void OnGameObjectSpawned(const GameObjectSpawned* event);
     void OnGameObjectKilled(const GameObjectKilled* event);
 
-    WorldSystem* m_WorldSystem;
-
     ActiveLifetimeComponents m_ActiveLifetimeComponents;
 
 public:

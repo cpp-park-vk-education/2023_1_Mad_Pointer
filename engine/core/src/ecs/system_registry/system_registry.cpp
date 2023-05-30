@@ -10,7 +10,7 @@ namespace ecs {
     }
 
     void SystemManager::Update(float deltaTime) {
-        for (const auto system : m_SystemWorkOrder) {
+        for (const auto& system : m_SystemWorkOrder) {
             system->increaseUpdateTime(deltaTime);
 
             if (system->isEnabled() && system->isNeedUpdate()) {
@@ -18,12 +18,12 @@ namespace ecs {
             }
 
         }
-        for (const auto system : m_SystemWorkOrder) {
+        for (const auto& system : m_SystemWorkOrder) {
             if (system->isEnabled() && system->isNeedUpdate()) {
                 system->update(deltaTime);
             }
         }
-        for (const auto system : m_SystemWorkOrder) {
+        for (const auto& system : m_SystemWorkOrder) {
             if (system->isEnabled() && system->isNeedUpdate()) {
                 system->postUpdate(deltaTime);
             }
@@ -31,7 +31,11 @@ namespace ecs {
     }
 
     void SystemManager::UpdateSystemWorkOrder() {
-        /// use dependency matrix and system regustry(private members) to create work order
+        /// use dependency matrix and system registry(private members) to create work order
         /// first test maybe
+    }
+
+    void SystemManager::SetSystemWorkState(SystemWorkStateMask mask) {
+
     }
 }

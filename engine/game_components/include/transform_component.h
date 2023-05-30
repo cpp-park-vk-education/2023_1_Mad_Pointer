@@ -5,12 +5,14 @@
 class TransformComponent : public ecs::Component<TransformComponent> {
 public:
     TransformComponent() {}
-    TransformComponent(sf::Vector2f pos) : m_position(pos) { }
+
+
+    TransformComponent(const ecs::EntityId id, sf::Vector2f pos) : m_position(pos) { }
 
     sf::Vector2f getPosition() const {
         return m_position;
     }
-    virtual ~TransformComponent();
+    ~TransformComponent() override {}
 private:
     sf::Vector2f m_position;
 

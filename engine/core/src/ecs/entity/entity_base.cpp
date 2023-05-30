@@ -1,7 +1,7 @@
 #include "entity_base.h"
 
 namespace ecs {
-    EntityBase::EntityBase() : m_isActive(true) {}
+    EntityBase::EntityBase(ComponentManager* instance) : m_componentManagerInstance(instance), m_isActive(true) {}
 
     EntityBase::~EntityBase() {}
 

@@ -27,6 +27,8 @@ namespace ecs {
         void setOwner(EntityId owner) {
             m_owner = owner;
         }
+
+        void setComponentId(ComponentId id) {m_componentId = id;}
     protected:
         ComponentId m_componentId;
         EntityId m_owner;

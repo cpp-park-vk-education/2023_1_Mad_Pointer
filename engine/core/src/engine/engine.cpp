@@ -14,7 +14,7 @@ namespace ecs {
     m_componentManager(std::make_unique<ComponentManager>()),
     m_entityManager(std::make_unique<EntityManager>(m_componentManager.get())) {}
 
-    Engine::~Engine() {}
+    Engine::~Engine() = default;
 
     void Engine::update(float deltaTime) {
         m_engineTime->Tick(deltaTime);
@@ -26,8 +26,5 @@ namespace ecs {
         m_eventHandler->DispatchEvents();
     }
 
-    void Engine::unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate) {
-        m_eventHandler->RemoveEventCallback(eventDelegate);
-    }
 
 } // namespace ecs

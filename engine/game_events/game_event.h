@@ -44,11 +44,8 @@ struct LeftButtonPressedEvent : public ecs::event::Event<LeftButtonPressedEvent>
 
 struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
     ecs::EntityId m_EntityID;
-    ecs::EntityTypeId m_EntityTypeID;
 
-    GameObjectCreated(ecs::EntityId id, ecs::EntityTypeId typeId) :
-            m_EntityID(id),
-            m_EntityTypeID(typeId) {}
+    GameObjectCreated(ecs::EntityId id) : m_EntityID(id) {}
 };
 
 struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {

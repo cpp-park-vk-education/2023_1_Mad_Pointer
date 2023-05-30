@@ -9,8 +9,10 @@
 
 class RenderSystem : public ecs::System<RenderSystem>, public ecs::event::EventListenerBase {
 public:
-    RenderSystem(sf::RenderWindow& window, ecs::Engine* engine) : m_window(window), ecs::event::EventListenerBase(engine) {}
-    ~RenderSystem() override = default;
+    RenderSystem(sf::RenderWindow& window, ecs::Engine* engine) : m_window(window), ecs::event::EventListenerBase(engine) {
+        registerEventCallbacks();
+    }
+    ~RenderSystem() override { unregisterEventCallbacks(); }
 
     void preUpdate(float dt) override {}
     void update(float dt) override {
@@ -20,7 +22,9 @@ public:
             }
         }
     }
-    void postUpdate(float dt) override {}
+    void postUpdate(float dt) override {
+        m_window.display();
+    }
 
     struct Renderable {
     public:
@@ -61,8 +65,11 @@ private:
 
     void onGameObjectCreated(const GameObjectCreated* event) {
         auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
-        auto transform = getEngine()->getComponentManager()->getComponent<TransformComponent>(event->m_EntityID);
-        auto shape = getEngine()->getComponentManager()->getComponent<ShapeComponent>(event->m_EntityID);
+        auto transform = entity->getComponent<TransformComponent>();
+        auto shape = entity->getComponent<ShapeComponent>();
+        //auto transform = getEngine()->getComponentManager()->getComponent<TransformComponent>(event->m_EntityID);
+        //auto shape = getEngine()->getComponentManager()->getComponent<ShapeComponent>(event->m_EntityID);
+
 
         registerRenderable(entity, transform, shape);
     }

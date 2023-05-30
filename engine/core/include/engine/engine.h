@@ -39,7 +39,9 @@ namespace ecs  {
 
             void update(float tickMs);
 
-            inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate);
+            inline void unsubscribeEvent(event::internal::EventBaseDelegate* eventDelegate) {
+                m_eventHandler->RemoveEventCallback(eventDelegate);
+            }
 
         template<class EventType>
         inline void subscribeEvent(event::internal::EventBaseDelegate* const eventDelegate) {

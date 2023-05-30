@@ -9,10 +9,11 @@ namespace ecs::event {
     class EventBase {
     public:
         EventBase(EventTypeId typeId) : m_TimeCreated(utils::Timer().GetTimeStamp()), m_TypeId(typeId) {}
-        inline const EventTypeId	getEventTypeID()	const { return this->m_TypeId; }
-        inline const EventTimestamp getTimeCreated()	const { return this->m_TimeCreated; }
+        inline const EventTypeId	getEventTypeID()	const { return m_TypeId; }
+        inline const EventTimestamp getTimeCreated()	const { return m_TimeCreated; }
+        void setEventTypeId(EventTypeId id) {m_TypeId = id;}
     private:
-        EventTypeId		m_TypeId;
-        EventTimestamp	m_TimeCreated;
+        EventTypeId	m_TypeId;
+        EventTimestamp m_TimeCreated;
     };
 }

@@ -11,8 +11,7 @@ namespace ecs {
         ComponentManager* m_componentManagerInstance;
     public:
 
-
-        EntityBase();
+        EntityBase(ComponentManager* instance);
         virtual ~EntityBase();
 
         template<typename ComponentType>
@@ -38,18 +37,21 @@ namespace ecs {
             return m_isActive;
         }
 
+        void setEntityId(ecs::EntityId id) {
+            m_entityId = id;
+        }
+
         virtual void onEnable() {}
         virtual void onDisable() {}
     protected:
         EntityId m_entityId;
         bool m_isActive = true;
-    private:
     };
 }
 
 template <typename ComponentType, typename ...Args>
 ComponentType* ecs::EntityBase::addComponent(Args&&... args) {
-    return m_componentManagerInstance->addComponent<ComponentType>(m_entityId, std::forward<ComponentType>(args...));
+    return m_componentManagerInstance->addComponent<ComponentType>(m_entityId, std::forward<Args>(args)...);
 }
 
 template<typename ComponentType>

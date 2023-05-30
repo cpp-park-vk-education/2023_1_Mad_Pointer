@@ -47,7 +47,7 @@ namespace ecs {
             }
 
             EntityClassType* getEntity(EntityId id) const override{
-                return m_entities.at(id);
+                return static_cast<EntityClassType*>(m_entities.at(id).get());
             }
 
             void delEntity(EntityId id) override{
@@ -62,6 +62,7 @@ namespace ecs {
         using EntityRegistry = std::unordered_map<EntityTypeId, EntityContainerBase*>;
         using PendingDestroyedEntities = std::vector<EntityId>;
         using EntityHandleTable = std::unordered_map<EntityId, EntityContainerBase*>;
+        using EntityLookupTable = std::vector<EntityBase*>;
 
     public:
         EntityManager(const EntityManager&) = delete;
@@ -69,9 +70,22 @@ namespace ecs {
 
         template<class EntityClassType>
         inline EntityContainer<EntityClassType>* getEntityContainer() {
-            auto componentTypeId = EntityClassType::STATIC_ENTITY_TYPE_ID;
-            auto entityContainer = m_entityRegistry.at(componentTypeId);
-            return static_cast<EntityClassType*>(entityContainer);
+            //auto entityContainer = m_entityRegistry.at(componentTypeId);
+            //return static_cast<EntityContainer<EntityClassType>*>(entityContainer);
+
+            auto entityTypeID = EntityClassType::STATIC_ENTITY_TYPE_ID;
+
+            EntityContainer<EntityClassType>* entityContainer = nullptr;
+
+            auto iter = m_entityRegistry.find(entityTypeID);
+            if (iter == m_entityRegistry.end()) {
+                entityContainer = new EntityContainer<EntityClassType>();
+                m_entityRegistry[entityTypeID] = entityContainer;
+                return entityContainer;
+            }
+
+            entityContainer = static_cast<EntityContainer<EntityClassType>*>(iter->second);
+            return entityContainer;
         }
 
         EntityId acquireEntityId(EntityBase* entity);
@@ -83,10 +97,15 @@ namespace ecs {
 
         template<class EntityClassType, class... Args>
         EntityId CreateEntity(Args&&... args) {
-            EntityBase* entity = std::make_shared<EntityClassType>(std::forward<Args>(args)...);
+            std::shared_ptr<EntityBase> entity = std::make_shared<EntityClassType>(std::forward<Args>(args)...);
             auto entityContainer = getEntityContainer<EntityClassType>();
-            auto entityId = entityContainer->addEntity(entity->getEntityId(), entity);
+
+            auto entityId = acquireEntityId(entity.get());
+            entity->setEntityId(entityId);
+            entityContainer->addEntity(entity->getEntityId(), entity);
             m_entityIdToContainerBase[entityId] = entityContainer;
+
+            entity->onEnable();
             return entityId;
         }
 
@@ -99,6 +118,7 @@ namespace ecs {
         void RemoveDestroyedEntities();
 
     private:
+        EntityLookupTable m_entityLookupTable;
         EntityHandleTable m_entityIdToContainerBase;
         EntityRegistry m_entityRegistry;
         PendingDestroyedEntities m_pendingDestroyedEntities;

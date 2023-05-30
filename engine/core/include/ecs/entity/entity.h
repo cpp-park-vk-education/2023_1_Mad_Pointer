@@ -2,20 +2,19 @@
 #include "entity_base.h"
 #include "family_type_id.h"
 #include <numeric>
+
 namespace ecs {
     size_t INVALID_ENTITY_ID = -1;
     template<class EntityClass>
     class Entity : public EntityBase {
-
-        void operator delete(void*) = delete;
-        void operator delete[](void*) = delete;
-
     public:
+        //void operator delete(void*) = delete;
+        //void operator delete[](void*) = delete;
+
         static const EntityTypeId STATIC_ENTITY_TYPE_ID;
-    public:
         virtual EntityTypeId getStaticEntityTypeId() const override { return STATIC_ENTITY_TYPE_ID; }
 
-        Entity() {}
+        Entity(ComponentManager* instance): EntityBase(instance) {}
 
         virtual ~Entity() {}
     };
