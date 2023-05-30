@@ -14,7 +14,6 @@ public:
     CollisionComponent(const ecs::EntityId id, CollisionType collisionType) : m_collisionType(collisionType) {}
     ~CollisionComponent() override = default;
 
-
 private:
     CollisionType m_collisionType;
 };

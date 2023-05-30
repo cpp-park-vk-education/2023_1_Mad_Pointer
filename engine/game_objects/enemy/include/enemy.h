@@ -2,6 +2,8 @@
 #include "game_object.h"
 #include "event_listener.h"
 #include "shape_component.h"
+#include "collision_component.h"
+#include "radius_component.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -14,12 +16,14 @@ public:
 
     ~Enemy() override {}
     void onEnable() override {
-        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(20, sf::Color::Red);
+        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Red);
 
+        m_collisionComponent = addComponent<CollisionComponent>(CollisionType::EnemyCollisionType);
+        m_radiusComponent = addComponent<RadiusComponent>(m_radius);
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Red);
         m_transformComponent = addComponent<TransformComponent>(m_startPos);
-        m_engine->sendEvent<GameObjectCreated>(m_entityId);
 
+        m_engine->sendEvent<GameObjectCreated>(m_entityId);
     }
 
     virtual void OnDisable() {
@@ -36,8 +40,12 @@ public:
 
 
 private:
+    float m_radius = 20.0;
+
     sf::Vector2f m_startPos;
     ecs::Engine* m_engine;
+    CollisionComponent* m_collisionComponent;
+    RadiusComponent* m_radiusComponent;
     TransformComponent*	m_transformComponent;
     ShapeComponent*	m_shapeComponent;
 

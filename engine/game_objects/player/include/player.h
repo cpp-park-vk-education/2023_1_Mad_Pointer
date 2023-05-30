@@ -2,6 +2,8 @@
 #include "game_object.h"
 #include "event_listener.h"
 #include "shape_component.h"
+#include "radius_component.h"
+#include "collision_component.h"
 #include <SFML/Graphics.hpp>
 
 
@@ -12,10 +14,13 @@ public:
 
     ~Player() override {}
     void onEnable() override{
-        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(20, sf::Color::Green);
+        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Green);
 
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Green);
         m_transformComponent = addComponent<TransformComponent>(m_startPos);
+        m_collisionComponent = addComponent<CollisionComponent>(CollisionType::PlayerCollisionType);
+        m_radiusComponent = addComponent<RadiusComponent>(m_radius);
+
         m_engine->sendEvent<GameObjectCreated>(m_entityId);
 
     }
@@ -36,6 +41,9 @@ public:
 private:
     sf::Vector2f m_startPos;
     ecs::Engine* m_engine;
+    float m_radius = 20.0;
+    CollisionComponent* m_collisionComponent;
+    RadiusComponent* m_radiusComponent;
     TransformComponent*	m_transformComponent;
     ShapeComponent*	m_shapeComponent;
 };

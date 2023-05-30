@@ -59,6 +59,8 @@ public:
 private:
 
     [[maybe_unused]] void registerEventCallbacks() {
+        registerEventCallback(&RenderSystem::onWallCreated);
+        registerEventCallback(&RenderSystem::onWallCreated);
         registerEventCallback(&RenderSystem::onGameObjectCreated);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
     }
@@ -67,14 +69,20 @@ private:
         auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
         auto transform = entity->getComponent<TransformComponent>();
         auto shape = entity->getComponent<ShapeComponent>();
-        //auto transform = getEngine()->getComponentManager()->getComponent<TransformComponent>(event->m_EntityID);
-        //auto shape = getEngine()->getComponentManager()->getComponent<ShapeComponent>(event->m_EntityID);
-
 
         registerRenderable(entity, transform, shape);
     }
 
+    void onWallCreated(const WallCreated* event) {
+        GameObjectCreated e(event->m_EntityID);
+        onGameObjectCreated(&e);
+    }
+
     void onGameObjectDestroyed(const GameObjectDestroyed* event) {
+        unregisterRenderable(event->m_EntityID);
+    }
+
+    void onWallDestroyed(const WallDestroyed* event) {
         unregisterRenderable(event->m_EntityID);
     }
 
