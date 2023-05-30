@@ -1,5 +1,6 @@
 #include "game_loop.h"
 #include "render_system.h"
+#include "collision_system.h"
 #include "player.h"
 #include "enemy.h"
 #include "input_system.h"
@@ -39,6 +40,7 @@ void GameLoop::initializeSFML() {
 void GameLoop::initializeECS() {
     m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
     m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
+    m_engine.getSystemManager()->AddSystem<CollisionSystem>(&m_engine);
 
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(50, 50));
 
