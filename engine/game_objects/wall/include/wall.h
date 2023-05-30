@@ -19,7 +19,7 @@ public:
         std::unique_ptr<RectangleShape> shape = std::make_unique<RectangleShape>(m_verticesForBounds);
 
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::White);
-        m_transformComponent = addComponent<TransformComponent>(sf::Vector2f());
+        m_transformComponent = addComponent<TransformComponent>(sf::Vector2f(), 0.0, 0.0);
         m_engine->sendEvent<GameObjectCreated>(m_entityId);
     }
 

@@ -6,14 +6,30 @@ class TransformComponent : public ecs::Component<TransformComponent> {
 public:
     TransformComponent() {}
 
-
-    TransformComponent(const ecs::EntityId id, sf::Vector2f pos) : m_position(pos) { }
+    TransformComponent(const ecs::EntityId id, sf::Vector2f pos, float speed, float angle) : m_position(pos),
+                                                                                             m_speed(speed),
+                                                                                             m_angle(angle) {}
 
     sf::Vector2f getPosition() const {
         return m_position;
     }
+
+    float getSpeed() {
+        return m_speed;
+    }
+
+    void setAngle(float angle) {
+        m_angle = angle;
+    }
+
+    void setSpeed(float speed) {
+        m_speed = speed;
+    }
+
     ~TransformComponent() override {}
+
 private:
     sf::Vector2f m_position;
-
+    float m_speed;
+    float m_angle;
 };
