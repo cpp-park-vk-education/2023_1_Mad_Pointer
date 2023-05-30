@@ -9,13 +9,13 @@ struct KeyPressedEvent : public ecs::event::Event<KeyPressedEvent> {
 
 struct KeyReleasedEvent : public ecs::event::Event<KeyReleasedEvent> {
     int keyCode;
-    KeyPressedEvent(int code) : keyCode(code) {}
+    KeyReleasedEvent(int code) : keyCode(code) {}
 };
 
-struct LeftMouseButtonPressed : public ecs::event::Event<MouseButtonPressed> {
+struct LeftMouseButtonPressed : public ecs::event::Event<LeftMouseButtonPressed> {
     int xpos;
     int ypos;
-    KeyPressedEvent(int x, int y) : xpos(x), ypos(y) {}
+    LeftMouseButtonPressed(int x, int y) : xpos(x), ypos(y) {}
 };
 
 struct GameOverEvent : public ecs::event::Event<GameOverEvent>{};

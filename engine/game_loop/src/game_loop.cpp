@@ -2,19 +2,12 @@
 #include "render_system.h"
 #include "player.h"
 #include "enemy.h"
+#include "input_system.h"
 
 constexpr float DELTA_TIME_STEP = 1000 / 60;
 
 void GameLoop::run() {
     while (m_window.isOpen()) {
-        for (auto event = sf::Event{}; m_window.pollEvent(event);)
-        {
-            if (event.type == sf::Event::Closed)
-            {
-                m_window.close();
-            }
-        }
-
         m_engine.update(DELTA_TIME_STEP);
     }
 }
@@ -24,6 +17,8 @@ void GameLoop::initializeSFML() {
     m_window.setFramerateLimit(60);
     m_window.setMouseCursorVisible(true);
     m_window.setVerticalSyncEnabled(true);
+    m_window.setActive(true);
+    m_window.requestFocus();
     if (!m_window.isOpen()) {
         LOG_ERROR("Window has not been created! Fatal!");
     }
@@ -44,6 +39,7 @@ void GameLoop::processWindowEvent() {
 
 void GameLoop::initializeECS() {
     m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
+    m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(50, 50));
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(70, 70));
 
