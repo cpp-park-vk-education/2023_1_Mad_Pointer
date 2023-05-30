@@ -62,6 +62,7 @@ namespace ecs {
         using EntityRegistry = std::unordered_map<EntityTypeId, EntityContainerBase*>;
         using PendingDestroyedEntities = std::vector<EntityId>;
         using EntityHandleTable = std::unordered_map<EntityId, EntityContainerBase*>;
+        using EntityLookupTable = std::vector<EntityBase*>;
 
     public:
         EntityManager(const EntityManager&) = delete;
@@ -98,8 +99,13 @@ namespace ecs {
         EntityId CreateEntity(Args&&... args) {
             std::shared_ptr<EntityBase> entity = std::make_shared<EntityClassType>(std::forward<Args>(args)...);
             auto entityContainer = getEntityContainer<EntityClassType>();
-            auto entityId = entityContainer->addEntity(entity->getEntityId(), entity);
+
+            auto entityId = acquireEntityId(entity.get());
+            entity->setEntityId(entityId);
+            entityContainer->addEntity(entity->getEntityId(), entity);
             m_entityIdToContainerBase[entityId] = entityContainer;
+
+            entity->onEnable();
             return entityId;
         }
 
@@ -112,6 +118,7 @@ namespace ecs {
         void RemoveDestroyedEntities();
 
     private:
+        EntityLookupTable m_entityLookupTable;
         EntityHandleTable m_entityIdToContainerBase;
         EntityRegistry m_entityRegistry;
         PendingDestroyedEntities m_pendingDestroyedEntities;

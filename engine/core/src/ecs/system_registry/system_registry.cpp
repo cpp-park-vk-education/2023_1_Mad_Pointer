@@ -31,7 +31,7 @@ namespace ecs {
     }
 
     void SystemManager::UpdateSystemWorkOrder() {
-        /// use dependency matrix and system regustry(private members) to create work order
+        /// use dependency matrix and system registry(private members) to create work order
         /// first test maybe
     }
 

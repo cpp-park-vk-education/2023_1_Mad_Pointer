@@ -5,16 +5,18 @@
 #include <SFML/Graphics.hpp>
 
 
-class Player : public GameObject<Player> {
+class Enemy : public GameObject<Enemy> {
 public:
 
-    Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos),  GameObject(engine, instance, pos) {}
+    Enemy(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_startPos(pos), m_engine(engine), GameObject(engine, instance, pos) {
 
-    ~Player() override {}
-    void onEnable() override{
-        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(20, sf::Color::Green);
+    }
 
-        m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Green);
+    ~Enemy() override {}
+    void onEnable() override {
+        std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(20, sf::Color::Red);
+
+        m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Red);
         m_transformComponent = addComponent<TransformComponent>(m_startPos);
         m_engine->sendEvent<GameObjectCreated>(m_entityId);
 
@@ -36,4 +38,5 @@ private:
     ecs::Engine* m_engine;
     TransformComponent*	m_transformComponent;
     ShapeComponent*	m_shapeComponent;
+
 };

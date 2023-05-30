@@ -100,6 +100,7 @@ namespace ecs {
 
             auto componentID = acquireComponentId(component.get());
             component->setOwner(entityId);
+            component->setComponentId(componentID);
 
             componentContainer->createComponent(componentID, component);
             mapEntityComponent(entityId, componentID, componentTypeID);

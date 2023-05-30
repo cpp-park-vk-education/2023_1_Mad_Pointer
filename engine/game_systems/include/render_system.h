@@ -21,9 +21,10 @@ public:
                 renderable_object.render(m_window);
             }
         }
+    }
+    void postUpdate(float dt) override {
         m_window.display();
     }
-    void postUpdate(float dt) override {}
 
     struct Renderable {
     public:
@@ -64,8 +65,11 @@ private:
 
     void onGameObjectCreated(const GameObjectCreated* event) {
         auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
-        auto transform = getEngine()->getComponentManager()->getComponent<TransformComponent>(event->m_EntityID);
-        auto shape = getEngine()->getComponentManager()->getComponent<ShapeComponent>(event->m_EntityID);
+        auto transform = entity->getComponent<TransformComponent>();
+        auto shape = entity->getComponent<ShapeComponent>();
+        //auto transform = getEngine()->getComponentManager()->getComponent<TransformComponent>(event->m_EntityID);
+        //auto shape = getEngine()->getComponentManager()->getComponent<ShapeComponent>(event->m_EntityID);
+
 
         registerRenderable(entity, transform, shape);
     }

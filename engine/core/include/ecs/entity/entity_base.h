@@ -37,6 +37,10 @@ namespace ecs {
             return m_isActive;
         }
 
+        void setEntityId(ecs::EntityId id) {
+            m_entityId = id;
+        }
+
         virtual void onEnable() {}
         virtual void onDisable() {}
     protected:
