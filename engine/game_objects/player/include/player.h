@@ -18,7 +18,7 @@ public:
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Green);
         m_transformComponent = addComponent<TransformComponent>(m_startPos, 0.0, 0.0);
         m_engine->sendEvent<GameObjectCreated>(m_entityId);
-        m_controller->setTransform(m_transformComponent);
+        // m_controller->setTransform(m_transformComponent);
     }
 
     virtual void OnDisable() {
