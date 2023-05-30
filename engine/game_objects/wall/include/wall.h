@@ -20,7 +20,7 @@ public:
 
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::White);
         m_transformComponent = addComponent<TransformComponent>(sf::Vector2f());
-        m_engine->sendEvent<GameObjectCreated>(m_entityId);
+        m_engine->sendEvent<WallCreated>(m_entityId);
     }
 
     virtual void OnDisable() {}

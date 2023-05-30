@@ -48,6 +48,18 @@ struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
     GameObjectCreated(ecs::EntityId id) : m_EntityID(id) {}
 };
 
+struct WallCreated : public ecs::event::Event<WallCreated> {
+    ecs::EntityId m_EntityID;
+
+    WallCreated(ecs::EntityId id) : m_EntityID(id) {}
+};
+
+struct WallDestroyed : public ecs::event::Event<WallDestroyed> {
+    ecs::EntityId m_EntityID;
+
+    WallDestroyed(ecs::EntityId id) : m_EntityID(id) {}
+};
+
 struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {
     ecs::EntityId m_EntityID;
     GameObjectDestroyed(ecs::EntityId id) : m_EntityID(id) {}
