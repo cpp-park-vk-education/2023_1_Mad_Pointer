@@ -14,7 +14,7 @@ public:
         return m_position;
     }
 
-    float getAngle() {
+    float getAngle() const {
         return m_angle;
     }
 

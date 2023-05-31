@@ -30,15 +30,16 @@ namespace ecs::event {
         }
 
         void DispatchEvents() {
-            for (const auto event : m_EventStorage) {
+            for (auto& event : m_EventStorage) {
                 if (event) {
                     auto iter = m_EventDispatcherMap.find(event->getEventTypeID());
                     if (iter != m_EventDispatcherMap.end()) {
                         iter->second->dispatch(event.get());
                     }
+                    event = nullptr;
                 }
             }
-            ClearEventBuffer();
+            //ClearEventBuffer();
         }
 
         template<class E>
