@@ -30,6 +30,10 @@ public:
         m_speed = speed;
     }
 
+    void changePosition(sf::Vector2f dpos) {
+        m_position += dpos;
+    }
+
     ~TransformComponent() override {}
 
 private:
