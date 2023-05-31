@@ -22,15 +22,13 @@ public:
 
             if (movable.getTransform()->getPosition().x + dx < m_minBounds.x ||
                 movable.getTransform()->getPosition().x + dx > m_maxBounds.x - movable.getOffset()) {
-                  dx = 0;
+                dx = 0;
             }
             if (movable.getTransform()->getPosition().y + dy < m_minBounds.y ||
                 movable.getTransform()->getPosition().y + dy > m_maxBounds.y - movable.getOffset()) {
-                  dy = 0;
+                dy = 0;
             }
-
-            sf::Vector2f dpos(dx, dy);
-            movable.getTransform()->changePosition(dpos);
+            movable.getTransform()->changePosition(sf::Vector2(dx, dy));
         }
     }
 
@@ -84,6 +82,7 @@ private:
     void unregisterEventCallbacks() {
         unregisterEventCallback(&TransformSystem::onGameObjectCreated);
     }
+
 private:
     std::vector<Movable> m_movable;
     sf::Vector2f m_minBounds;
