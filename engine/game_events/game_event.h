@@ -1,6 +1,7 @@
 #pragma once
 #include "event.h"
 #include "entity.h"
+#include <SFML/Graphics.hpp>
 
 struct KeyPressedEvent : public ecs::event::Event<KeyPressedEvent> {
     int keyCode;
@@ -16,6 +17,14 @@ struct LeftMouseButtonPressed : public ecs::event::Event<LeftMouseButtonPressed>
     int xpos;
     int ypos;
     LeftMouseButtonPressed(int x, int y) : xpos(x), ypos(y) {}
+};
+
+struct LeftMouseButtonPressedWithPos : public ecs::event::Event<LeftMouseButtonPressedWithPos> {
+    int xpos;
+    int ypos;
+    sf::Vector2f ownerPos;
+    float angle;
+    LeftMouseButtonPressedWithPos(int x, int y, sf::Vector2f pos, float ang) : xpos(x), ypos(y), ownerPos(std::move(pos)), angle(ang) {}
 };
 
 struct GameOverEvent : public ecs::event::Event<GameOverEvent>{};
