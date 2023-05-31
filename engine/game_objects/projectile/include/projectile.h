@@ -20,7 +20,7 @@ public:
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Yellow);
         m_transformComponent = addComponent<TransformComponent>(m_startPos, m_speed, m_angle);
 
-        m_engine->sendEvent<GameObjectCreated>(m_entityId);
+        m_engine->sendEvent<GameObjectCreated>(m_entityId, m_radius * 2);
     }
 
     virtual void OnDisable() {

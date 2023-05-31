@@ -33,14 +33,16 @@ struct GameQuitEvent : public ecs::event::Event<GameQuitEvent>{};
 
 struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
     ecs::EntityId m_EntityID;
+    float m_offset;
 
-    explicit GameObjectCreated(ecs::EntityId id) : m_EntityID(id) {}
+    explicit GameObjectCreated(ecs::EntityId id, float offset) : m_EntityID(id), m_offset(offset) {}
 };
 
 struct WallCreated : public ecs::event::Event<WallCreated> {
     ecs::EntityId m_EntityID;
+    std::vector<sf::Vertex> m_verticesForBounds;
 
-    explicit WallCreated(ecs::EntityId id) : m_EntityID(id) {}
+    WallCreated(ecs::EntityId id, const std::vector<sf::Vertex>& vertices) : m_EntityID(id), m_verticesForBounds(vertices) {}
 };
 
 struct WallDestroyed : public ecs::event::Event<WallDestroyed> {
