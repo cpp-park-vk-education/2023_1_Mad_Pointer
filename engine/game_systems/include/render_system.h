@@ -15,7 +15,14 @@ public:
     }
     ~RenderSystem() override { unregisterEventCallbacks(); }
 
-    void preUpdate(float dt) override {}
+    void preUpdate(float dt) override {
+        for (auto& renderable : m_renderable) {
+            if (m_killedObjects.count(renderable.getEID()))  {
+                renderable.setActive(false);
+            }
+        }
+        m_killedObjects.clear();
+    }
     void update(float dt) override {
         for (auto& renderable_object : m_renderable) {
             if (renderable_object) {
@@ -30,7 +37,7 @@ public:
     struct Renderable {
     public:
         Renderable(ecs::EntityBase* entity, TransformComponent* transform, ShapeComponent* shape) :
-                m_entityTypeId(entity->getStaticEntityTypeId()),
+                m_entityId(entity->getEntityId()),
                 m_entity(entity),
                 m_transformComponent(transform),
                 m_shapeComponent(shape) {}
@@ -41,15 +48,24 @@ public:
             m_shapeComponent->render(window, m_transformComponent->getPosition());
         }
 
+        ecs::EntityId getEID() const {
+            return m_entityId;
+        }
+
         explicit operator bool() const {
             if (m_entity) {
-                return m_entity->isActive();
+                return m_isActive;
             }
             return false;
         }
 
+        void setActive(bool active) {
+            m_isActive = active;
+        }
+
     private:
-        [[maybe_unused]] ecs::EntityTypeId m_entityTypeId;
+        bool m_isActive = true;
+        ecs::EntityId m_entityId;
         ecs::EntityBase* m_entity;
 
         TransformComponent*	m_transformComponent;
@@ -59,8 +75,7 @@ public:
     using RenderableVector = std::vector<Renderable>;
 private:
 
-    [[maybe_unused]] void registerEventCallbacks() {
-        registerEventCallback(&RenderSystem::onWallCreated);
+    void registerEventCallbacks() {
         registerEventCallback(&RenderSystem::onWallCreated);
         registerEventCallback(&RenderSystem::onGameObjectCreated);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
@@ -68,6 +83,7 @@ private:
 
     void onGameObjectCreated(const GameObjectCreated* event) {
         auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        if (!entity) return;
         auto transform = entity->getComponent<TransformComponent>();
         auto shape = entity->getComponent<ShapeComponent>();
 

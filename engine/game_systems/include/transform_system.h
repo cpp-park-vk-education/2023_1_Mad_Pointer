@@ -14,20 +14,31 @@ public:
     }
 
     ~TransformSystem() override { unregisterEventCallbacks(); }
+    void preUpdate(float dt) override {
+        for (auto& movable : m_movable) {
+            if (m_killedObjs.count(movable.getEID())) {
+                movable.setActive(false);
+            }
+        }
+        m_killedObjs.clear();
+    }
 
     void update(float dt) override {
         for (auto& movable : m_movable) {
-            float dx = std::cos((PI / 180) * movable.getTransform()->getAngle()) * movable.getTransform()->getSpeed();
-            float dy = std::sin((PI / 180) * movable.getTransform()->getAngle()) * movable.getTransform()->getSpeed();
-            
-            sf::Vector2f dpos(dx, dy);
-            movable.getTransform()->changePosition(dpos);
+            if (movable) {
+                float dx = std::cos((PI / 180) * movable.getTransform()->getAngle()) * movable.getTransform()->getSpeed();
+                float dy = std::sin((PI / 180) * movable.getTransform()->getAngle()) * movable.getTransform()->getSpeed();
+
+                sf::Vector2f dpos(dx, dy);
+                movable.getTransform()->changePosition(dpos);
+            }
         }
     }
 
     struct Movable {
     public:
         Movable(ecs::EntityBase* entity, TransformComponent* transform) : m_entity(entity),
+                                                                          m_entityId(entity->getEntityId()),
                                                                           m_transformComponent(transform) {}
 
         ~Movable() = default;
@@ -36,7 +47,24 @@ public:
             return m_transformComponent;
         }
 
+        void setActive(bool active) {
+            m_isActive = active;
+        }
+
+        explicit operator bool() const {
+            if (m_entity) {
+                return m_isActive;
+            }
+            return false;
+        }
+
+        ecs::EntityId getEID () const {
+            return m_entityId;
+        }
+
     private:
+        ecs::EntityId m_entityId;
+        bool m_isActive = true;
         ecs::EntityBase* m_entity;
         TransformComponent* m_transformComponent;
     };
@@ -44,10 +72,16 @@ public:
 private:
     void registerEventCallbacks() {
         registerEventCallback(&TransformSystem::onGameObjectCreated);
+        registerEventCallback(&TransformSystem::onGameObjectDestroyed);
+    }
+
+    void onGameObjectDestroyed(const GameObjectDestroyed* event) {
+        m_killedObjs.insert(event->m_EntityID);
     }
 
     void onGameObjectCreated(const GameObjectCreated* event) {
         auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        if (!entity) return;
         auto transform = entity->getComponent<TransformComponent>();
 
         registerMovable(entity, transform);
@@ -59,8 +93,10 @@ private:
 
     void unregisterEventCallbacks() {
         unregisterEventCallback(&TransformSystem::onGameObjectCreated);
+        registerEventCallback(&TransformSystem::onGameObjectDestroyed);
     }
 private:
+    std::set<ecs::EntityId> m_killedObjs;
     std::vector<Movable> m_movable;
 };
 

@@ -14,7 +14,9 @@ public:
         }
     }
 
-    ~Wall() override = default;
+    ~Wall() override {
+        onDisable();
+    }
     void onEnable() override {
         std::unique_ptr<RectangleShape> shape = std::make_unique<RectangleShape>(m_verticesForBounds);
 

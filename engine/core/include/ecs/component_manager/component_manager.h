@@ -38,6 +38,7 @@ namespace ecs {
             }
 
             virtual void destroyComponent(ComponentBase* object) override {
+                del(object->getComponentId());
             }
 
             ComponentBase* getComponent(ComponentId componentId) const {

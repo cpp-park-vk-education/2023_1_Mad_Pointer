@@ -10,7 +10,9 @@ class Enemy : public GameObject<Enemy> {
 public:
     Enemy(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_startPos(pos), m_engine(engine), GameObject(engine, instance) {}
 
-    ~Enemy() override = default;
+    ~Enemy() override {
+        OnDisable();
+    }
     void onEnable() override {
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Red);
 

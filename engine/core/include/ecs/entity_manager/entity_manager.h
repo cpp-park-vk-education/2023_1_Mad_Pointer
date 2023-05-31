@@ -59,7 +59,7 @@ namespace ecs {
 
         using EntityTypeId = std::size_t;
         using EntityId = std::size_t;
-        using EntityRegistry = std::unordered_map<EntityTypeId, EntityContainerBase*>;
+        using EntityRegistry = std::unordered_map<EntityTypeId, std::unique_ptr<EntityContainerBase>>;
         using PendingDestroyedEntities = std::vector<EntityId>;
         using EntityHandleTable = std::unordered_map<EntityId, EntityContainerBase*>;
         using EntityLookupTable = std::vector<EntityBase*>;
@@ -75,17 +75,17 @@ namespace ecs {
 
             auto entityTypeID = EntityClassType::STATIC_ENTITY_TYPE_ID;
 
-            EntityContainer<EntityClassType>* entityContainer = nullptr;
+            //EntityContainer<EntityClassType>* entityContainer = nullptr;
 
             auto iter = m_entityRegistry.find(entityTypeID);
             if (iter == m_entityRegistry.end()) {
-                entityContainer = new EntityContainer<EntityClassType>();
-                m_entityRegistry[entityTypeID] = entityContainer;
-                return entityContainer;
+                //entityContainer = new EntityContainer<EntityClassType>();
+                m_entityRegistry[entityTypeID] = std::make_unique<EntityContainer<EntityClassType>>();
+                return static_cast<EntityContainer<EntityClassType>*>(m_entityRegistry[entityTypeID].get());
             }
 
-            entityContainer = static_cast<EntityContainer<EntityClassType>*>(iter->second);
-            return entityContainer;
+            //entityContainer = static_cast<EntityContainer<EntityClassType>*>(iter->second.get());
+            return static_cast<EntityContainer<EntityClassType>*>(m_entityRegistry[entityTypeID].get());
         }
 
         EntityId acquireEntityId(EntityBase* entity);
@@ -112,7 +112,12 @@ namespace ecs {
         void DestroyEntity(EntityId entityId);
 
         inline EntityBase* getEntity(EntityId entityId) {
-            return m_entityIdToContainerBase.at(entityId)->getEntity(entityId);
+            try {
+                return m_entityIdToContainerBase.at(entityId)->getEntity(entityId);
+            } catch (...) {
+                return nullptr;
+            }
+
         }
 
         void RemoveDestroyedEntities();
