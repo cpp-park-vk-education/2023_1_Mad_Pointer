@@ -13,5 +13,4 @@ public:
     ~RadiusComponent() override {}
 private:
     float m_radius;
-
 };

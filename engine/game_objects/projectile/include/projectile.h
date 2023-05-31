@@ -11,7 +11,9 @@ class Projectile : public ecs::Entity<Projectile> {
 public:
     Projectile(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos, float speed, float angle) : m_startPos(pos), m_engine(engine), ecs::Entity<Projectile>(instance), m_speed(speed), m_angle(angle) {}
 
-    ~Projectile() override = default;
+    ~Projectile() {
+        OnDisable();
+    }
     void onEnable() override {
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Yellow);
 

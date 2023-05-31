@@ -12,7 +12,9 @@ public:
 
     Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos), m_controller(engine), GameObject(engine, instance) {}
 
-    ~Player() override = default;
+    ~Player() override  {
+        OnDisable();
+    }
     void onEnable() override{
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Green);
 

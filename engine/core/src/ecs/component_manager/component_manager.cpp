@@ -60,5 +60,21 @@ void ecs::ComponentManager::unmapEntityComponent(ecs::EntityId entityId, ecs::Co
 }
 
 void ecs::ComponentManager::removeAllComponents(const ecs::EntityId entityId) {
-        // implement me
+    const size_t NUM_COMPONENTS = m_EntityComponentMap[0].size();
+
+    for (ComponentTypeId componentTypeId = 0; componentTypeId < NUM_COMPONENTS; ++componentTypeId) {
+        const ComponentId componentId = m_EntityComponentMap[entityId][componentTypeId];
+        if (componentId == INVALID_COMPONENT_ID)
+            continue;
+
+        ComponentBase* component = m_ComponentLUT[componentId];
+        if (component) {
+            auto it = m_ComponentContainerRegistry.find(componentTypeId);
+            if (it != m_ComponentContainerRegistry.end()) {
+                it->second->destroyComponent(component);
+            }
+
+            unmapEntityComponent(entityId, componentId, componentTypeId);
+        }
+    }
 }

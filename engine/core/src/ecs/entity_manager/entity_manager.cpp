@@ -7,15 +7,15 @@ namespace ecs {
     }
 
     EntityManager::~EntityManager() {
-        for (auto entityComponent : m_entityRegistry) {
-            delete entityComponent.second;
-            entityComponent.second = nullptr;
-        }
+        //for (auto entityComponent : m_entityRegistry) {
+        //    delete entityComponent.second;
+        //    entityComponent.second = nullptr;
+        //}
         // log release entity manager
     }
 
     void EntityManager::ReleaseEntityId(ecs::EntityManager::EntityId id) {
-        m_entityIdToContainerBase.erase(id);
+        m_entityLookupTable[id] = nullptr;
     }
 
     EntityId EntityManager::acquireEntityId(ecs::EntityBase *entity) {
@@ -31,12 +31,21 @@ namespace ecs {
         return i;
     }
 
+    void EntityManager::DestroyEntity(ecs::EntityId entityId) {
+        m_pendingDestroyedEntities.push_back(entityId);
+
+    }
+
     void EntityManager::RemoveDestroyedEntities() {
         for (const auto& entityId : m_pendingDestroyedEntities) {
-            auto entityContainer = m_entityIdToContainerBase[entityId];
-            entityContainer->delEntity(entityId);
-            m_componentManagerInstance->removeAllComponents(entityId);
-            ReleaseEntityId(entityId);
+            if (m_entityIdToContainerBase.find(entityId) != m_entityIdToContainerBase.end()) {
+                m_componentManagerInstance->removeAllComponents(entityId);
+
+                auto entityContainer = m_entityIdToContainerBase[entityId];
+                entityContainer->delEntity(entityId);
+                m_entityIdToContainerBase.erase(entityId);
+                ReleaseEntityId(entityId);
+            }
         }
         m_pendingDestroyedEntities.clear();
     }
