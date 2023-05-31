@@ -76,6 +76,7 @@ public:
 private:
 
     void registerEventCallbacks() {
+        registerEventCallback(&RenderSystem::onGameObjectDestroyed);
         registerEventCallback(&RenderSystem::onWallCreated);
         registerEventCallback(&RenderSystem::onGameObjectCreated);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
