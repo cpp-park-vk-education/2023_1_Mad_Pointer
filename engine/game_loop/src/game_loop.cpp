@@ -1,7 +1,7 @@
 #include "game_loop.h"
 #include "render_system.h"
 #include "collision_system.h"
-//#include "shoot_system.h"
+#include "transform_system.h"
 #include "player.h"
 #include "enemy.h"
 #include "input_system.h"
@@ -12,7 +12,9 @@ constexpr float DELTA_TIME_STEP = 1000 / 60;
 void GameLoop::run() {
     while (m_window.isOpen()) {
         m_engine.update(DELTA_TIME_STEP);
+        m_window.clear();
     }
+
 }
 
 void GameLoop::initializeSFML() {
@@ -32,6 +34,7 @@ void GameLoop::initializeECS() {
     m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
     m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
     m_engine.getSystemManager()->AddSystem<CollisionSystem>(&m_engine);
+    m_engine.getSystemManager()->AddSystem<TransformSystem>(&m_engine);
     //m_engine.getSystemManager()->AddSystem<ShootSystem>(&m_engine);
 
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(100, 100));
