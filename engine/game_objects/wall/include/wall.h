@@ -23,7 +23,10 @@ public:
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::White);
         m_transformComponent = addComponent<TransformComponent>(sf::Vector2f(), 0.0, 0.0);
         m_collisionComponent = addComponent<CollisionComponent>(CollisionType::WallCollisionType);
-        m_engine->sendEvent<WallCreated>(m_entityId);
+
+        sf::Vector2f minBounds = m_verticesForBounds[0].position;
+        sf::Vector2f maxBounds = m_verticesForBounds[2].position;
+        m_engine->sendEvent<WallCreated>(m_entityId, minBounds, maxBounds);
     }
 
     virtual void OnDisable() {

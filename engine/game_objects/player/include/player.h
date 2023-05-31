@@ -24,7 +24,7 @@ public:
         m_radiusComponent = addComponent<RadiusComponent>(m_radius);
         m_controller.setTransform(m_transformComponent);
 
-        m_engine->sendEvent<GameObjectCreated>(m_entityId);
+        m_engine->sendEvent<GameObjectCreated>(m_entityId, m_radius * 2);
     }
 
     virtual void OnDisable() {

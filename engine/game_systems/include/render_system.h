@@ -92,7 +92,7 @@ private:
     }
 
     void onWallCreated(const WallCreated* event) {
-        GameObjectCreated e(event->m_EntityID);
+        GameObjectCreated e(event->m_EntityID, 0);
         onGameObjectCreated(&e);
     }
 
