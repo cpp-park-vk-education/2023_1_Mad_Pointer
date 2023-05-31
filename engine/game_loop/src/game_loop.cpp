@@ -38,7 +38,6 @@ void GameLoop::initializeECS() {
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(100, 100));
     m_engine.getEntityManager()->CreateEntity<Player>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200});
 
-
     std::vector<sf::Vector2f> verticesForWall = {{10, 10}, {10, 990}, {1800, 990}, {1800, 10}, {10, 10}};
     m_engine.getEntityManager()->CreateEntity<Wall>(&m_engine, m_engine.getComponentManager(), verticesForWall);
 }
