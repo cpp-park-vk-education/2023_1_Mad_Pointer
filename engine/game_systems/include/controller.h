@@ -30,7 +30,6 @@ private:
             case sf::Keyboard::A:
                 m_transform->setAngle(180);
                 m_transform->setSpeed(PLAYER_SPEED);
-                //std::cerr << m_transform->getSpeed();
                 break;
             case sf::Keyboard::D:
                 m_transform->setAngle(0);

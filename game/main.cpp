@@ -8,7 +8,5 @@ int main() {
     gameLoop.initializeSFML();
     gameLoop.initializeECS();
     gameLoop.run();
-    // LOG_WARN("hello");
-    // LOG_ERROR("error");
     return 0;
 }

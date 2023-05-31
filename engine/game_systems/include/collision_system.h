@@ -6,6 +6,7 @@
 #include "collision_component.h"
 #include "transform_component.h"
 #include "radius_component.h"
+
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
@@ -28,9 +29,7 @@ public:
             }
         }
     }
-    void postUpdate(float dt) override {
-
-    }
+    void postUpdate(float dt) override {}
 
     struct RigidBody {
     public:

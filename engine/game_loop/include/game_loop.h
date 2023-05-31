@@ -5,20 +5,17 @@
 #include "logger.h"
 class GameLoop : protected ecs::event::EventListenerBase {
 public:
-    GameLoop(const std::string& name = "Game Name") : m_gameName(name), ecs::event::EventListenerBase(nullptr) {}
+    explicit GameLoop(const std::string& name = "Game Name") : m_gameName(name), ecs::event::EventListenerBase(nullptr) {}
 
     void initializeECS();
     void initializeSFML();
 
     void run();
 
-    ~GameLoop() {}
+    ~GameLoop() override = default;
 
 private:
     std::string m_gameName;
-
-    bool m_isRunning = false;
      sf::RenderWindow m_window;
-
     ecs::Engine m_engine;
 };

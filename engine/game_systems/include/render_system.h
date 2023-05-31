@@ -5,6 +5,7 @@
 #include "event_listener.h"
 #include "shape_component.h"
 #include "transform_component.h"
+
 #include <SFML/Graphics.hpp>
 
 class RenderSystem : public ecs::System<RenderSystem>, public ecs::event::EventListenerBase {

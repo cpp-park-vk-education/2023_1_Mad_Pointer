@@ -13,7 +13,7 @@ public:
 
     void onEnable() override {}
 
-    virtual ~GameObject() {}
+    virtual ~GameObject() = default;
 
 private:
     ecs::Engine* m_engine;
