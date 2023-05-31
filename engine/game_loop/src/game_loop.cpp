@@ -14,7 +14,6 @@ void GameLoop::run() {
         m_engine.update(DELTA_TIME_STEP);
         m_window.clear();
     }
-
 }
 
 void GameLoop::initializeSFML() {
@@ -29,13 +28,11 @@ void GameLoop::initializeSFML() {
     }
 }
 
-
 void GameLoop::initializeECS() {
     m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
     m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
     m_engine.getSystemManager()->AddSystem<CollisionSystem>(&m_engine);
     m_engine.getSystemManager()->AddSystem<TransformSystem>(&m_engine);
-    //m_engine.getSystemManager()->AddSystem<ShootSystem>(&m_engine);
 
     m_engine.getEntityManager()->CreateEntity<Enemy>(&m_engine, m_engine.getComponentManager(), sf::Vector2f(100, 100));
 
@@ -43,7 +40,4 @@ void GameLoop::initializeECS() {
 
     std::vector<sf::Vector2f> verticesForWall = {{10, 10}, {10, 990}, {1800, 990}, {1800, 10}, {10, 10}};
     m_engine.getEntityManager()->CreateEntity<Wall>(&m_engine, m_engine.getComponentManager(), verticesForWall);
-
 }
-
-

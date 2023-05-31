@@ -4,15 +4,14 @@
 #include "shape_component.h"
 #include "collision_component.h"
 #include "radius_component.h"
-#include <SFML/Graphics.hpp>
 
+#include <SFML/Graphics.hpp>
 
 class Projectile : public ecs::Entity<Projectile> {
 public:
-
     Projectile(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos, float speed, float angle) : m_startPos(pos), m_engine(engine), ecs::Entity<Projectile>(instance), m_speed(speed), m_angle(angle) {}
 
-    ~Projectile() override {}
+    ~Projectile() override = default;
     void onEnable() override {
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Yellow);
 
@@ -28,15 +27,6 @@ public:
         m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
     }
 
-    void MoveForward(float speed);
-    void TurnLeft(float degrees);
-    void TurnRight(float degrees);
-    void Stop();
-
-    void StopTurning();
-    void StopMoving();
-
-
 private:
     float m_radius = 5;
     float m_speed;
@@ -47,5 +37,4 @@ private:
     RadiusComponent* m_radiusComponent;
     TransformComponent*	m_transformComponent;
     ShapeComponent*	m_shapeComponent;
-
 };

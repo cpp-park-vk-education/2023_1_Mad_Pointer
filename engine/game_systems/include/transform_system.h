@@ -9,7 +9,7 @@
 
 class TransformSystem : public ecs::System<TransformSystem>, public ecs::event::EventListenerBase {
 public:
-    TransformSystem(ecs::Engine* engine) : ecs::event::EventListenerBase(engine) {
+    explicit TransformSystem(ecs::Engine* engine) : ecs::event::EventListenerBase(engine) {
         registerEventCallbacks();
     }
 
@@ -60,7 +60,6 @@ private:
     void unregisterEventCallbacks() {
         unregisterEventCallback(&TransformSystem::onGameObjectCreated);
     }
-
 private:
     std::vector<Movable> m_movable;
 };

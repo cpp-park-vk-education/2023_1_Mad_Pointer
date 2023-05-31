@@ -19,7 +19,7 @@ private:
 };
 
 void InputSystem::preUpdate(float deltaTime) {
-    sf::Event event;
+    sf::Event event{};
     while (m_window.pollEvent(event)) {
         switch (event.type) {
             case sf::Event::KeyPressed:
@@ -31,7 +31,6 @@ void InputSystem::preUpdate(float deltaTime) {
             case sf::Event::MouseButtonPressed:
                 if (event.mouseButton.button == sf::Mouse::Left) {
                     m_engine->sendEvent<LeftMouseButtonPressed>(event.mouseButton.x, event.mouseButton.y);
-                    //std::cerr << event.mouseButton.x << event.mouseButton.y;
                 }
                 break;
             case sf::Event::Closed:

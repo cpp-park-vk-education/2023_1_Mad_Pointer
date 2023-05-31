@@ -6,15 +6,11 @@
 #include "radius_component.h"
 #include <SFML/Graphics.hpp>
 
-
 class Enemy : public GameObject<Enemy> {
 public:
+    Enemy(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_startPos(pos), m_engine(engine), GameObject(engine, instance) {}
 
-    Enemy(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_startPos(pos), m_engine(engine), GameObject(engine, instance) {
-
-    }
-
-    ~Enemy() override {}
+    ~Enemy() override = default;
     void onEnable() override {
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Red);
 
@@ -23,26 +19,14 @@ public:
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Red);
         m_transformComponent = addComponent<TransformComponent>(m_startPos, 0.0, 0.0);
 
-
         m_engine->sendEvent<GameObjectCreated>(m_entityId);
     }
 
     virtual void OnDisable() {
         m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
     }
-
-    void MoveForward(float speed);
-    void TurnLeft(float degrees);
-    void TurnRight(float degrees);
-    void Stop();
-
-    void StopTurning();
-    void StopMoving();
-
-
 private:
     float m_radius = 20.0;
-
     sf::Vector2f m_startPos;
     ecs::Engine* m_engine;
     CollisionComponent* m_collisionComponent;

@@ -19,7 +19,7 @@ add_library(EngineStaticLib STATIC ${SOURCE_FILES_ENGINE})
 
 find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
 
-target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib ${SDL2_LIBRARIES} sfml-graphics)
+target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib sfml-graphics)
 
 set(INCLUDE_DIRS game_loop/include)
 

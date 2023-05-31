@@ -7,13 +7,12 @@
 #include "collision_component.h"
 #include <SFML/Graphics.hpp>
 
-
 class Player : public GameObject<Player> {
 public:
 
     Player(ecs::Engine *engine, ecs::ComponentManager* instance, sf::Vector2f pos) : m_engine(engine), m_startPos(pos), m_controller(engine), GameObject(engine, instance) {}
 
-    ~Player() override {}
+    ~Player() override = default;
     void onEnable() override{
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Green);
 
@@ -29,16 +28,6 @@ public:
     virtual void OnDisable() {
         m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
     }
-
-    void MoveForward(float speed);
-    void TurnLeft(float degrees);
-    void TurnRight(float degrees);
-    void Stop();
-
-    void StopTurning();
-    void StopMoving();
-
-
 private:
     sf::Vector2f m_startPos;
     ecs::Engine* m_engine;

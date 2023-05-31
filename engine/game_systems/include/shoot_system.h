@@ -24,10 +24,6 @@ private:
     }
 
     void onLeftMouseButtonClick(const LeftMouseButtonPressedWithPos* event) {
-        std::cerr << 3154;
-        //TransformComponent* transform = m_engine->getComponentManager()->getComponent<TransformComponent>(event->entityId);
-        std::cerr << event->angle;
-        //m_engine->getEntityManager()->CreateEntity<Projectile>(m_engine, m_engine->getComponentManager(), event->ownerPos, 20, event->angle);
     }
 
     void unregisterEventCallbacks() {
