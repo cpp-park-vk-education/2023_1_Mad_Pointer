@@ -9,7 +9,7 @@
 
 class TransformSystem : public ecs::System<TransformSystem>, public ecs::event::EventListenerBase {
 public:
-    explicit TransformSystem(ecs::Engine* engine) : ecs::event::EventListenerBase(engine) {
+    explicit TransformSystem(ecs::Engine* engine) : m_engine(engine), ecs::event::EventListenerBase(engine) {
         registerEventCallbacks();
     }
 
@@ -32,10 +32,18 @@ public:
 
                 if (movable.getTransform()->getPosition().x + dx < m_minBounds.x ||
                     movable.getTransform()->getPosition().x + dx > m_maxBounds.x - movable.getOffset()) {
+                    CollisionComponent* component = m_engine->getComponentManager()->getComponent<CollisionComponent>(movable.getEID());
+                    if (component->getCollisionType() == CollisionType::ProjectileCollisionType) {
+                        m_engine->getEntityManager()->DestroyEntity(movable.getEID());
+                    }
                     dx = 0;
                 }
                 if (movable.getTransform()->getPosition().y + dy < m_minBounds.y ||
                     movable.getTransform()->getPosition().y + dy > m_maxBounds.y - movable.getOffset()) {
+                    CollisionComponent* component = m_engine->getComponentManager()->getComponent<CollisionComponent>(movable.getEID());
+                    if (component->getCollisionType() == CollisionType::ProjectileCollisionType) {
+                        m_engine->getEntityManager()->DestroyEntity(movable.getEID());
+                    }
                     dy = 0;
                 }
                 movable.getTransform()->changePosition(sf::Vector2(dx, dy));
@@ -70,6 +78,8 @@ public:
 
         ecs::EntityId getEID () const {
             return m_entityId;
+        }
+
         float getOffset() {
             return m_offset;
         }
@@ -85,6 +95,7 @@ public:
 private:
     void registerEventCallbacks() {
         registerEventCallback(&TransformSystem::onGameObjectCreated);
+        registerEventCallback(&TransformSystem::onWallCreated);
         registerEventCallback(&TransformSystem::onGameObjectDestroyed);
     }
 
@@ -117,6 +128,7 @@ private:
     }
 
 private:
+    ecs::Engine* m_engine;
     std::set<ecs::EntityId> m_killedObjs;
     std::vector<Movable> m_movable;
     sf::Vector2f m_minBounds;
