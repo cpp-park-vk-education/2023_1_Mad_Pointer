@@ -14,6 +14,10 @@ public:
         return m_position;
     }
 
+    float getAngle() {
+        return m_angle;
+    }
+
     float getSpeed() {
         return m_speed;
     }
@@ -24,6 +28,10 @@ public:
 
     void setSpeed(float speed) {
         m_speed = speed;
+    }
+
+    void changePosition(sf::Vector2f dpos) {
+        m_position += dpos;
     }
 
     ~TransformComponent() override {}
