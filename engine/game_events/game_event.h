@@ -40,9 +40,12 @@ struct GameObjectCreated : public ecs::event::Event<GameObjectCreated> {
 
 struct WallCreated : public ecs::event::Event<WallCreated> {
     ecs::EntityId m_EntityID;
-    std::vector<sf::Vertex> m_verticesForBounds;
+    sf::Vector2f m_minBounds;
+    sf::Vector2f m_maxBounds;
 
-    WallCreated(ecs::EntityId id, const std::vector<sf::Vertex>& vertices) : m_EntityID(id), m_verticesForBounds(vertices) {}
+    WallCreated(ecs::EntityId id, sf::Vector2f minBounds, sf::Vector2f maxBounds) : m_EntityID(id),
+                                                                                    m_minBounds(minBounds),
+                                                                                    m_maxBounds(maxBounds) {}
 };
 
 struct WallDestroyed : public ecs::event::Event<WallDestroyed> {

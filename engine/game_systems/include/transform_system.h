@@ -20,12 +20,12 @@ public:
             float dx = std::cos((PI / 180) * movable.getTransform()->getAngle()) * movable.getTransform()->getSpeed();
             float dy = std::sin((PI / 180) * movable.getTransform()->getAngle()) * movable.getTransform()->getSpeed();
 
-            if (movable.getTransform()->getPosition().x + dx < m_bounds[0].position.x ||
-                movable.getTransform()->getPosition().x + dx > m_bounds[2].position.x - movable.getOffset()) {
+            if (movable.getTransform()->getPosition().x + dx < m_minBounds.x ||
+                movable.getTransform()->getPosition().x + dx > m_maxBounds.x - movable.getOffset()) {
                   dx = 0;
             }
-            if (movable.getTransform()->getPosition().y + dy < m_bounds[0].position.y ||
-                movable.getTransform()->getPosition().y + dy > m_bounds[2].position.y - movable.getOffset()) {
+            if (movable.getTransform()->getPosition().y + dy < m_minBounds.y ||
+                movable.getTransform()->getPosition().y + dy > m_maxBounds.y - movable.getOffset()) {
                   dy = 0;
             }
 
@@ -75,7 +75,8 @@ private:
     }
 
     void onWallCreated(const WallCreated* event) {
-        m_bounds = event->m_verticesForBounds;
+        m_minBounds = event->m_minBounds;
+        m_maxBounds = event->m_maxBounds;
     }
 
     void onWallDestroyed(const WallDestroyed* event) {}
@@ -85,5 +86,6 @@ private:
     }
 private:
     std::vector<Movable> m_movable;
-    std::vector<sf::Vertex> m_bounds;
+    sf::Vector2f m_minBounds;
+    sf::Vector2f m_maxBounds;
 };
