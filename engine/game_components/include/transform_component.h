@@ -14,6 +14,10 @@ public:
         return m_position;
     }
 
+    float getAngle() const {
+        return m_angle;
+    }
+
     float getSpeed() {
         return m_speed;
     }

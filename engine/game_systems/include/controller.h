@@ -2,6 +2,7 @@
 #include "event_listener.h"
 #include "game_event.h"
 #include "transform_component.h"
+#include "projectile.h"
 
 const int PLAYER_SPEED = 10;
 
@@ -29,7 +30,7 @@ private:
             case sf::Keyboard::A:
                 m_transform->setAngle(180);
                 m_transform->setSpeed(PLAYER_SPEED);
-                // std::cerr << m_transform->getSpeed();
+                //std::cerr << m_transform->getSpeed();
                 break;
             case sf::Keyboard::D:
                 m_transform->setAngle(0);
@@ -54,7 +55,7 @@ private:
     }
 
     void onMouseButtonPressed(const LeftMouseButtonPressed* event) {
-        m_engine->sendEvent<LeftMouseButtonPressed>(event->xpos, event->ypos);
+        m_engine->getEntityManager()->CreateEntity<Projectile>(m_engine, m_engine->getComponentManager(), m_transform->getPosition(), 20, m_transform->getAngle());
     }
 
     void unregisterEventCallbacks() {
