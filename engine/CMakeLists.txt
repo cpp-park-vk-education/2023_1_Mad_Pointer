@@ -11,6 +11,7 @@ include_directories(game_objects/game_object/include)
 include_directories(game_objects/player/include)
 include_directories(game_objects/enemy/include)
 include_directories(game_objects/wall/include)
+include_directories(game_objects/projectile/include)
 
 set(SOURCE_FILES_ENGINE game_loop/src/game_loop.cpp game_objects/player/src/player.cpp)
 
