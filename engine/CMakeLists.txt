@@ -21,6 +21,14 @@ find_package(SFML 2.5 COMPONENTS system window graphics network audio REQUIRED)
 
 target_link_libraries(EngineStaticLib PUBLIC EngineECSCoreStaticLib sfml-graphics)
 
-set(INCLUDE_DIRS game_loop/include)
+set(INCLUDE_DIRS game_loop/include
+        game_systems/include
+        game_objects/player/include
+        game_objects/wall/include
+        game_events
+        game_components/include
+        game_objects/enemy/include
+        game_objects/game_object/include
+        game_objects/projectile/include)
 
 target_include_directories(EngineStaticLib PUBLIC ${INCLUDE_DIRS})

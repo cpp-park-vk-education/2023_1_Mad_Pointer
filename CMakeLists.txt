@@ -11,6 +11,9 @@ add_subdirectory(game)
 add_subdirectory(tests)
 
 include_directories(engine/game_loop/include)
+include_directories(game/shooter_game/include)
+
 add_executable(TheFloors game/main.cpp)
 
+target_include_directories(TheFloorsGame PUBLIC ${INCLUDE_DIRS})
 target_link_libraries(TheFloors PUBLIC EngineStaticLib)
