@@ -26,20 +26,19 @@ public:
             std::random_device random_device;
             std::mt19937 generator(random_device());
 
-
             std::uniform_real_distribution<> distributionForX(m_minBounds.x + 50, m_maxBounds.x - 50);
             std::uniform_real_distribution<> distributionForY(m_minBounds.y + 50, m_maxBounds.y - 50);
 
             float x = distributionForX(generator);
             float y = distributionForY(generator);
             for (size_t i = 0; i < enemiesCount; ++i) {
-                while(abs(m_playerTransform->getPosition().x - x) < 200) {
+                while(sqrt(pow(m_playerTransform->getPosition().x - x, 2) + pow(m_playerTransform->getPosition().y - y, 2)) < 200) {
                     x = distributionForX(generator);
-                }
-
-                while(abs(m_playerTransform->getPosition().y - y) < 200) {
                     y = distributionForY(generator);
                 }
+
+                //while(abs(m_playerTransform->getPosition().y - y) < 200) {
+                //}
 
                 m_engine->getEntityManager()->CreateEntity<Enemy>(m_engine, m_engine->getComponentManager(), sf::Vector2f(x, y));
                 x = distributionForX(generator);
