@@ -28,6 +28,9 @@ public:
     */
 
         m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
+        m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
+        m_engine.getSystemManager()->AddSystem<TransformSystem>(&m_engine);
+
         m_engine.getEntityManager()->CreateEntity<Car>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
     }
 };

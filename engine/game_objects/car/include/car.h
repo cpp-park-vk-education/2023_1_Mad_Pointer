@@ -22,6 +22,7 @@ public:
         m_transformComponent = addComponent<TransformComponent>(m_pos, 0.0, 0.0);
         m_collisionComponent = addComponent<CollisionComponent>(CollisionType::CarCollisionType);
 
+        m_carController.setTransform(m_transformComponent);
         m_engine->sendEvent<CarCreated>(m_entityId);
     }
 

@@ -47,7 +47,6 @@ private:
     }
 
     void onMouseButtonPressed(const LeftMouseButtonPressed* event) {
-        m_engine->getEntityManager()->CreateEntity<Projectile>(m_engine, m_engine->getComponentManager(), m_transform->getPosition(), 20, m_transform->getAngle());
     }
 
     void unregisterEventCallbacks() {
