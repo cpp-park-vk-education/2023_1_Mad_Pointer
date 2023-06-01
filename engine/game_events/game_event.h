@@ -63,6 +63,7 @@ struct CarCreated : public ecs::event::Event<CarCreated> {
     ecs::EntityId m_EntityID;
     sf::Vector2f m_size;
     explicit CarCreated(ecs::EntityId id, sf::Vector2f size) : m_EntityID(id), m_size(size) {}
+
 };
 
 struct CarDestroyed : public ecs::event::Event<CarDestroyed> {
