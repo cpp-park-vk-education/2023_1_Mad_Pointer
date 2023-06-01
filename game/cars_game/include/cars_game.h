@@ -34,6 +34,11 @@ public:
 
         m_engine.getEntityManager()->CreateEntity<Car>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
         m_engine.getEntityManager()->CreateEntity<Box>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
+        
+        float width = sf::VideoMode::getDesktopMode().width;
+        float height = sf::VideoMode::getDesktopMode().height;
 
+        std::vector<sf::Vector2f> verticesForWall = {{0, 0}, {0, height}, {width, height}, {width, 0}, {0, 0}};
+        m_engine.getEntityManager()->CreateEntity<Wall>(&m_engine, m_engine.getComponentManager(), verticesForWall);
     }
 };
