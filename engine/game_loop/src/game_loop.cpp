@@ -18,6 +18,7 @@ void GameLoop::run() {
     background.setTexture(&texture);
     while (m_window.isOpen()) {
         m_engine.update(DELTA_TIME_STEP);
+        if (!m_window.isOpen()) break;
         m_window.clear();
         m_window.draw(background);
     }

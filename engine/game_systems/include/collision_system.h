@@ -15,7 +15,9 @@ public:
     explicit CollisionSystem(ecs::Engine* engine) : m_engine(engine), ecs::event::EventListenerBase(engine) {
         registerEventCallbacks();
     }
-    ~CollisionSystem() override { unregisterEventCallbacks(); }
+    ~CollisionSystem() override {
+        //unregisterEventCallbacks();
+    }
 
     void preUpdate(float dt) override {
         for (auto& rB : m_rigidBodies) {

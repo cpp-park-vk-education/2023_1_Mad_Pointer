@@ -14,7 +14,9 @@ public:
         registerEventCallbacks();
     }
 
-    ~SpawnSystem() override { unregisterEventCallbacks(); }
+    ~SpawnSystem() override {
+       // unregisterEventCallbacks();
+    }
 
     void update(float dt) override {
         static int enemiesCount = 0;

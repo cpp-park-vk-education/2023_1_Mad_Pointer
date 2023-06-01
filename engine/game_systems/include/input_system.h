@@ -20,6 +20,7 @@ private:
 
 void InputSystem::preUpdate(float deltaTime) {
     sf::Event event{};
+    if (!m_window.isOpen()) return;
     while (m_window.pollEvent(event)) {
         switch (event.type) {
             case sf::Event::KeyPressed:

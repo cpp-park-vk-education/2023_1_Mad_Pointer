@@ -13,9 +13,12 @@ public:
     RenderSystem(sf::RenderWindow& window, ecs::Engine* engine) : m_window(window), ecs::event::EventListenerBase(engine) {
         registerEventCallbacks();
     }
-    ~RenderSystem() override { unregisterEventCallbacks(); }
+    ~RenderSystem() override {
+    //    unregisterEventCallbacks();
+    }
 
     void preUpdate(float dt) override {
+        if (!m_window.isOpen()) return;
         for (auto& renderable : m_renderable) {
             if (m_killedObjects.count(renderable.getEID()))  {
                 renderable.setActive(false);
@@ -24,13 +27,15 @@ public:
         m_killedObjects.clear();
     }
     void update(float dt) override {
+        if (!m_window.isOpen()) return;
         for (auto& renderable_object : m_renderable) {
-            if (renderable_object) {
+            if (renderable_object && m_window.isOpen()) {
                 renderable_object.render(m_window);
             }
         }
     }
     void postUpdate(float dt) override {
+        if (!m_window.isOpen()) return;
         m_window.display();
     }
 
@@ -76,10 +81,15 @@ public:
 private:
 
     void registerEventCallbacks() {
+        registerEventCallback(&RenderSystem::onGameQuitEvent);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
         registerEventCallback(&RenderSystem::onWallCreated);
         registerEventCallback(&RenderSystem::onGameObjectCreated);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
+    }
+
+    void onGameQuitEvent(const GameQuitEvent* event) {
+        m_window.close();
     }
 
     void onGameObjectCreated(const GameObjectCreated* event) {

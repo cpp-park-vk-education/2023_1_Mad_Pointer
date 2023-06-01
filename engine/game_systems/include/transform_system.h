@@ -13,7 +13,9 @@ public:
         registerEventCallbacks();
     }
 
-    ~TransformSystem() override { unregisterEventCallbacks(); }
+    ~TransformSystem() override {
+        //unregisterEventCallbacks();
+    }
     void preUpdate(float dt) override {
         for (auto& movable : m_movable) {
             if (m_killedObjs.count(movable.getEID())) {

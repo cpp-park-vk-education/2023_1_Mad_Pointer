@@ -13,7 +13,9 @@ public:
         registerEventCallbacks();
     }
 
-    ~EnemyControllerSystem() override { unregisterEventCallbacks(); }
+    ~EnemyControllerSystem() override {
+        //unregisterEventCallbacks();
+    }
 
     void preUpdate(float dt) override {
         for (auto& movable : m_movable) {
