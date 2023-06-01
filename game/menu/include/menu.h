@@ -185,7 +185,7 @@ void start() {
                             break;
                         case 1:
                             {
-                                GameLoopCars gameLoop("The Floors", "image/image.jpg");
+                                GameLoopCars gameLoop("The Floors", "image/cars_background.png");
                                 LOG_INFO("Cars game created");
                                 gameLoop.initializeSFML();
                                 gameLoop.initializeECS();

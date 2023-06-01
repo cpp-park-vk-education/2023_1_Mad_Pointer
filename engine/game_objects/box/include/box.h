@@ -25,7 +25,7 @@ public:
         m_transformComponent = addComponent<TransformComponent>(m_pos, BOX_SPEED, BOX_ANGLE);
         m_collisionComponent = addComponent<CollisionComponent>(CollisionType::BoxCollisionType);
 
-        m_engine->sendEvent<BoxCreated>(m_entityId);
+        m_engine->sendEvent<BoxCreated>(m_entityId, m_size);
     }
 
     virtual void OnDisable() {
