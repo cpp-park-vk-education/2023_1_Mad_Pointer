@@ -12,7 +12,9 @@ public:
         registerEventCallbacks();
     }
 
-    ~Controller() override { unregisterEventCallbacks(); }
+    ~Controller() override {
+        //unregisterEventCallbacks();
+    }
 
     void setTransform(TransformComponent* transform) {
         m_transform = transform;

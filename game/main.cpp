@@ -1,16 +1,27 @@
-#include "game_loop.h"
+#include "shooter_game.h"
+#include "cars_game.h"
 #include "logger.h"
 #include "menu/include/menu.h"
 
 int main() {
     start();
+    /*{
+        GameLoopShooter gameLoop("The Floors", "image/image.jpg");
+        LOG_INFO("Shooter game created");
 
-    //GamеStart();
-    // GameLoop gameLoop("The Floors");
-    // LOG_INFO("game loop created.");
+        gameLoop.initializeSFML();
+        gameLoop.initializeECS();
+        gameLoop.run();
+    }
 
-    // gameLoop.initializeSFML();
-    // gameLoop.initializeECS();
-    // gameLoop.run();
+    {
+        GameLoopCars gameLoop("The Floors", "image/image.jpg");
+        LOG_INFO("Cars game created");
+
+        gameLoop.initializeSFML();
+        gameLoop.initializeECS();
+        gameLoop.run();
+    }
+    */
     return 0;
 }

@@ -25,10 +25,13 @@ public:
         m_controller.setTransform(m_transformComponent);
 
         m_engine->sendEvent<GameObjectCreated>(m_entityId, m_radius * 2);
+        //m_engine->sendEvent<GameQuitEvent>();
+
     }
 
     virtual void OnDisable() {
         m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
+        m_engine->sendEvent<GameQuitEvent>();
     }
 private:
     sf::Vector2f m_startPos;

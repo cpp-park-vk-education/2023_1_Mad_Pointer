@@ -24,6 +24,7 @@ namespace ecs {
 
         m_entityManager->RemoveDestroyedEntities();
         m_eventHandler->DispatchEvents();
+
     }
 
 

@@ -12,7 +12,9 @@ public:
     explicit ShootSystem(ecs::Engine* engine) : m_engine(engine), ecs::event::EventListenerBase(engine) {
         registerEventCallbacks();
     }
-    ~ShootSystem() override { unregisterEventCallbacks(); }
+    ~ShootSystem() override {
+        //unregisterEventCallbacks();
+    }
 
     void preUpdate(float dt) override {}
     void update(float dt) override {}

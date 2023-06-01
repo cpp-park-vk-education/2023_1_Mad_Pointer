@@ -54,6 +54,30 @@ private:
     sf::VertexArray m_vertices;
 };
 
+class RectangleShapeFill : public ShapeBase {
+public:
+    RectangleShapeFill(const sf::Vector2f& pos, const sf::Vector2f& size, sf::Color color): m_rectangle(size) {
+        setColor(color);
+    }
+
+    ~RectangleShapeFill() override {}
+
+    void setPosition(const sf::Vector2f& position) override {
+        m_rectangle.setPosition(position.x, position.y);
+    }
+
+    void renderShape(sf::RenderWindow& window) const override {
+        window.draw(m_rectangle);
+    }
+
+    RectangleShapeFill& setColor(sf::Color color) {
+        m_rectangle.setFillColor(color);
+        return *this;
+    }
+private:
+    sf::RectangleShape m_rectangle;
+};
+
 class ShapeComponent : public ecs::Component<ShapeComponent> {
 public:
     ShapeComponent(const ecs::EntityId id, std::unique_ptr<ShapeBase> shape, sf::Color color) : m_shape(std::move(shape)), m_color(color) {}

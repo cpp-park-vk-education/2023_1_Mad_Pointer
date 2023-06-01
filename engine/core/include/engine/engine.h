@@ -34,6 +34,7 @@ namespace ecs  {
 
             template<class E, class... Args>
             void sendEvent(Args&&... eventArgs)  {
+                if (!m_eventHandler) return;
                 m_eventHandler->Send<E>(std::forward<Args>(eventArgs)...);
             }
 
