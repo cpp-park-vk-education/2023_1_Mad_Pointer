@@ -61,6 +61,8 @@ struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {
 
 struct EnemyDestroyed : public ecs::event::Event<EnemyDestroyed> {};
 
+struct UpdateScore : public ecs::event::Event<UpdateScore> {};
+
 struct CarCreated : public ecs::event::Event<CarCreated> {
     ecs::EntityId m_EntityID;
     sf::Vector2f m_size;
