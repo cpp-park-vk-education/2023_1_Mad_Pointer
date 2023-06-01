@@ -96,6 +96,7 @@ public:
 
 private:
     void registerEventCallbacks() {
+        registerEventCallback(&TransformSystem::onBoxCreated);
         registerEventCallback(&TransformSystem::onCarCreated);
         registerEventCallback(&TransformSystem::onGameObjectCreated);
         registerEventCallback(&TransformSystem::onWallCreated);
@@ -112,6 +113,14 @@ private:
         auto transform = entity->getComponent<TransformComponent>();
 
         registerMovable(entity, transform, event->m_offset);
+    }
+
+    void onBoxCreated(const BoxCreated* event) {
+        auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        if (!entity) return;
+        auto transform = entity->getComponent<TransformComponent>();
+
+        registerMovable(entity, transform, 0);
     }
 
     void onCarCreated(const CarCreated* event) {

@@ -69,6 +69,16 @@ struct CarDestroyed : public ecs::event::Event<CarDestroyed> {
     explicit CarDestroyed(ecs::EntityId id) : m_EntityID(id) {}
 };
 
+struct BoxCreated : public ecs::event::Event<BoxCreated> {
+    ecs::EntityId m_EntityID;
+    explicit BoxCreated(ecs::EntityId id) : m_EntityID(id) {}
+};
+
+struct BoxDestroyed : public ecs::event::Event<BoxDestroyed> {
+    ecs::EntityId m_EntityID;
+    explicit BoxDestroyed(ecs::EntityId id) : m_EntityID(id) {}
+};
+
 struct CollisionEvent : public ecs::event::Event<CollisionEvent> {
     ecs::EntityId objectA;
     ecs::EntityId objectB;
