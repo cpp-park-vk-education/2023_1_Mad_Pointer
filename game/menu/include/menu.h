@@ -57,7 +57,7 @@ void GameMenu::setTextObjOfMenuItems(sf::Text& textObj, sf::String menuItemText,
     textObj.setString(menuItemText);
     textObj.setCharacterSize(m_fontSize);
     textObj.setPosition(posX, posY);
-    textObj.setOutlineThickness(3);
+    textObj.setOutlineThickness(1);
     textObj.setOutlineColor(m_itemsBorderColor);
 }
 
@@ -121,19 +121,19 @@ void GameMenu::draw() {
     }
 }
 
-void InitText(sf::Text& textObj,
+void initText(sf::Text& textObj,
               float xpos,
               float ypos,
               sf::String text,
               int fontSize = 60,
+              int borderThickness = 0,
               sf::Color menuTextColor = sf::Color::White,
-              int bord = 0,
               sf::Color borderColor = sf::Color::Black) {
     textObj.setCharacterSize(fontSize);
     textObj.setPosition(xpos, ypos);
     textObj.setString(text);
+    textObj.setOutlineThickness(borderThickness);
     textObj.setFillColor(menuTextColor);
-    textObj.setOutlineThickness(bord);
     textObj.setOutlineColor(borderColor);
 }
 
@@ -155,11 +155,11 @@ void start() {
     sf::Text title;
     title.setFont(font);
 
-    InitText(title, 480, 50, L"Maddest Pointer", 150, sf::Color(237, 147, 0), 3);
+    initText(title, 450, 50, L"Maddest Pointer", 150, 1, sf::Color(237, 100, 0), sf::Color(100, 100, 100));
     sf::String name_menu[]{L"Стрелялка", L"Машинки", L"Выход"};
 
     GameMenu menu(window, 950, 350, 3, name_menu, 100, 120);
-    menu.setMenuTextColor(sf::Color(237, 147, 0), sf::Color::Red, sf::Color::Black);
+    menu.setMenuTextColor(sf::Color(100, 100, 100), sf::Color::White, sf::Color(60, 60, 60));
     menu.alignMenuPosition(2);
 
     while (window.isOpen()) {
