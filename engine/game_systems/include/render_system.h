@@ -83,11 +83,15 @@ private:
     void registerEventCallbacks() {
         registerEventCallback(&RenderSystem::onBoxCreated);
         registerEventCallback(&RenderSystem::onCarCreated);
+        registerEventCallback(&RenderSystem::onCarDestroyed);
         registerEventCallback(&RenderSystem::onGameQuitEvent);
-        registerEventCallback(&RenderSystem::onGameObjectDestroyed);
         registerEventCallback(&RenderSystem::onWallCreated);
         registerEventCallback(&RenderSystem::onGameObjectCreated);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
+    }
+
+    void onCarDestroyed(const CarDestroyed* event) {
+        unregisterRenderable(event->m_EntityID);
     }
 
     void onGameQuitEvent(const GameQuitEvent* event) {
