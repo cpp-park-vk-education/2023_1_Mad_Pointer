@@ -61,7 +61,8 @@ struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {
 
 struct CarCreated : public ecs::event::Event<CarCreated> {
     ecs::EntityId m_EntityID;
-    explicit CarCreated(ecs::EntityId id) : m_EntityID(id) {}
+    sf::Vector2f m_size;
+    explicit CarCreated(ecs::EntityId id, sf::Vector2f size) : m_EntityID(id), m_size(size) {}
 };
 
 struct CarDestroyed : public ecs::event::Event<CarDestroyed> {
@@ -71,7 +72,8 @@ struct CarDestroyed : public ecs::event::Event<CarDestroyed> {
 
 struct BoxCreated : public ecs::event::Event<BoxCreated> {
     ecs::EntityId m_EntityID;
-    explicit BoxCreated(ecs::EntityId id) : m_EntityID(id) {}
+    sf::Vector2f m_size;
+    explicit BoxCreated(ecs::EntityId id, sf::Vector2f size) : m_EntityID(id), m_size(size) {}
 };
 
 struct BoxDestroyed : public ecs::event::Event<BoxDestroyed> {

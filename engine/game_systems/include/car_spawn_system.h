@@ -3,14 +3,15 @@
 #include "event_listener.h"
 #include "transform_component.h"
 #include "game_event.h"
-#include "enemy.h"
-
+#include "box.h"
 #include <cmath>
 #include <random>
 
+const sf::Vector2f BOX_SIZE(50, 50);
+
 class CarSpawnSystem : public ecs::System<CarSpawnSystem>, public ecs::event::EventListenerBase {
 public:
-    explicit CarSpawnSystem(ecs::Engine* engine) : m_engine(engine), m_playerTransform(nullptr), ecs::event::EventListenerBase(engine) {
+    explicit CarSpawnSystem(ecs::Engine* engine) : m_engine(engine), ecs::event::EventListenerBase(engine) {
         registerEventCallbacks();
     }
 
@@ -19,30 +20,29 @@ public:
     }
 
     void update(float dt) override {
-        static int enemiesCount = 0;
+        static int carsCount = 3;
         currTime += dt;
-        if (currTime > 2000.0) {
+        if (currTime > 1000.0) {
             currTime = 0;
-            ++enemiesCount;
 
             std::random_device random_device;
             std::mt19937 generator(random_device());
 
             std::uniform_real_distribution<> distributionForX(m_minBounds.x + 50, m_maxBounds.x - 50);
-            std::uniform_real_distribution<> distributionForY(m_minBounds.y + 50, m_maxBounds.y - 50);
+            std::uniform_real_distribution<> distributionForY(m_minBounds.y + 50, -50);
 
             float x = distributionForX(generator);
             float y = distributionForY(generator);
-            for (size_t i = 0; i < enemiesCount; ++i) {
-                while(sqrt(pow(m_playerTransform->getPosition().x - x, 2) + pow(m_playerTransform->getPosition().y - y, 2)) < 200) {
+            for (size_t i = 0; i < carsCount; ++i) {
+                //while(sqrt(pow(m_playerTransform->getPosition().x - x, 2) + pow(m_playerTransform->getPosition().y - y, 2)) < 200) {
                     x = distributionForX(generator);
                     y = distributionForY(generator);
-                }
+                //}
 
                 //while(abs(m_playerTransform->getPosition().y - y) < 200) {
                 //}
 
-                m_engine->getEntityManager()->CreateEntity<Enemy>(m_engine, m_engine->getComponentManager(), sf::Vector2f(x, y));
+                m_engine->getEntityManager()->CreateEntity<Box>(m_engine, m_engine->getComponentManager(), sf::Vector2f(x, y), BOX_SIZE);
                 x = distributionForX(generator);
                 y = distributionForY(generator);
             }
@@ -56,9 +56,9 @@ private:
     }
 
     void onGameObjectCreated(const GameObjectCreated* event) {
-        if (m_playerTransform) return;
-        auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
-        m_playerTransform = entity->getComponent<TransformComponent>();
+        //if (m_playerTransform) return;
+        //auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        //m_playerTransform = entity->getComponent<TransformComponent>();
     }
 
     void onWallCreated(const WallCreated* event) {
@@ -74,7 +74,6 @@ private:
 private:
     float currTime = 0;
     ecs::Engine* m_engine;
-    TransformComponent* m_playerTransform;
-    sf::Vector2f m_minBounds;
-    sf::Vector2f m_maxBounds;
+    sf::Vector2f m_minBounds = {0, -1000};
+    sf::Vector2f m_maxBounds = {1920, 2080};
 };
