@@ -14,7 +14,7 @@ public:
         
         if (!font.loadFromFile("font/MyriadPro.otf")) { exit(1); }
         text.setFont(font);
-        text.setPosition(50, 50);
+        text.setPosition(60, 30);
         text.setString("Score: " + std::to_string(m_score));
         text.setCharacterSize(40);
         text.setFillColor(sf::Color::White);
@@ -33,14 +33,20 @@ public:
 private:
     void registerEventCallbacks() {
         registerEventCallback(&ScoreSystem::onEnemyDestroyed);
+        registerEventCallback(&ScoreSystem::onUpdateScore);
     }
 
     void onEnemyDestroyed(const EnemyDestroyed* event) {
         m_score += 10;
     }
 
+    void onUpdateScore(const UpdateScore* event) {
+        m_score += 1;
+    }
+
     void unregisterEventCallbacks() {
         unregisterEventCallback(&ScoreSystem::onEnemyDestroyed);
+        unregisterEventCallback(&ScoreSystem::onUpdateScore);
     }
 
 private:

@@ -24,6 +24,7 @@ public:
         currTime += dt;
         if (currTime > 1000.0) {
             currTime = 0;
+            m_engine->sendEvent<UpdateScore>();
 
             std::random_device random_device;
             std::mt19937 generator(random_device());
