@@ -26,6 +26,7 @@ public:
 
     virtual void OnDisable() {
         m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
+        m_engine->sendEvent<EnemyDestroyed>();
     }
 private:
     float m_radius = 20.0;

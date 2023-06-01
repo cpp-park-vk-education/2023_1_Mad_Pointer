@@ -13,13 +13,13 @@ class GameLoopShooter : public GameLoop {
 public:
     GameLoopShooter(const std::string& gameName, const std::string& pathToBackground) : GameLoop(gameName, pathToBackground) {}
     void initializeECS() override {
+        m_engine.getSystemManager()->AddSystem<ScoreSystem>(m_window, &m_engine);
         m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
         m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
         m_engine.getSystemManager()->AddSystem<TransformSystem>(&m_engine);
         m_engine.getSystemManager()->AddSystem<SpawnSystem>(&m_engine);
         m_engine.getSystemManager()->AddSystem<CollisionSystem>(&m_engine);
         m_engine.getSystemManager()->AddSystem<EnemyControllerSystem>(&m_engine);
-        m_engine.getSystemManager()->AddSystem<ScoreSystem>(&m_engine);
 
         m_engine.getEntityManager()->CreateEntity<Player>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200});
 
