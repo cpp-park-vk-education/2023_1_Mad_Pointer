@@ -16,7 +16,12 @@ public:
         OnDisable();
     }
     void onEnable() override {
-        std::unique_ptr<RectangleShapeFill> shape = std::make_unique<RectangleShapeFill>(m_pos, m_size, sf::Color::Blue);
+        std::unique_ptr<RectangleShapeFill> shape = std::make_unique<RectangleShapeFill>(m_pos, m_size, sf::Color::Red, true);
+
+        m_texture = std::make_unique<sf::Texture>();
+        m_texture->loadFromFile("image/car.png");
+        m_texture->setSmooth(true);
+        shape->setTexture(m_texture.get());
 
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Blue);
         m_transformComponent = addComponent<TransformComponent>(m_pos, 0.0, 0.0);
@@ -33,7 +38,7 @@ public:
 private:
     sf::Vector2f m_size;
     sf::Vector2f m_pos;
-
+    std::unique_ptr<sf::Texture> m_texture;
     CarController m_carController;
     ecs::Engine* m_engine;
     ShapeComponent*	m_shapeComponent;

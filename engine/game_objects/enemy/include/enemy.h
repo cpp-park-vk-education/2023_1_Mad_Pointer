@@ -16,6 +16,11 @@ public:
     void onEnable() override {
         std::unique_ptr<CircleShape> shape = std::make_unique<CircleShape>(m_radius, sf::Color::Red);
 
+        m_texture = std::make_unique<sf::Texture>();
+        m_texture->loadFromFile("image/enemy_sphere.jpg");
+        m_texture->setSmooth(true);
+        shape->setTexture(m_texture.get());
+
         m_collisionComponent = addComponent<CollisionComponent>(CollisionType::EnemyCollisionType);
         m_radiusComponent = addComponent<RadiusComponent>(m_radius);
         m_shapeComponent = addComponent<ShapeComponent>(std::move(shape), sf::Color::Red);
@@ -30,6 +35,8 @@ public:
     }
 private:
     float m_radius = 20.0;
+    std::unique_ptr<sf::Texture> m_texture;
+
     sf::Vector2f m_startPos;
     ecs::Engine* m_engine;
     CollisionComponent* m_collisionComponent;
