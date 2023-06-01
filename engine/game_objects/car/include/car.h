@@ -13,7 +13,7 @@ public:
                                                                                                                    m_carController(engine), m_pos(pos), m_size(size) {}
 
     ~Car() override {
-        onDisable();
+        OnDisable();
     }
     void onEnable() override {
         std::unique_ptr<RectangleShapeFill> shape = std::make_unique<RectangleShapeFill>(m_pos, m_size, sf::Color::Blue);
@@ -27,7 +27,8 @@ public:
     }
 
     virtual void OnDisable() {
-        m_engine->sendEvent<CarDestroyed>(m_entityId);
+        m_engine->sendEvent<GameObjectDestroyed>(m_entityId);
+        m_engine->sendEvent<GameQuitEvent>();
     }
 private:
     sf::Vector2f m_size;

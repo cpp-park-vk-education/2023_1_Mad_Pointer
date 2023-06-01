@@ -34,13 +34,8 @@ public:
             float x = distributionForX(generator);
             float y = distributionForY(generator);
             for (size_t i = 0; i < carsCount; ++i) {
-                //while(sqrt(pow(m_playerTransform->getPosition().x - x, 2) + pow(m_playerTransform->getPosition().y - y, 2)) < 200) {
                     x = distributionForX(generator);
                     y = distributionForY(generator);
-                //}
-
-                //while(abs(m_playerTransform->getPosition().y - y) < 200) {
-                //}
 
                 m_engine->getEntityManager()->CreateEntity<Box>(m_engine, m_engine->getComponentManager(), sf::Vector2f(x, y), BOX_SIZE);
                 x = distributionForX(generator);

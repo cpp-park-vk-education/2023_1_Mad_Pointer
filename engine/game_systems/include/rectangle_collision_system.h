@@ -10,6 +10,13 @@
 #include <cmath>
 #include <SFML/Graphics.hpp>
 
+bool isPointInRect(const sf::Vector2f& first, const sf::Vector2f& last, const sf::Vector2f& point) {
+    if (point.x >= first.x && point.x <= last.x && point.y >= first.y && point.y <= last.y) {
+        return true;
+    }
+    return false;
+}
+
 class RectangleCollisionSystem : public ecs::System<RectangleCollisionSystem>, public ecs::event::EventListenerBase {
 public:
     explicit RectangleCollisionSystem(ecs::Engine* engine) : m_engine(engine), ecs::event::EventListenerBase(engine) {
@@ -62,21 +69,30 @@ public:
 
         bool checkCollision(const RigidBody& other) const {
             float ax1 = m_transformComponent->getPosition().x;
-            float ax2 = ax1 + m_size.x;
-
             float ay1 = m_transformComponent->getPosition().y;
-            float ay2 = ay1 + m_size.y;
+
+            float ax2 = m_transformComponent->getPosition().x + m_size.x;
+            float ay2 = m_transformComponent->getPosition().y + m_size.y;
 
             float bx1 = other.m_transformComponent->getPosition().x;
-            float bx2 = bx1 + other.m_size.x;
-
             float by1 = other.m_transformComponent->getPosition().y;
-            float by2 = by1 + other.m_size.y;
 
-            if (std::max(ax1, ax2) < std::min(bx1, bx2) || std::max(ay1, ay2) < std::min(by1, by2) || std::max(by1, by2) < std::min(ay1, ay2)) {
-                return false;
+            float bx2 = other.m_transformComponent->getPosition().x + other.m_size.x;
+            float by2 = other.m_transformComponent->getPosition().y;
+
+            float bx3 = other.m_transformComponent->getPosition().x + other.m_size.x;
+            float by3 = other.m_transformComponent->getPosition().y + other.m_size.y;
+
+            float bx4 = other.m_transformComponent->getPosition().x;
+            float by4 = other.m_transformComponent->getPosition().y + other.m_size.y;
+
+            if (isPointInRect(sf::Vector2f(ax1, ay1), sf::Vector2f(ax2, ay2), sf::Vector2f(bx1, by1)) ||
+                    isPointInRect(sf::Vector2f(ax1, ay1), sf::Vector2f(ax2, ay2), sf::Vector2f(bx2, by2)) ||
+                    isPointInRect(sf::Vector2f(ax1, ay1), sf::Vector2f(ax2, ay2), sf::Vector2f(bx3, by3)) ||
+                    isPointInRect(sf::Vector2f(ax1, ay1), sf::Vector2f(ax2, ay2), sf::Vector2f(bx4, by4)) ) {
+                return true;
             }
-            return true;
+            return false;
         }
 
         bool operator==(const RigidBody& other) const {
