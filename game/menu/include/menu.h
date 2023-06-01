@@ -1,4 +1,7 @@
 #pragma once
+#include "shooter_game.h"
+#include "cars_game.h"
+
 #include <SFML/Graphics.hpp>
 
 class GameMenu {
@@ -117,20 +120,20 @@ void GameMenu::draw() {
     }
 }
 
-void InitText(sf::Text& mtext,
+void InitText(sf::Text& textObj,
               float xpos,
               float ypos,
-              sf::String str,
-              int size_font = 60,
-              sf::Color menu_text_color = sf::Color::White,
+              sf::String text,
+              int fontSize = 60,
+              sf::Color menuTextColor = sf::Color::White,
               int bord = 0,
-              sf::Color border_color = sf::Color::Black) {
-    mtext.setCharacterSize(size_font);
-    mtext.setPosition(xpos, ypos);
-    mtext.setString(str);
-    mtext.setFillColor(menu_text_color);
-    mtext.setOutlineThickness(bord);
-    mtext.setOutlineColor(border_color);
+              sf::Color borderColor = sf::Color::Black) {
+    textObj.setCharacterSize(fontSize);
+    textObj.setPosition(xpos, ypos);
+    textObj.setString(text);
+    textObj.setFillColor(menuTextColor);
+    textObj.setOutlineThickness(bord);
+    textObj.setOutlineColor(borderColor);
 }
 
 void start() {
@@ -171,10 +174,18 @@ void start() {
                 if (event.key.code == sf::Keyboard::Return) {
                     switch (menu.getNumOfSelectedItem()) {
                         case 0:
-                            std::cout << "start first game" << std::endl;
+                            GameLoopShooter gameLoop("The Floors", "image/image.jpg");
+                            LOG_INFO("Shooter game created");
+                            gameLoop.initializeSFML();
+                            gameLoop.initializeECS();
+                            gameLoop.run();
                             break;
                         case 1:
-                            std::cout << "start second game" << std::endl;
+                            GameLoopCars gameLoop("The Floors", "image/image.jpg");
+                            LOG_INFO("Cars game created");
+                            gameLoop.initializeSFML();
+                            gameLoop.initializeECS();
+                            gameLoop.run();
                             break;
                         case 2:
                             window.close();
