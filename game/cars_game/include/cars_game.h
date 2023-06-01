@@ -10,6 +10,8 @@
 #include "input_system.h"
 #include "wall.h"
 
+const int wallOffset = 1000;
+
 class GameLoopCars : public GameLoop {
 public:
     GameLoopCars(const std::string& gameName, const std::string& pathToBackground) : GameLoop(gameName, pathToBackground) {}
@@ -34,6 +36,12 @@ public:
 
         m_engine.getEntityManager()->CreateEntity<Car>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
         m_engine.getEntityManager()->CreateEntity<Box>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
-
+        
+        float width = sf::VideoMode::getDesktopMode().width;
+        float height = sf::VideoMode::getDesktopMode().height;
+        
+        std::vector<sf::Vector2f> verticesForWall = {{0, -wallOffset}, {0, height + wallOffset}, {width, height + wallOffset},
+                                                    {width, -wallOffset}, {0, -wallOffset}};
+        m_engine.getEntityManager()->CreateEntity<Wall>(&m_engine, m_engine.getComponentManager(), verticesForWall);
     }
 };

@@ -128,7 +128,7 @@ private:
         if (!entity) return;
         auto transform = entity->getComponent<TransformComponent>();
 
-        registerMovable(entity, transform, 0);
+        registerMovable(entity, transform, event->m_offset);
     }
 
     void registerMovable(ecs::EntityBase* entity, TransformComponent* transform, float offset) {

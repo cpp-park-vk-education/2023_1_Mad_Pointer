@@ -61,7 +61,9 @@ struct GameObjectDestroyed : public ecs::event::Event<GameObjectDestroyed> {
 
 struct CarCreated : public ecs::event::Event<CarCreated> {
     ecs::EntityId m_EntityID;
-    explicit CarCreated(ecs::EntityId id) : m_EntityID(id) {}
+    float m_offset;
+
+    explicit CarCreated(ecs::EntityId id, float offset) : m_EntityID(id), m_offset(offset) {}
 };
 
 struct CarDestroyed : public ecs::event::Event<CarDestroyed> {

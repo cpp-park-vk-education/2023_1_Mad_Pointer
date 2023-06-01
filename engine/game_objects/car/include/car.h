@@ -23,7 +23,7 @@ public:
         m_collisionComponent = addComponent<CollisionComponent>(CollisionType::CarCollisionType);
 
         m_carController.setTransform(m_transformComponent);
-        m_engine->sendEvent<CarCreated>(m_entityId);
+        m_engine->sendEvent<CarCreated>(m_entityId, m_size.x);
     }
 
     virtual void OnDisable() {
