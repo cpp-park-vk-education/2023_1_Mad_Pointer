@@ -12,7 +12,7 @@ public:
 
 class CircleShape : public ShapeBase {
 public:
-    CircleShape(float radius, sf::Color color) : m_circle(radius) {
+    CircleShape(float radius, sf::Color color) : m_circle(radius, 50) {
         m_circle.setRadius(radius);
         setColor(color);
     }
@@ -28,6 +28,10 @@ public:
     CircleShape& setColor(sf::Color color) {
         m_circle.setFillColor(color);
         return *this;
+    }
+
+    void setTexture(sf::Texture* texture) {
+        m_circle.setTexture(texture);
     }
 private:
     sf::CircleShape m_circle;
@@ -56,7 +60,8 @@ private:
 
 class RectangleShapeFill : public ShapeBase {
 public:
-    RectangleShapeFill(const sf::Vector2f& pos, const sf::Vector2f& size, sf::Color color): m_rectangle(size) {
+    RectangleShapeFill(const sf::Vector2f& pos, const sf::Vector2f& size, sf::Color color, bool flag = false): m_rectangle(size) {
+        if (!flag)
         setColor(color);
     }
 
@@ -73,6 +78,10 @@ public:
     RectangleShapeFill& setColor(sf::Color color) {
         m_rectangle.setFillColor(color);
         return *this;
+    }
+
+    void setTexture(sf::Texture* texture) {
+        m_rectangle.setTexture(texture);
     }
 private:
     sf::RectangleShape m_rectangle;

@@ -17,12 +17,16 @@ void GameLoop::run() {
 }
 
 void GameLoop::initializeSFML() {
-    m_window.create(sf::VideoMode::getDesktopMode(), m_gameName);
+    sf::ContextSettings settings;
+    settings.antialiasingLevel = 8;
+
+    m_window.create(sf::VideoMode::getDesktopMode(), m_gameName, sf::Style::Default, settings);
 
     m_window.setFramerateLimit(60);
     m_window.setMouseCursorVisible(true);
     m_window.setVerticalSyncEnabled(true);
     m_window.setActive(true);
+
     m_window.requestFocus();
     if (!m_window.isOpen()) {
         LOG_ERROR("Window has not been created! Fatal!");
