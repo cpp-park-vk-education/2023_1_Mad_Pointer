@@ -26,12 +26,14 @@ void GamеStart() {
 }
 
 int main() {
-    //GamеStart();
-    GameLoop gameLoop("The Floors");
-    LOG_INFO("game loop created.");
+    {
+        GameLoop gameLoop("The Floors");
+        LOG_INFO("game loop created.");
 
-    gameLoop.initializeSFML();
-    gameLoop.initializeECS();
-    gameLoop.run();
+        gameLoop.initializeSFML();
+        gameLoop.initializeECS();
+        gameLoop.run();
+    }
+
     return 0;
 }
