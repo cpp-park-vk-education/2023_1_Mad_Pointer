@@ -81,6 +81,7 @@ public:
 private:
 
     void registerEventCallbacks() {
+        registerEventCallback(&RenderSystem::onCarCreated);
         registerEventCallback(&RenderSystem::onGameQuitEvent);
         registerEventCallback(&RenderSystem::onGameObjectDestroyed);
         registerEventCallback(&RenderSystem::onWallCreated);
@@ -93,6 +94,15 @@ private:
     }
 
     void onGameObjectCreated(const GameObjectCreated* event) {
+        auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        if (!entity) return;
+        auto transform = entity->getComponent<TransformComponent>();
+        auto shape = entity->getComponent<ShapeComponent>();
+
+        registerRenderable(entity, transform, shape);
+    }
+
+    void onCarCreated(const CarCreated* event) {
         auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
         if (!entity) return;
         auto transform = entity->getComponent<TransformComponent>();

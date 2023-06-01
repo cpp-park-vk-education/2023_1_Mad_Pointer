@@ -7,6 +7,7 @@ enum CollisionType {
     EnemyCollisionType,
     PlayerCollisionType,
     ProjectileCollisionType,
+    CarCollisionType,
     WallCollisionType
 };
 

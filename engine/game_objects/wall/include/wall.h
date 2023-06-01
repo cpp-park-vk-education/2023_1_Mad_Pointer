@@ -1,4 +1,4 @@
-#pragma ocne
+#pragma once
 #include "game_object.h"
 #include "event_listener.h"
 #include "shape_component.h"

@@ -29,6 +29,7 @@ set(INCLUDE_DIRS game_loop/include
         game_components/include
         game_objects/enemy/include
         game_objects/game_object/include
-        game_objects/projectile/include)
+        game_objects/projectile/include
+        game_objects/car/include)
 
 target_include_directories(EngineStaticLib PUBLIC ${INCLUDE_DIRS})
