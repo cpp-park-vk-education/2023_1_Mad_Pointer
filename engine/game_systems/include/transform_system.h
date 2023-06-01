@@ -96,6 +96,8 @@ public:
 
 private:
     void registerEventCallbacks() {
+        registerEventCallback(&TransformSystem::onBoxCreated);
+        registerEventCallback(&TransformSystem::onCarCreated);
         registerEventCallback(&TransformSystem::onGameObjectCreated);
         registerEventCallback(&TransformSystem::onWallCreated);
         registerEventCallback(&TransformSystem::onGameObjectDestroyed);
@@ -111,6 +113,22 @@ private:
         auto transform = entity->getComponent<TransformComponent>();
 
         registerMovable(entity, transform, event->m_offset);
+    }
+
+    void onBoxCreated(const BoxCreated* event) {
+        auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        if (!entity) return;
+        auto transform = entity->getComponent<TransformComponent>();
+
+        registerMovable(entity, transform, 0);
+    }
+
+    void onCarCreated(const CarCreated* event) {
+        auto entity = getEngine()->getEntityManager()->getEntity(event->m_EntityID);
+        if (!entity) return;
+        auto transform = entity->getComponent<TransformComponent>();
+
+        registerMovable(entity, transform, 0);
     }
 
     void registerMovable(ecs::EntityBase* entity, TransformComponent* transform, float offset) {
@@ -133,6 +151,6 @@ private:
     ecs::Engine* m_engine;
     std::set<ecs::EntityId> m_killedObjs;
     std::vector<Movable> m_movable;
-    sf::Vector2f m_minBounds;
-    sf::Vector2f m_maxBounds;
+    sf::Vector2f m_minBounds {0 , 0};
+    sf::Vector2f m_maxBounds {1920, 1080};
 };

@@ -1,4 +1,4 @@
-
+#pragma once
 #include "game_loop.h"
 #include "render_system.h"
 #include "collision_system.h"
@@ -6,6 +6,7 @@
 #include "enemy_controller_system.h"
 #include "spawn_system.h"
 #include "car.h"
+#include "box.h"
 #include "input_system.h"
 #include "wall.h"
 
@@ -13,7 +14,7 @@ class GameLoopCars : public GameLoop {
 public:
     GameLoopCars(const std::string& gameName, const std::string& pathToBackground) : GameLoop(gameName, pathToBackground) {}
     void initializeECS() override {
-        /*
+    /*
         m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
         m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
         m_engine.getSystemManager()->AddSystem<TransformSystem>(&m_engine);
@@ -28,6 +29,11 @@ public:
     */
 
         m_engine.getSystemManager()->AddSystem<RenderSystem>(m_window, &m_engine);
+        m_engine.getSystemManager()->AddSystem<InputSystem>(m_window, &m_engine);
+        m_engine.getSystemManager()->AddSystem<TransformSystem>(&m_engine);
+
         m_engine.getEntityManager()->CreateEntity<Car>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
+        m_engine.getEntityManager()->CreateEntity<Box>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200}, sf::Vector2f{100, 300});
+
     }
 };
