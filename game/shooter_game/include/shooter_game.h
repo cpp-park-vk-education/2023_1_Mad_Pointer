@@ -7,6 +7,7 @@
 #include "player.h"
 #include "input_system.h"
 #include "wall.h"
+#include "score_system.h"
 
 class GameLoopShooter : public GameLoop {
 public:
@@ -18,6 +19,7 @@ public:
         m_engine.getSystemManager()->AddSystem<SpawnSystem>(&m_engine);
         m_engine.getSystemManager()->AddSystem<CollisionSystem>(&m_engine);
         m_engine.getSystemManager()->AddSystem<EnemyControllerSystem>(&m_engine);
+        m_engine.getSystemManager()->AddSystem<ScoreSystem>(&m_engine);
 
         m_engine.getEntityManager()->CreateEntity<Player>(&m_engine, m_engine.getComponentManager(), sf::Vector2f{200, 200});
 
