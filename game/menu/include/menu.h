@@ -4,6 +4,7 @@
 
 #include <SFML/Graphics.hpp>
 
+namespace menu {
 class GameMenu {
 public:
     GameMenu(sf::RenderWindow& window, float menuX, float menuY, int numOfItems, sf::String name[], int fontSize = 60, int stepBetweenItems = 80);
@@ -174,18 +175,22 @@ void start() {
                 if (event.key.code == sf::Keyboard::Return) {
                     switch (menu.getNumOfSelectedItem()) {
                         case 0:
-                            GameLoopShooter gameLoop("The Floors", "image/image.jpg");
-                            LOG_INFO("Shooter game created");
-                            gameLoop.initializeSFML();
-                            gameLoop.initializeECS();
-                            gameLoop.run();
+                            {
+                                GameLoopShooter gameLoop("The Floors", "image/image.jpg");
+                                LOG_INFO("Shooter game created");
+                                gameLoop.initializeSFML();
+                                gameLoop.initializeECS();
+                                gameLoop.run();
+                            }
                             break;
                         case 1:
-                            GameLoopCars gameLoop("The Floors", "image/image.jpg");
-                            LOG_INFO("Cars game created");
-                            gameLoop.initializeSFML();
-                            gameLoop.initializeECS();
-                            gameLoop.run();
+                            {
+                                GameLoopCars gameLoop("The Floors", "image/image.jpg");
+                                LOG_INFO("Cars game created");
+                                gameLoop.initializeSFML();
+                                gameLoop.initializeECS();
+                                gameLoop.run();
+                            }
                             break;
                         case 2:
                             window.close();
@@ -200,4 +205,5 @@ void start() {
         menu.draw();
         window.display();
     }
+}
 }
